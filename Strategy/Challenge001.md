@@ -13,13 +13,13 @@
 * [Python][3]
 
 ```
-PS > python ..\Code\Python\Challenge001.py
+PS > python .\Code\Python\Challenge001.py
 ```
 
 * [PowerShell][4]
 
 ```
-PS > ..\Code\PowerShell\Challenge001.ps1
+PS > .\Code\PowerShell\Challenge001.ps1
 ```
 
 * [Go][5]
@@ -27,7 +27,7 @@ PS > ..\Code\PowerShell\Challenge001.ps1
 **如果更改了源文件，不要忘记重新编译**
 
 ```
-PS > ..\Code\Go\Challenge.exe -l 1
+PS > .\Code\Go\Challenge.exe -l 1
 ```
 
 ---
@@ -37,7 +37,7 @@ PS > ..\Code\Go\Challenge.exe -l 1
 
 [1]: http://www.pythonchallenge.com/pc/def/map.html
 [2]: http://www.pythonchallenge.com/pc/def/map.jpg "What about making trans?"
-[3]: ..\Code\Python\Challenge001.py "点我查看源码"
-[4]: ..\Code\PowerShell\Challenge001.ps1 "点我查看源码"
-[5]: ..\Code\Go\Challenge001.go "点我查看源码"
+[3]: ../Code/Python/Challenge001.py "点我查看源码"
+[4]: ../Code/PowerShell/Challenge001.ps1 "点我查看源码"
+[5]: ../Code/Go/Challenge001.go "点我查看源码"
 [6]: http://www.pythonchallenge.com/pc/def/ocr.html

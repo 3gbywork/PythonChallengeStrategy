@@ -1,4 +1,4 @@
-$msg=Get-Content "..\\Data\\001\\msg.txt"
+$msg=Get-Content ".\\Data\\001\\msg.txt"
 $url='map'
 
 function GetChar ([char]$ch) {

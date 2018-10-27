@@ -1,5 +1,5 @@
 
-msg=open("..\\Data\\001\\msg.txt").read()
+msg=open(".\\Data\\001\\msg.txt").read()
 url='map'
 
 # ^^^^^^^^^^^^^^^^^^^^^^^^Solution 1^^^^^^^^^^^^^^^^^^^^^^^^

@@ -6,7 +6,7 @@ import(
 )
 
 func (c *Challenge) Challenge001()  {
-	msg:=ReadFile("..\\Data\\001\\msg.txt")
+	msg:=ReadFile(".\\Data\\001\\msg.txt")
 	url:="map"
 
 	fmt.Println(translate(msg))
