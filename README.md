@@ -15,4 +15,7 @@ learn python, go and powershell
 
 则需要**以管理员权限**运行命令行，执行`Set-ExecutionPolicy RemoteSigned`，并在提示后输入`Y`确认。
 
+---
+# 如果引用的图片侵权，请联系我<liaiping1992@163.com>
+
 [1]: https://play.golang.org/
