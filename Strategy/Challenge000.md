@@ -36,7 +36,10 @@ PS > .\Code\Go\Challenge.exe -l 0
 
 ## [下一关地址][4]
 
+## [回首页][5]
+
 [1]: http://www.pythonchallenge.com/pc/def/0.html
 [2]: http://www.pythonchallenge.com/pc/def/calc.jpg "warming up"
 [3]: ../Code/Go/Challenge000.go "点我查看源码"
 [4]: http://www.pythonchallenge.com/pc/def/274877906944.html
+[5]: ../readme.md "回首页"

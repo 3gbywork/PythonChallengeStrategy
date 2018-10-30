@@ -35,9 +35,12 @@ PS > .\Code\Go\Challenge.exe -l 1
 
 ## [下一关地址][6]
 
+## [回首页][7]
+
 [1]: http://www.pythonchallenge.com/pc/def/map.html
 [2]: http://www.pythonchallenge.com/pc/def/map.jpg "What about making trans?"
 [3]: ../Code/Python/Challenge001.py "点我查看源码"
 [4]: ../Code/PowerShell/Challenge001.ps1 "点我查看源码"
 [5]: ../Code/Go/Challenge001.go "点我查看源码"
 [6]: http://www.pythonchallenge.com/pc/def/ocr.html
+[7]: ../readme.md "回首页"

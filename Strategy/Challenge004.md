@@ -39,8 +39,11 @@ PS > .\Code\Go\Challenge.exe -l 4
 
 ## [下一关地址][5]
 
+## [回首页][6]
+
 [1]: http://www.pythonchallenge.com/pc/def/linkedlist.php
 [2]: ../Code/Python/Challenge004.py "点我查看源码"
 [3]: ../Code/PowerShell/Challenge004.ps1 "点我查看源码"
 [4]: ../Code/Go/Challenge004.go "点我查看源码"
 [5]: http://www.pythonchallenge.com/pc/def/peak.html
+[6]: ../readme.md "回首页"
