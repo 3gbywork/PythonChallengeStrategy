@@ -44,4 +44,4 @@ PS > .\Code\Go\Challenge.exe -l 2
 [3]: ../Code/PowerShell/Challenge002.ps1 "点我查看源码"
 [4]: ../Code/Go/Challenge002.go "点我查看源码"
 [5]: http://www.pythonchallenge.com/pc/def/equality.html
-[6]: ../readme.md "回首页"
+[6]: ../README.md "回首页"
