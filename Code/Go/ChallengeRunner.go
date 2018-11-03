@@ -1,16 +1,19 @@
 package main
 
-import(
+import (
 	"fmt"
 	"flag"
 	"strconv"
 	"reflect"
 	"io/ioutil"
+	"os"
+	"net/http"
+	"io"
 )
 
 var level = flag.Int("l",-1,"int类型关卡数")
 
-func main()  {
+func main() {
 	flag.Parse()
 	
 	if (*level < 0) {
@@ -57,4 +60,27 @@ func ReadFile(file string) string {
 	}
 
 	return string(content)
+}
+
+func PathExists(path string) bool {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true
+	}
+	if os.IsNotExist(err) {
+		return false
+	}
+	return false
+}
+
+func Download(url, filename string) {
+	resp, err := http.Get(url)
+	if err != nil {
+		panic(err)
+	}
+	file, err := os.Create(filename)
+	if err != nil {
+		panic(err)
+	}
+	io.Copy(file, resp.Body)
 }
