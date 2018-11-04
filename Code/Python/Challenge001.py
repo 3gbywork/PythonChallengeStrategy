@@ -1,5 +1,5 @@
-
-msg=open(".\\Data\\001\\msg.txt").read()
+import helper
+msg=helper.readfile(".\\Data\\001\\msg.txt")
 url='map'
 
 # ^^^^^^^^^^^^^^^^^^^^^^^^Solution 1^^^^^^^^^^^^^^^^^^^^^^^^

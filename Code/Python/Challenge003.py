@@ -1,4 +1,5 @@
-msg=open(".\\Data\\003\\msg.txt").read()
+import helper
+msg=helper.readfile(".\\Data\\003\\msg.txt")
 
 import re
 

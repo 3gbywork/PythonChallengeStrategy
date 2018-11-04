@@ -1,15 +1,13 @@
 banner="http://www.pythonchallenge.com/pc/def/banner.p"
 
+dir=".\\Data\\005"
+import helper
+helper.ensuredir(dir)
+
 import urllib.request
-
-import os
-if not os.path.exists(".\\Data\\005"):
-    os.mkdir(".\\Data\\005")
-
-(filename,headers)=urllib.request.urlretrieve(banner,'.\\Data\\005\\banner.p')
+(filename,headers)=urllib.request.urlretrieve(banner,dir+'\\banner.p')
 
 import pickle
-
 data=pickle.Unpickler(open(filename,'rb')).load()
 
 # print(data)

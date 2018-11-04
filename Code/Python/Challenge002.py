@@ -1,4 +1,5 @@
-msg=open(".\\Data\\002\\msg.txt").read()
+import helper
+msg=helper.readfile(".\\Data\\002\\msg.txt")
 
 dic={}
 
