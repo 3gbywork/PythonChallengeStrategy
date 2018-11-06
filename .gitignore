@@ -113,3 +113,6 @@ venv.bak/
 Data/005/banner.p
 Data/006/channel.zip
 Data/007/oxygen.png
+
+# powershell lib not ignore
+!Code/PowerShell/lib/
