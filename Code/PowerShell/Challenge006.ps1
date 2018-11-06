@@ -7,7 +7,7 @@ $url="http://www.pythonchallenge.com/pc/def/channel.zip"
 $filename=$path+"\\channel.zip"
 curl -Uri $url -OutFile $filename
 
-[void][System.Reflection.Assembly]::Load("ICSharpCode.SharpZipLib, Version=2.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73")
+[void][System.Reflection.Assembly]::LoadFile($PSScriptRoot+"\\lib\\ICSharpCode.SharpZipLib.dll")
 
 $namespace="ICSharpCode.SharpZipLib.Zip.{0}"
 
@@ -20,7 +20,7 @@ $outstr=""
 while ($true) {
     $entry=$zip.GetEntry($entryname+".txt")
     $stream=$zip.GetInputStream($entry)
-    $reader=New-Object("System.IO.StreamReader")($stream)
+    $reader=New-Object System.IO.StreamReader($stream)
     $cnt=$reader.ReadToEnd()
     $reader.Dispose()
     $stream.Dispose()

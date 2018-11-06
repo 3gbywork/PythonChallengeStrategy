@@ -9,7 +9,7 @@ for ($i=0; $i -lt 400; $i++) {
     if ($match.Success) {
         $param = $match.Groups[1].Value
     } else {
-        "param: {0}, resp: {1}" -f $param,$resp
+        [System.Console]::WriteLine($("param: {0}, resp: {1}" -f $param,$resp))
         if ($resp -eq "Yes. Divide by two and keep going.") {
             $param=$param/2
             continue
@@ -18,4 +18,4 @@ for ($i=0; $i -lt 400; $i++) {
     }
 }
 
-"completed"
+[System.Console]::WriteLine("completed")

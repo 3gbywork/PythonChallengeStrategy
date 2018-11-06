@@ -8,4 +8,3 @@ def ensuredir(dir):
     import os
     if not os.path.exists(dir):
         os.mkdir(dir)
-
