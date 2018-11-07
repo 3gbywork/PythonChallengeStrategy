@@ -116,3 +116,6 @@ Data/007/oxygen.png
 
 # powershell lib not ignore
 !Code/PowerShell/lib/
+
+# tool_go.exe not ignore
+!Tool/tool_go.exe
