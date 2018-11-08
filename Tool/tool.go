@@ -20,21 +20,19 @@ func main() {
 		return
 	}
 
-	levelStr:=os.Args[1]
-
-	mdfile:=fmt.Sprintf("./Strategy/Challenge%03s.md", levelStr)
+	mdfile:=fmt.Sprintf("./Strategy/Challenge%03d.md", level)
     mdtemplate:="./Tool/Template/ChallengeTemplate.md"
-    createFileFromTemplate(mdtemplate, mdfile, levelStr)
+    createFileFromTemplate(mdtemplate, mdfile, level)
 
-    ps1file:=fmt.Sprintf("./Code/PowerShell/Challenge%03s.ps1", levelStr)
+    ps1file:=fmt.Sprintf("./Code/PowerShell/Challenge%03d.ps1", level)
     createFileIfNotExists(ps1file)
 
-    pyfile:=fmt.Sprintf("./Code/Python/Challenge%03s.py", levelStr)
+    pyfile:=fmt.Sprintf("./Code/Python/Challenge%03d.py", level)
     createFileIfNotExists(pyfile)
 
-    gofile:=fmt.Sprintf("./Code/Go/Challenge%03s.go", levelStr)
+    gofile:=fmt.Sprintf("./Code/Go/Challenge%03d.go", level)
     gotemplate:="./Tool/Template/Go.template"
-	createFileFromTemplate(gotemplate, gofile, levelStr)
+	createFileFromTemplate(gotemplate, gofile, level)
 	
 	fmt.Println("welcome to generate tool.")
 }
@@ -54,14 +52,23 @@ func createFileIfNotExists(filename string) {
 	}
 }
 
-func createFileFromTemplate(template, filename, level string) {
+func createFileFromTemplate(template, filename string, level int) {
 	if fileExists(template) {
 		if fileExists(filename) {
 			fmt.Printf("文件 %s 已存在。\n", filename)
 		} else {
 			cnt:=readFile(template)
-			cnt=strings.Replace(cnt, "{#}", level, -1)
-			cnt=strings.Replace(cnt, "{###}", fmt.Sprintf("%03s", level), -1)
+			cnt=strings.Replace(cnt, "{{level}}", fmt.Sprintf("%03d", level), -1)
+			if level > 0 {
+				cnt=strings.Replace(cnt, "{{previous}}", fmt.Sprintf("./Challenge%03d.md", level-1), -1)
+			} else {
+				cnt=strings.Replace(cnt, "{{previous}}", "#", -1)
+			}
+			if level < 39 {
+				cnt=strings.Replace(cnt, "{{next}}", fmt.Sprintf("./Challenge%03d.md", level+1), -1)
+			} else {
+				cnt=strings.Replace(cnt, "{{next}}", "#", -1)
+			}
 
 			file,err:=os.Create(filename)
 			if err != nil {

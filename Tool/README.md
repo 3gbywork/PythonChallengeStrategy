@@ -23,6 +23,7 @@ G:\GIT\PYTHON\LEARN\TOOL
 │   func.ps1                            PowerShell帮助函数库
 │   README.md                           本文件
 │   tool.go                             工具Go语言实现
+|   tool_go.exe                         工具Go语言实现可执行文件，build环境：go version go1.11 windows/amd64
 │   tool.ps1                            工具PowerShell脚本实现
 │   tool.py                             工具Python脚本实现
 │

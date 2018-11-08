@@ -1,8 +1,12 @@
-# [第0关][1] warming up
+# [第000关][1] warming up
 
 ## [关卡地址][1]
 
-![warming up][2]
+## 解决方案：
+
+### 思路：
+
+![warming up][a]
 
 提示：试试更改url
 
@@ -10,36 +14,40 @@
 
 得到的值就是下一关的地址
 
-## 解决方案：
+### 代码：
 
-* Python3
-
-```
->>> print(2**38)
-```
-
-* PowerShell
+* [Python][2]
 
 ```
-PS > [math]::pow(2,38)
+PS > python .\Code\Python\Challenge000.py
 ```
 
-* [Go][3]
+* [PowerShell][3]
 
 ```
-PS > go build -o .\Code\Go\Challenge.exe .\Code\Go\
-PS > .\Code\Go\Challenge.exe -l 0
+PS > .\Code\PowerShell\Challenge000.ps1
+```
+
+* [Go][4]
+
+```
+PS > .\Code\Go\Challenge.exe -l 000
 ```
 
 ---
-## 最终结果：274877906944
+## 最终结果： 274877906944
 
-## [下一关地址][4]
+## [下一关地址][5]
 
-## [回首页][5]
+## [上一关攻略][6] [回首页][7] [下一关攻略][8]
 
 [1]: http://www.pythonchallenge.com/pc/def/0.html
-[2]: http://www.pythonchallenge.com/pc/def/calc.jpg "warming up"
-[3]: ../Code/Go/Challenge000.go "点我查看源码"
-[4]: http://www.pythonchallenge.com/pc/def/274877906944.html
-[5]: ../README.md "回首页"
+[2]: ../Code/Python/Challenge000.py "点我查看源码"
+[3]: ../Code/PowerShell/Challenge000.ps1 "点我查看源码"
+[4]: ../Code/Go/Challenge000.go "点我查看源码"
+[5]: http://www.pythonchallenge.com/pc/def/274877906944.html
+[6]: # "上一关攻略"
+[7]: ../README.md "回首页"
+[8]: ./Challenge001.md "下一关攻略"
+
+[a]: http://www.pythonchallenge.com/pc/def/calc.jpg "warming up"

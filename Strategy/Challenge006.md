@@ -1,6 +1,10 @@
-# [第6关][1] now there are pairs
+# [第006关][1] now there are pairs
 
 ## [关卡地址][1]
+
+## 解决方案：
+
+### 思路：
 
 图片没有提供任何有用的信息。查看源代码得到如下信息：
 
@@ -46,7 +50,7 @@
 
 好吧，原来是`oxygen`
 
-## 解决方案：
+### 代码：
 
 * [Python][2]
 
@@ -63,19 +67,21 @@ PS > .\Code\PowerShell\Challenge006.ps1
 * [Go][4]
 
 ```
-PS > .\Code\Go\Challenge.exe -l 6
+PS > .\Code\Go\Challenge.exe -l 006
 ```
 
 ---
-## 最终结果：oxygen
+## 最终结果： oxygen
 
 ## [下一关地址][5]
 
-## [回首页][6]
+## [上一关攻略][6] [回首页][7] [下一关攻略][8]
 
 [1]: http://www.pythonchallenge.com/pc/def/channel.html
 [2]: ../Code/Python/Challenge006.py "点我查看源码"
 [3]: ../Code/PowerShell/Challenge006.ps1 "点我查看源码"
 [4]: ../Code/Go/Challenge006.go "点我查看源码"
 [5]: http://www.pythonchallenge.com/pc/def/oxygen.html
-[6]: ../README.md "回首页"
+[6]: ./Challenge005.md "上一关攻略"
+[7]: ../README.md "回首页"
+[8]: ./Challenge007.md "下一关攻略"

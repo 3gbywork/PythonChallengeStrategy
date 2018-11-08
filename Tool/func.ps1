@@ -53,7 +53,17 @@ function CreateFileFromTemplate
             Write-Verbose $("文件 {0} 已存在。" -f $file)
         } else {
             Write-Verbose $("正在创建文件 {0}" -f $file)
-            [string]$cnt=(Get-Content -Encoding UTF8 -Raw $template).Replace("{#}", $("{0}" -f $level)).Replace("{###}", $("{0:000}" -f $level))
+            [string]$cnt=(Get-Content -Encoding UTF8 -Raw $template).Replace("{{level}}", $("{0:000}" -f $level))
+            if ($level -gt 0) {
+                $cnt=$cnt.Replace("{{previous}}", $("./Challenge{0:000}.md" -f ($level-1)))
+            } else {
+                $cnt=$cnt.Replace("{{previous}}", "#")
+            }
+            if ($level -lt 39) {
+                $cnt=$cnt.Replace("{{next}}", $("./Challenge{0:000}.md" -f ($level+1)))
+            } else {
+                $cnt=$cnt.Replace("{{next}}", "#")
+            }
             #  | Out-File -Encoding utf8 $file
             $encoding=New-Object System.Text.UTF8Encoding($false)
             $writer=New-Object System.IO.StreamWriter($file, $false, $encoding)

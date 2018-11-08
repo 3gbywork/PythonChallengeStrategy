@@ -1,6 +1,10 @@
-# [第5关][1] peak hell
+# [第005关][1] peak hell
 
 ## [关卡地址][1]
+
+## 解决方案：
+
+### 思路：
 
 图片下有句提示信息：
 
@@ -46,7 +50,7 @@
 
 **PS：**如果看不出字符画是什么，请增加窗口显示宽度试试。
 
-## 解决方案：
+### 代码：
 
 * [Python][2]
 
@@ -63,19 +67,21 @@ PS > .\Code\PowerShell\Challenge005.ps1
 * [Go][4]
 
 ```
-PS > .\Code\Go\Challenge.exe -l 5
+PS > .\Code\Go\Challenge.exe -l 005
 ```
 
 ---
-## 最终结果：channel
+## 最终结果： channel
 
 ## [下一关地址][5]
 
-## [回首页][6]
+## [上一关攻略][6] [回首页][7] [下一关攻略][8]
 
 [1]: http://www.pythonchallenge.com/pc/def/peak.html
 [2]: ../Code/Python/Challenge005.py "点我查看源码"
 [3]: ../Code/PowerShell/Challenge005.ps1 "点我查看源码"
 [4]: ../Code/Go/Challenge005.go "点我查看源码"
 [5]: http://www.pythonchallenge.com/pc/def/channel.html
-[6]: ../README.md "回首页"
+[6]: ./Challenge004.md "上一关攻略"
+[7]: ../README.md "回首页"
+[8]: ./Challenge006.md "下一关攻略"

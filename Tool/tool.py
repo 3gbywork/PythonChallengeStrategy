@@ -44,7 +44,9 @@ def createfilefromtemplate(template, filename, level):
             print("文件 %s 已存在。" % filename)
         else:
             cnt=readfile(template)
-            cnt=cnt.replace("{#}", str(level)).replace("{###}", "{:0>3d}".format(level))
+            cnt=cnt.replace("{{level}}", "{:0>3d}".format(level))
+            cnt=cnt.replace("{{previous}}", "./Challenge{:0>3d}.md".format(level-1) if level>0 else "#")
+            cnt=cnt.replace("{{next}}", "./Challenge{:0>3d}.md".format(level+1) if level<39 else "#")
             writefile(filename, cnt)
             print("文件 %s 已成功创建" % filename)
     else:
