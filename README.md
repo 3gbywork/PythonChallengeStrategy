@@ -56,7 +56,7 @@ xxx为关卡的三位数字形式，不足左边补0。如：001、002。
 [l005]: ./Strategy/Challenge005.md
 [l006]: ./Strategy/Challenge006.md
 [l007]: ./Strategy/Challenge007.md
-[l008]: #
+[l008]: ./Strategy/Challenge008.md
 [l009]: #
 [l010]: #
 [l011]: #

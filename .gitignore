@@ -119,3 +119,7 @@ Data/007/oxygen.png
 
 # tool_go.exe not ignore
 !Tool/tool_go.exe
+
+# bzip2 not ignore
+!Code/PowerShell/bin/bzip2.exe
+!Code/PowerShell/bin/bzip2.dll
