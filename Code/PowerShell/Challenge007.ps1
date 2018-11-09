@@ -5,7 +5,7 @@ if ((Test-Path $path) -eq $false) {
 
 $url="http://www.pythonchallenge.com/pc/def/oxygen.png"
 $filename=$path+"\\oxygen.png"
-curl -Uri $url -OutFile $filename
+Invoke-WebRequest -Uri $url -OutFile $filename
 
 [void][System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
 $img=[System.Drawing.Image]::FromFile($filename)
@@ -20,6 +20,6 @@ Write-Output $msg
 
 $outstr=""
 $pattern=[regex]"\d+"
-$pattern.Matches($msg) | foreach {$outstr+=[char][int]$_.Value}
+$pattern.Matches($msg) | ForEach-Object {$outstr+=[char][int]$_.Value}
 
 Write-Output $outstr

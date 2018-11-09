@@ -6,7 +6,7 @@ if ((Test-Path $path) -eq $false) {
 }
 
 $filename=$path+"\\banner.p"
-curl -Uri $banner -OutFile $filename
+Invoke-WebRequest -Uri $banner -OutFile $filename
 
 $lines=Get-Content $filename
 

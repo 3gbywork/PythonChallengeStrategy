@@ -5,7 +5,7 @@ if ((Test-Path $path) -eq $false) {
 
 $url="http://www.pythonchallenge.com/pc/def/channel.zip"
 $filename=$path+"\\channel.zip"
-curl -Uri $url -OutFile $filename
+Invoke-WebRequest -Uri $url -OutFile $filename
 
 [void][System.Reflection.Assembly]::LoadFile($PSScriptRoot+"\\lib\\ICSharpCode.SharpZipLib.dll")
 

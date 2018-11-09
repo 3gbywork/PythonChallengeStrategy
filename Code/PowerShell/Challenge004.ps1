@@ -4,7 +4,7 @@ $param="12345"
 $pattern=[regex]"the next nothing is (\d+)"
 
 for ($i=0; $i -lt 400; $i++) {
-    $resp = (curl -Uri $url+$param | select -ExcludeProperty Content).Content
+    $resp = (Invoke-WebRequest -Uri $url+$param | Select-Object -ExcludeProperty Content).Content
     $match = $pattern.Match($resp)
     if ($match.Success) {
         $param = $match.Groups[1].Value
