@@ -114,6 +114,9 @@ Data/005/banner.p
 Data/006/channel.zip
 Data/007/oxygen.png
 
+# generate file
+Data/009/go.png
+
 # powershell lib not ignore
 !Code/PowerShell/lib/
 
