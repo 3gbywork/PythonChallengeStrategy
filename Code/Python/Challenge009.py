@@ -1,7 +1,7 @@
 import helper
 
-firststr=helper.readfile(".\\Data\\009\\first.txt")
-secondstr=helper.readfile(".\\Data\\009\\second.txt")
+firststr=helper.readFile(".\\Data\\009\\first.txt")
+secondstr=helper.readFile(".\\Data\\009\\second.txt")
 
 firstlist=[int(x.strip()) for x in firststr.split(',')]
 secondlist=[int(x.strip()) for x in secondstr.split(',')]

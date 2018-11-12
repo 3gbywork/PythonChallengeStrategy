@@ -2,7 +2,7 @@ banner="http://www.pythonchallenge.com/pc/def/banner.p"
 
 dir=".\\Data\\005"
 import helper
-helper.ensuredir(dir)
+helper.ensureDir(dir)
 
 import urllib.request
 (filename,headers)=urllib.request.urlretrieve(banner,dir+'\\banner.p')

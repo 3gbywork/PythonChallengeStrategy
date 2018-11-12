@@ -1,5 +1,5 @@
 import helper
-msg=helper.readfile(".\\Data\\002\\msg.txt")
+msg=helper.readFile(".\\Data\\002\\msg.txt")
 
 dic={}
 

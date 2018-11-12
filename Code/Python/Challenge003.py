@@ -1,5 +1,5 @@
 import helper
-msg=helper.readfile(".\\Data\\003\\msg.txt")
+msg=helper.readFile(".\\Data\\003\\msg.txt")
 
 import re
 

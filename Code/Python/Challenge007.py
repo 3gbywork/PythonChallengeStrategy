@@ -1,6 +1,6 @@
 import helper
 path=".\\Data\\007"
-helper.ensuredir(path)
+helper.ensureDir(path)
 
 import urllib.request
 img="http://www.pythonchallenge.com/pc/def/oxygen.png"
