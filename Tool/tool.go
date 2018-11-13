@@ -33,8 +33,6 @@ func main() {
     gofile:=fmt.Sprintf("./Code/Go/Challenge%03d.go", level)
     gotemplate:="./Tool/Template/Go.template"
 	createFileFromTemplate(gotemplate, gofile, level)
-	
-	fmt.Println("welcome to generate tool.")
 }
 
 func createFileIfNotExists(filename string) {
