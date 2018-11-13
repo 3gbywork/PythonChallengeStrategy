@@ -1,5 +1,5 @@
 import helper
-msg=helper.readfile(".\\Data\\001\\msg.txt")
+msg=helper.readFile(".\\Data\\001\\msg.txt")
 url='map'
 
 # ^^^^^^^^^^^^^^^^^^^^^^^^Solution 1^^^^^^^^^^^^^^^^^^^^^^^^

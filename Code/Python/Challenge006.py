@@ -1,6 +1,6 @@
 import helper
 dir=".\\Data\\006"
-helper.ensuredir(dir)
+helper.ensureDir(dir)
 
 import urllib.request
 channel="http://www.pythonchallenge.com/pc/def/channel.zip"
