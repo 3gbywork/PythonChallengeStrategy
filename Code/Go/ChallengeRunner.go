@@ -78,6 +78,28 @@ func Download(url, filename string) {
 	if err != nil {
 		panic(err)
 	}
+	defer resp.Body.Close()
+	file, err := os.Create(filename)
+	if err != nil {
+		panic(err)
+	}
+	io.Copy(file, resp.Body)
+}
+
+func DownloadWithBasicAuth(url, filename, user, pwd string) {
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		panic(err)
+	}
+	req.SetBasicAuth(user, pwd)
+
+	client := &http.Client{};
+	resp, err := client.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
 	file, err := os.Create(filename)
 	if err != nil {
 		panic(err)
