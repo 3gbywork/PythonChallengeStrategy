@@ -114,10 +114,12 @@ Data/005/banner.p
 Data/006/channel.zip
 Data/007/oxygen.png
 Data/011/cave.jpg
+Data/012/evil*
 
 # generate file
 Data/009/go.png
 Data/011/cave.info.jpg
+Data/012/out*
 
 # powershell lib not ignore
 !Code/PowerShell/lib/
