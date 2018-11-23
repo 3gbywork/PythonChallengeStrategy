@@ -1,0 +1,3 @@
+[submodule ".\\Code\\PowerShell\\Modules\\XmlRpc"]
+	path = .\\Code\\PowerShell\\Modules\\XmlRpc
+	url = https://github.com/3gbywork/XmlRpc
