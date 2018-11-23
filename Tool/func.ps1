@@ -1,5 +1,20 @@
 ﻿function CreateFileIfNotExists
 {
+    <#
+    .SYNOPSIS
+    如果文件不存在，创建文件
+    .DESCRIPTION
+    检测指定文件是否存在，不存在则创建文件；否则无动作。
+    .PARAMETER file
+    需要创建的文件路径
+    .INPUTS
+    None.
+    .OUTPUTS
+    File
+    .EXAMPLE
+    CreateFileIfNotExists ./test.txt
+    #>
+
     param
     (
         [string]
@@ -14,25 +29,27 @@
         $null=New-Item $file -Type File
         Write-Output $("文件 {0} 已成功创建。" -f $file)
     }
-
-<#
-.SYNOPSIS
-如果文件不存在，创建文件
-.DESCRIPTION
-检测指定文件是否存在，不存在则创建文件；否则无动作。
-.PARAMETER file
-需要创建的文件路径
-.INPUTS
-None.
-.OUTPUTS
-File
-.EXAMPLE
-CreateFileIfNotExists ./test.txt
-#>
 }
 
 function CreateFileFromTemplate
 {
+    <#
+    .SYNOPSIS
+    如果文件不存在，则根据模板创建文件
+    .DESCRIPTION
+    检测指定文件是否存在，不存在则创建文件；否则无动作。
+    .PARAMETER template
+    模板文件路径
+    .PARAMETER file
+    需要创建的文件路径
+    .INPUTS
+    None.
+    .OUTPUTS
+    File
+    .EXAMPLE
+    CreateFileFromTemplate ./template.txt ./test.txt
+    #>
+
     param
     (
         [string]
@@ -74,21 +91,4 @@ function CreateFileFromTemplate
     } else {
         Write-Error $("模板文件 {0} 不存在，无法创建文件 {1}" -f $template, $file)
     }
-
-<#
-.SYNOPSIS
-如果文件不存在，则根据模板创建文件
-.DESCRIPTION
-检测指定文件是否存在，不存在则创建文件；否则无动作。
-.PARAMETER template
-模板文件路径
-.PARAMETER file
-需要创建的文件路径
-.INPUTS
-None.
-.OUTPUTS
-File
-.EXAMPLE
-CreateFileFromTemplate ./template.txt ./test.txt
-#>
 }
