@@ -115,18 +115,20 @@ Data/006/channel.zip
 Data/007/oxygen.png
 Data/011/cave.jpg
 Data/012/evil*
+Data/014/wire.png
 
 # generate file
 Data/009/go.png
 Data/011/cave.info.jpg
 Data/012/out*
+Data/014/wire.go.png
 
 # powershell lib not ignore
 !Code/PowerShell/lib/
 
-# tool_go.exe not ignore
-!Tool/tool_go.exe
-
-# bzip2 not ignore
+# powershell bzip2 not ignore
 !Code/PowerShell/bin/bzip2.exe
 !Code/PowerShell/bin/bzip2.dll
+
+# tool_go.exe not ignore
+!Tool/tool_go.exe
