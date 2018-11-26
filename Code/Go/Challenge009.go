@@ -1,16 +1,11 @@
 package main
 
 import(
-	"fmt"
 	"image"
 	"image/color"
 	"image/draw"
-	"image/png"
 	"strings"
 	"strconv"
-	"os"
-	"bufio"
-	"os/exec"
 )
 
 func (c *Challenge) Challenge009() {
@@ -30,31 +25,9 @@ func (c *Challenge) Challenge009() {
 	drawPoints(rgba, pen, secondline)
 
 	pngfile := ".\\Data\\009\\go.png"
-	img,err := os.Create(pngfile)
-	if err != nil {
-		fmt.Printf("创建图片文件失败！[%v]\n", err)
-		os.Exit(1)
-	}
-	defer img.Close()
-	writer := bufio.NewWriter(img)
-	err = png.Encode(writer, rgba)
-	if err != nil {
-		fmt.Printf("保存图片失败！[%v]\n", err)
-		os.Exit(1)
-	}
-	err = writer.Flush()
-	if err != nil {
-		fmt.Printf("保存图片失败！[%v]\n", err)
-		os.Exit(1)
-	}
+	SaveImage(pngfile, rgba, "png")
 
-	cmd := exec.Command("explorer.exe", pngfile)
-	_ = cmd.Run()
-	// [exit status 1]
-	// if err != nil {
-	// 	fmt.Printf("显示图片失败！[%v]\n", err)
-	// 	os.Exit(1)
-	// }
+	ShowImage(pngfile)
 }
 
 func getPoints(str string) []image.Point {

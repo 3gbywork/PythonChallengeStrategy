@@ -1,7 +1,7 @@
 $path=".\\Data\\007"
-if ((Test-Path $path) -eq $false) {
-    mkdir $path
-}
+
+. .\Code\PowerShell\helper.ps1
+EnsureDir -Dir $path
 
 $url="http://www.pythonchallenge.com/pc/def/oxygen.png"
 $filename=$path+"\\oxygen.png"

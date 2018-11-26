@@ -1,13 +1,11 @@
 $path=".\\Data\\011"
-if ((Test-Path $path) -eq $false) {
-    mkdir $path
-}
 
-$pw=ConvertTo-SecureString "file" -AsPlainText -Force
-$credential=New-Object System.Management.Automation.PSCredential("huge", $pw)
+. .\Code\PowerShell\helper.ps1
+EnsureDir -Dir $path
+
 $cave="http://www.pythonchallenge.com/pc/return/cave.jpg"
 $filename=$path+"\\cave.jpg"
-Invoke-WebRequest -Uri $cave -OutFile $filename -Credential $credential
+DownloadWithBasicAuth -Url $cave -Filename $filename -Username "huge" -Password "file"
 
 [void][System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
 $img=[System.Drawing.Image]::FromFile($filename)
@@ -24,14 +22,7 @@ for ($y = 0; $y -lt $img.Height; $y++) {
     }
 }
 
-[void][System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
-$form=New-Object System.Windows.Forms.Form
-$form.Text="Challenge011"
-$form.Width=$img.Width
-$form.Height=$img.Height
-$form.BackgroundImage=$img
-$form.BackgroundImageLayout=[System.Windows.Forms.ImageLayout]::None
-$null=$form.ShowDialog()
+ShowImage -Title "Challenge011" -Image $img
 
 # $img.Save($path+"\\cave.info.jpg")
 $img.Dispose()

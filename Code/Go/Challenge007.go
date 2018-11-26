@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"image"
 	"regexp"
 	"strconv"
 	_ "image/png"
@@ -11,30 +9,13 @@ import (
 
 func (c *Challenge) Challenge007() {
 	path:=".\\Data\\007"
-	if !PathExists(path) {
-		err := os.Mkdir(path, os.ModeDir)
-		if err != nil {
-			fmt.Printf("mkdir failed![%v]\n", err)
-			return
-		}
-	}
+	EnsureDir(path)
 
 	filename:=path+"\\oxygen.png"
 	channel:="http://www.pythonchallenge.com/pc/def/oxygen.png"
 	Download(channel,filename)
 
-	reader, err := os.Open(filename)
-	if err != nil {
-		fmt.Printf("open file failed![%v]\n", err)
-		return
-	}
-	defer reader.Close()
-
-	im,_,err := image.Decode(reader)
-	if err != nil {
-		fmt.Printf("open png failed![%v]\n", err)
-		return
-	}
+	im:=OpenImage(filename)
 
 	bounds := im.Bounds()
 

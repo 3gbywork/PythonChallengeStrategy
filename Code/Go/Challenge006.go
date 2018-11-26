@@ -1,7 +1,6 @@
 package main
 
 import (
-	"os"
 	"fmt"
 	"archive/zip"
 	"io/ioutil"
@@ -10,13 +9,7 @@ import (
 
 func (c *Challenge) Challenge006() {
 	path:=".\\Data\\006"
-	if !PathExists(path) {
-		err := os.Mkdir(path, os.ModeDir)
-		if err != nil {
-			fmt.Printf("mkdir failed![%v]\n", err)
-			return
-		}
-	}
+	EnsureDir(path)
 
 	filename:=path+"\\channel.zip"
 	channel:="http://www.pythonchallenge.com/pc/def/channel.zip"

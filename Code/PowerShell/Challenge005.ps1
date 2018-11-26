@@ -1,9 +1,9 @@
 $banner="http://www.pythonchallenge.com/pc/def/banner.p"
 
 $path=".\\Data\\005"
-if ((Test-Path $path) -eq $false) {
-    mkdir $path
-}
+
+. .\Code\PowerShell\helper.ps1
+EnsureDir -Dir $path
 
 $filename=$path+"\\banner.p"
 Invoke-WebRequest -Uri $banner -OutFile $filename

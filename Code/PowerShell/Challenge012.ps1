@@ -1,13 +1,11 @@
 $path=".\\Data\\012"
-if ((Test-Path $path) -eq $false) {
-    mkdir $path
-}
 
-$pw=ConvertTo-SecureString "file" -AsPlainText -Force
-$credential=New-Object System.Management.Automation.PSCredential("huge", $pw)
+. .\Code\PowerShell\helper.ps1
+EnsureDir -Dir $path
+
 $gfx="http://www.pythonchallenge.com/pc/return/evil2.gfx"
 $filename=$path+"\\evil2.gfx"
-Invoke-WebRequest -Uri $gfx -OutFile $filename -Credential $credential
+DownloadWithBasicAuth -Url $gfx -Filename $filename -Username "huge" -Password "file"
 
 $evil4="http://www.pythonchallenge.com/pc/return/evil4.jpg"
 Invoke-WebRequest -Uri $evil4 -OutFile $($path+"\\evil4.jpg") -Credential $credential
@@ -25,3 +23,5 @@ for ($i = 0; $i -lt 5; $i++) {
     $fs.Close()
     $fs.Dispose()
 }
+
+"please see the folder: $path"

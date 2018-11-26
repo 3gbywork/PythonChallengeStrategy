@@ -5,10 +5,7 @@ helper.ensureDir(path)
 # ================================
 # 使用http认证，下载图片
 import urllib.request
-auth_handler=urllib.request.HTTPBasicAuthHandler()
-auth_handler.add_password("inflate", "http://www.pythonchallenge.com", "huge", "file")
-opener=urllib.request.build_opener(auth_handler)
-urllib.request.install_opener(opener)
+helper.installHTTPBasicAuthOpener("huge", "file")
 
 cave="http://www.pythonchallenge.com/pc/return/cave.jpg"
 (filename, headers)=urllib.request.urlretrieve(cave, path+"\\cave.jpg")

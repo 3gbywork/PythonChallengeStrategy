@@ -1,7 +1,6 @@
 package main
 
 import(
-	"os"
 	"fmt"
 	"io/ioutil"
 	"bytes"
@@ -9,13 +8,7 @@ import(
 
 func (c *Challenge) Challenge012() {
 	path:=".\\Data\\012"
-	if !PathExists(path) {
-		err := os.Mkdir(path, os.ModeDir)
-		if err != nil {
-			fmt.Printf("mkdir failed![%v]\n", err)
-			return
-		}
-	}
+	EnsureDir(path)
 
 	gfx:="http://www.pythonchallenge.com/pc/return/evil2.gfx"
 	filename:=path+"\\evil2.gfx"
@@ -43,4 +36,6 @@ func (c *Challenge) Challenge012() {
 			return
 		}
 	}
+
+	fmt.Println("please see the folder: ", path)
 }

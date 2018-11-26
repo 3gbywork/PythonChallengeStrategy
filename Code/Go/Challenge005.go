@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"strings"
 	"regexp"
 	"strconv"
@@ -12,13 +11,7 @@ func (c *Challenge) Challenge005()  {
 	banner:="http://www.pythonchallenge.com/pc/def/banner.p"
 	
 	path:=".\\Data\\005"
-	if !PathExists(path) {
-		err := os.Mkdir(path, os.ModeDir)
-		if err != nil {
-			fmt.Printf("mkdir failed![%v]\n", err)
-			return
-		}
-	}
+	EnsureDir(path)
 
 	filename:=path+"\\banner.p"
 	Download(banner,filename)

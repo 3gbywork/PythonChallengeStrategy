@@ -5,10 +5,7 @@ helper.ensureDir(path)
 # ================================
 # 使用http认证，下载文件
 import urllib.request
-auth_handler=urllib.request.HTTPBasicAuthHandler()
-auth_handler.add_password("inflate", "http://www.pythonchallenge.com", "huge", "file")
-opener=urllib.request.build_opener(auth_handler)
-urllib.request.install_opener(opener)
+helper.installHTTPBasicAuthOpener("huge", "file")
 
 gfx="http://www.pythonchallenge.com/pc/return/evil2.gfx"
 (filename, headers)=urllib.request.urlretrieve(gfx, path+"\\evil2.gfx")
@@ -37,3 +34,5 @@ for i in range(5):
     fp=open(path+"\\out%d.%s" % (i, exts[i]),'wb')
     fp.write(cnt[i::5])
     fp.close()
+
+print("please see the folder: ", path)
