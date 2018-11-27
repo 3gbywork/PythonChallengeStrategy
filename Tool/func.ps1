@@ -22,11 +22,14 @@
         $file
     )
 
-    if (Test-Path $file) {
+    # 转换为文件的绝对路径
+    $filePath=$ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($file)
+
+    if (Test-Path $filePath) {
         Write-Verbose $("文件 {0} 已存在。" -f $file)
     } else {
         Write-Verbose $("正在创建文件 {0}" -f $file)
-        $null=New-Item $file -Type File
+        $null=New-Item $filePath -Type File
         Write-Output $("文件 {0} 已成功创建。" -f $file)
     }
 }
@@ -65,8 +68,11 @@ function CreateFileFromTemplate
         $level
     )
 
+    # 转换为文件的绝对路径
+    $filePath=$ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($file)
+
     if (Test-Path $template) {
-        if (Test-Path $file) {
+        if (Test-Path $filePath) {
             Write-Verbose $("文件 {0} 已存在。" -f $file)
         } else {
             Write-Verbose $("正在创建文件 {0}" -f $file)
@@ -83,10 +89,14 @@ function CreateFileFromTemplate
             }
             #  | Out-File -Encoding utf8 $file
             $encoding=New-Object System.Text.UTF8Encoding($false)
-            $writer=New-Object System.IO.StreamWriter($file, $false, $encoding)
-            $writer.Write($cnt)
-            $writer.Dispose()
-            Write-Output $("文件 {0} 已成功创建。" -f $file)
+            $writer=New-Object System.IO.StreamWriter($filePath, $false, $encoding) -ErrorAction SilentlyContinue
+            if ($?) {
+                $writer.Write($cnt)
+                $writer.Dispose()
+                Write-Output $("文件 {0} 已成功创建。" -f $file)
+            } else {
+                Write-Output $("文件 {0} 创建失败！" -f $file)
+            }
         }
     } else {
         Write-Error $("模板文件 {0} 不存在，无法创建文件 {1}" -f $template, $file)
