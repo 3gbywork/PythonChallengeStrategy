@@ -56,4 +56,4 @@ PS > .\Code\Go\Challenge.exe -l 007
 [7]: ../README.md "回首页"
 [8]: ./Challenge008.md "下一关攻略"
 
-[a]: http://www.pythonchallenge.com/pc/def/oxygen.png "smarty"
+[a]: ../Image/007/oxygen.png "smarty"

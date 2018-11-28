@@ -69,4 +69,4 @@ PS > .\Code\Go\Challenge.exe -l 015
 [7]: ../README.md "回首页"
 [8]: ./Challenge016.md "下一关攻略"
 
-[a]: http://www.pythonchallenge.com/pc/return/screen15.jpg
+[a]: ../Image/015/screen15.jpg "whom?"

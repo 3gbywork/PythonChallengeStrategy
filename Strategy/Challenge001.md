@@ -48,4 +48,4 @@ PS > .\Code\Go\Challenge.exe -l 001
 [7]: ../README.md "回首页"
 [8]: ./Challenge002.md "下一关攻略"
 
-[a]: http://www.pythonchallenge.com/pc/def/map.jpg "What about making trans?"
+[a]: ../Image/001/map.jpg "What about making trans?"

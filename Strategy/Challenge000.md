@@ -50,4 +50,4 @@ PS > .\Code\Go\Challenge.exe -l 000
 [7]: ../README.md "回首页"
 [8]: ./Challenge001.md "下一关攻略"
 
-[a]: http://www.pythonchallenge.com/pc/def/calc.jpg "warming up"
+[a]: ../Image/000/calc.jpg "warming up"
