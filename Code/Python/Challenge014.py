@@ -17,10 +17,12 @@ im=Image.open(filename)
 # (w,h)=im.size
 
 def officialSolution():
-    spiral(im)
+    tmp=spiral(im)
+    tmp.close()
 
 def mySolution():
-    efficientSpiral(im)
+    tmp=efficientSpiral(im)
+    tmp.close()
 
 def efficientSpiral(source):
     px=source.load()
@@ -101,3 +103,5 @@ if __name__ == "__main__":
     newIm=efficientSpiral(im)
     # newIm.save(path+"\\out.png")
     newIm.show()
+    newIm.close()
+    im.close()

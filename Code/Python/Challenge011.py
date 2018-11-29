@@ -38,5 +38,6 @@ for y in range(h):
             px[p]=pixel
         elif y%2 == 1 and x%2 == 0:
             px[p]=pixel
-im.save(path+'\\cave.info.jpg','jpeg')
+# im.save(path+'\\cave.info.jpg','jpeg')
 im.show()
+im.close()

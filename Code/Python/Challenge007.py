@@ -19,6 +19,8 @@ for i in range(0,w-21,7):
     (r,g,b,a)=px[i,h/2]
     # 灰度图r,g,b三个分量值相等
     outstr.append(chr(r))
+im.close()
+
 msg=''.join(outstr)
 print(msg)
 
