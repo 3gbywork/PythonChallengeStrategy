@@ -13,6 +13,7 @@ import (
 	"image"
 	"image/png"
 	"image/jpeg"
+	"image/gif"
 	"os/exec"
 )
 
@@ -151,6 +152,8 @@ func SaveImage(filename string, image *image.RGBA, format string) {
 		err = png.Encode(writer, image)
 	} else if format=="jpeg" {
 		err = jpeg.Encode(writer, image, nil)
+	} else if format=="gif" {
+		err = gif.Encode(writer, image, nil)
 	} else {
 		fmt.Printf("不支持的图片格式！%s", format)
 		os.Exit(2)
