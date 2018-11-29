@@ -5,7 +5,7 @@ EnsureDir -Dir $path
 
 $wire="http://www.pythonchallenge.com/pc/return/wire.png"
 $filename=$path+"\\wire.png"
-DownloadWithBasicAuth -Url $gfx -Filename $filename -Username "huge" -Password "file"
+DownloadWithBasicAuth -Url $wire -Filename $filename -Username "huge" -Password "file"
 
 [void][System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
 $img=[System.Drawing.Image]::FromFile($filename)
