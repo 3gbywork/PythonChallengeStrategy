@@ -32,6 +32,6 @@ $graphics.DrawLines($pen, $firstline.ToArray())
 $graphics.DrawLines($pen, $secondline.ToArray())
 
 . .\Code\PowerShell\helper.ps1
-ShowImage -Title "Challenge009" -Image $img
+Show-Image -Title "Challenge009" -Image $img
 
 $img.Dispose()

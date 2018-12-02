@@ -3,7 +3,7 @@ $banner="http://www.pythonchallenge.com/pc/def/banner.p"
 $path=".\\Data\\005"
 
 . .\Code\PowerShell\helper.ps1
-EnsureDir -Dir $path
+New-Dir -Dir $path
 
 $filename=$path+"\\banner.p"
 Invoke-WebRequest -Uri $banner -OutFile $filename

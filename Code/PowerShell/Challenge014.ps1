@@ -1,11 +1,11 @@
 $path=".\\Data\\014"
 
 . .\Code\PowerShell\helper.ps1
-EnsureDir -Dir $path
+New-Dir -Dir $path
 
 $wire="http://www.pythonchallenge.com/pc/return/wire.png"
 $filename=$path+"\\wire.png"
-DownloadWithBasicAuth -Url $wire -Filename $filename -Username "huge" -Password "file"
+Get-FileWithAuth -Url $wire -Filename $filename -Username "huge" -Password "file"
 
 [void][System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
 $img=[System.Drawing.Image]::FromFile($filename)
@@ -51,7 +51,7 @@ while ($index -lt 10000) {
     }
 }
 
-ShowImage -Title "Challenge014" -Image $newImg -Width 300 -Height 200
+Show-Image -Title "Challenge014" -Image $newImg -Width 300 -Height 200
 
 # $img.Save($path+"\\cave.info.jpg")
 $img.Dispose()

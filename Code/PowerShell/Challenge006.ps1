@@ -1,7 +1,7 @@
 $path=".\\Data\\006"
 
 . .\Code\PowerShell\helper.ps1
-EnsureDir -Dir $path
+New-Dir -Dir $path
 
 $url="http://www.pythonchallenge.com/pc/def/channel.zip"
 $filename=$path+"\\channel.zip"
