@@ -1,7 +1,7 @@
 $path=".\\Data\\007"
 
 . .\Code\PowerShell\helper.ps1
-EnsureDir -Dir $path
+New-Dir -Dir $path
 
 $url="http://www.pythonchallenge.com/pc/def/oxygen.png"
 $filename=$path+"\\oxygen.png"

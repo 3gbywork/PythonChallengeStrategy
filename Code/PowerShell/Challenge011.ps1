@@ -1,11 +1,11 @@
 $path=".\\Data\\011"
 
 . .\Code\PowerShell\helper.ps1
-EnsureDir -Dir $path
+New-Dir -Dir $path
 
 $cave="http://www.pythonchallenge.com/pc/return/cave.jpg"
 $filename=$path+"\\cave.jpg"
-DownloadWithBasicAuth -Url $cave -Filename $filename -Username "huge" -Password "file"
+Get-FileWithAuth -Url $cave -Filename $filename -Username "huge" -Password "file"
 
 [void][System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
 $img=[System.Drawing.Image]::FromFile($filename)
@@ -22,7 +22,7 @@ for ($y = 0; $y -lt $img.Height; $y++) {
     }
 }
 
-ShowImage -Title "Challenge011" -Image $img
+Show-Image -Title "Challenge011" -Image $img
 
 # $img.Save($path+"\\cave.info.jpg")
 $img.Dispose()

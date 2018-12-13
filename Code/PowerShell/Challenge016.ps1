@@ -1,11 +1,11 @@
 $path=".\\Data\\016"
 
 . .\Code\PowerShell\helper.ps1
-EnsureDir -Dir $path
+New-Dir -Dir $path
 
 $gif="http://www.pythonchallenge.com/pc/return/mozart.gif"
 $filename=$path+"\\mozart.gif"
-DownloadWithBasicAuth -Url $gif -Filename $filename -Username "huge" -Password "file"
+Get-FileWithAuth -Url $gif -Filename $filename -Username "huge" -Password "file"
 
 [void][System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
 $img=[System.Drawing.Image]::FromFile($filename)
@@ -25,5 +25,5 @@ for ($y = 0; $y -lt $img.Height; $y++) {
 
 $img.Dispose()
 
-ShowImage -Title "Challenge016" -Image $newImg
+Show-Image -Title "Challenge016" -Image $newImg
 $newImg.Dispose()

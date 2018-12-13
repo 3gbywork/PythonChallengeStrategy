@@ -3,7 +3,8 @@ $url='map'
 
 function GetChar ([char]$ch) {
     if($ch -ge 'a' -and $ch -le 'z'){
-        return [char]([int][char]'a'+([int]$ch-[int][char]'a'+2)%26)
+        # [int][char]'a'=97
+        return [char](97+([int]$ch-97+2)%26)
     }
     return $ch
 }
