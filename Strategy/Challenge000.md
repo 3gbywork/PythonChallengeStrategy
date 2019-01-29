@@ -10,7 +10,7 @@
 
 提示：试试更改url
 
-从图中容易看出，需要求出 $2^{38}$ = ?
+从图中容易看出，需要求出 <img src="http://latex.codecogs.com/gif.latex?2^{38}" border="0"/> = ?
 
 得到的值就是下一关的地址
 
