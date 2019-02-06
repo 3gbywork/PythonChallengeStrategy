@@ -137,3 +137,6 @@ Data/018/compare.txt
 
 # tool_go.exe not ignore
 !Tool/tool_go.exe
+
+# hugo resources
+_gen
