@@ -2,6 +2,8 @@
 # If you want to see the full configuration, please check `full-config.toml` .
 # And see https://gohugo.io/getting-started/configuration/ .
 
+publishDir = "docs"
+
 baseURL = "http://localhost:1313/"
 title = "Python Challenge Strategy"
 enableRobotsTXT = true
