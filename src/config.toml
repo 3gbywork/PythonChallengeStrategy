@@ -54,6 +54,10 @@ defaultContentLanguage = "en"           # Default language to use
   name = "Python Challenge"
   weight = 50
   url = "http://www.pythonchallenge.com/"
+[[menu.main]]
+  name = "Python Challenge wiki"
+  weight = 60
+  url = "http://wiki.pythonchallenge.com/"
 
 
 [params]
