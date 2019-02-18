@@ -1,6 +1,6 @@
 ---
 title: "warming up"
-date: 2019-01-29T13:39:51+08:00
+date: 2018-10-27T20:06:51+08:00
 lastmod: 2019-03-18T09:28:51+08:00
 draft: false
 keywords: ["warming up", "math", "pow"]
