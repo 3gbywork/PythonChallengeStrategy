@@ -1,9 +1,9 @@
 ---
-title: "What about making trans?"
+title: "001. What about making trans?"
 date: 2018-10-27T20:06:51+08:00
 lastmod: 2019-03-18T09:41:23+08:00
 draft: false
-keywords: ["trans", "map"]
+keywords: ["trans", "string", "map"]
 description: ""
 tags: ["map"]
 categories: ["string"]
@@ -41,19 +41,19 @@ mathjax: false
 * [Python][2]
 
 ```
-PS src> python .\static\Code\Python\Challenge001.py
+PS src\static> python .\Code\Python\Challenge001.py
 ```
 
 * [PowerShell][3]
 
 ```
-PS src> .\static\Code\PowerShell\Challenge001.ps1
+PS src\static> .\Code\PowerShell\Challenge001.ps1
 ```
 
 * [Go][4]
 
 ```
-PS src> .\static\Code\Go\Challenge.exe -l 001
+PS src\static> .\Code\Go\Challenge.exe -l 001
 ```
 
 ---

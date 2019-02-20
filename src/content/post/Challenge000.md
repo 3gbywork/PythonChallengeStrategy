@@ -1,6 +1,6 @@
 ---
-title: "warming up"
-date: 2018-10-27T20:06:51+08:00
+title: "000. warming up"
+date: 2018-10-27T20:05:51+08:00
 lastmod: 2019-03-18T09:28:51+08:00
 draft: false
 keywords: ["warming up", "math", "pow"]
@@ -43,19 +43,19 @@ mathjax: true
 * [Python][2]
 
 ```
-PS src> python .\static\Code\Python\Challenge000.py
+PS src\static> python .\Code\Python\Challenge000.py
 ```
 
 * [PowerShell][3]
 
 ```
-PS src> .\static\Code\PowerShell\Challenge000.ps1
+PS src\static> .\Code\PowerShell\Challenge000.ps1
 ```
 
 * [Go][4]
 
 ```
-PS src> .\static\Code\Go\Challenge.exe -l 000
+PS src\static> .\Code\Go\Challenge.exe -l 000
 ```
 
 ---

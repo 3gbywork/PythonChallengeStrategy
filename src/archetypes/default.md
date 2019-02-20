@@ -35,19 +35,19 @@ mathjax: false
 * [Python][2]
 
 ```
-PS src> python .\static\Code\Python\{{ .Name }}.py
+PS src\static> python .\Code\Python\{{ .Name }}.py
 ```
 
 * [PowerShell][3]
 
 ```
-PS src> .\static\Code\PowerShell\{{ .Name }}.ps1
+PS src\static> .\Code\PowerShell\{{ .Name }}.ps1
 ```
 
 * [Go][4]
 
 ```
-PS src> .\static\Code\Go\Challenge.exe -l {{ replace .Name "Challenge" "" }}
+PS src\static> .\Code\Go\Challenge.exe -l {{ replace .Name "Challenge" "" }}
 ```
 
 ---
