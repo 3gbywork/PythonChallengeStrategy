@@ -21,7 +21,7 @@ mathjax: false
 # menu:
 #   main:
 #     parent: "000~009"
-#     weight: 1
+#     weight: 3
 ---
 
 ## [关卡地址][1]
