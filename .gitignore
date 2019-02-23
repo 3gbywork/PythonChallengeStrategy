@@ -110,30 +110,30 @@ venv.bak/
 .vscode/
 
 # download data
-Data/005/banner.p
-Data/006/channel.zip
-Data/007/oxygen.png
-Data/011/cave.jpg
-Data/012/evil*
-Data/014/wire.png
-Data/016/mozart.gif
-Data/018/deltas.gz
+src/static/Data/005/banner.p
+src/static/Data/006/channel.zip
+src/static/Data/007/oxygen.png
+src/static/Data/011/cave.jpg
+src/static/Data/012/evil*
+src/static/Data/014/wire.png
+src/static/Data/016/mozart.gif
+src/static/Data/018/deltas.gz
 
 # generate file
-Data/009/go.png
-Data/011/cave.info.jpg
-Data/012/out*
-Data/014/wire.go.png
-Data/016/mozart.go.gif
-Data/018/delta*
-Data/018/compare.txt
+src/static/Data/009/go.png
+src/static/Data/011/cave.info.jpg
+src/static/Data/012/out*
+src/static/Data/014/wire.go.png
+src/static/Data/016/mozart.go.gif
+src/static/Data/018/delta*
+src/static/Data/018/compare.txt
 
 # powershell lib not ignore
-!Code/PowerShell/lib/
+!src/static/Code/PowerShell/lib/
 
 # powershell bzip2 not ignore
-!Code/PowerShell/bin/bzip2.exe
-!Code/PowerShell/bin/bzip2.dll
+!src/static/Code/PowerShell/bin/bzip2.exe
+!src/static/Code/PowerShell/bin/bzip2.dll
 
 # tool_go.exe not ignore
 !Tool/tool_go.exe
