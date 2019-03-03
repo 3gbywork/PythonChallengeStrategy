@@ -5,6 +5,8 @@ New-Dir -Dir $path
 
 $url="http://www.pythonchallenge.com/pc/def/channel.zip"
 $filename=$path+"\\channel.zip"
+# 转换为文件的绝对路径
+$filename=$ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($filename)
 Invoke-WebRequest -Uri $url -OutFile $filename
 
 [void][System.Reflection.Assembly]::LoadFile($PSScriptRoot+"\\lib\\ICSharpCode.SharpZipLib.dll")
