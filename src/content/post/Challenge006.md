@@ -5,7 +5,7 @@ lastmod: 2019-03-18T13:37:08+08:00
 draft: false
 keywords: ["http", "unzip", "download", "entry", "comment"]
 description: ""
-tags: ["download", "entry", "comment"]
+tags: ["download", "pickle", "entry", "comment"]
 categories: ["http", "unzip"]
 
 # You can also close(false) or open(true) something for this content.
