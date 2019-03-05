@@ -80,4 +80,4 @@ PS src\static> .\Code\Go\Challenge.exe -l 008
 [2]: /Code/Python/Challenge008.py "点我查看源码"
 [3]: /Code/PowerShell/Challenge008.ps1 "点我查看源码"
 [4]: /Code/Go/Challenge008.go "点我查看源码"
-[5]: http://www.pythonchallenge.com/pc/def/good.html
+[5]: http://www.pythonchallenge.com/pc/return/good.html
