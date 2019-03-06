@@ -3,7 +3,7 @@ title: "006. now there are pairs"
 date: 2018-11-04T22:58:08+08:00
 lastmod: 2019-03-18T13:37:08+08:00
 draft: false
-keywords: ["http", "unzip", "download", "entry", "comment"]
+keywords: ["http", "unzip", "download", "pickle", "entry", "comment"]
 description: ""
 tags: ["download", "pickle", "entry", "comment"]
 categories: ["http", "unzip"]
