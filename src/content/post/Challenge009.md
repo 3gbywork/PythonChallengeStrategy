@@ -102,4 +102,4 @@ PS src\static> .\Code\Go\Challenge.exe -l 009
 [2]: /Code/Python/Challenge009.py "点我查看源码"
 [3]: /Code/PowerShell/Challenge009.ps1 "点我查看源码"
 [4]: /Code/Go/Challenge009.go "点我查看源码"
-[5]: http://www.pythonchallenge.com/pc/def/bull.html
+[5]: http://www.pythonchallenge.com/pc/return/bull.html
