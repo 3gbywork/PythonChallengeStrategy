@@ -29,16 +29,17 @@ if ($level -lt 0 -or $level -gt 39) {
     return
 }
 
-$mdfile="./Strategy/Challenge{0:000}.md" -f $level
-$mdtemplate="./Tool/Template/ChallengeTemplate.md"
-CreateFileFromTemplate -template $mdtemplate -file $mdfile -level $level
+# $mdfile="./Strategy/Challenge{0:000}.md" -f $level
+# $mdtemplate="./Tool/Template/ChallengeTemplate.md"
+# CreateFileFromTemplate -template $mdtemplate -file $mdfile -level $level
+hugo new post/Challenge{0:000}.md
 
-$ps1file="./Code/PowerShell/Challenge{0:000}.ps1" -f $level
+$ps1file="./static/Code/PowerShell/Challenge{0:000}.ps1" -f $level
 CreateFileIfNotExists($ps1file)
 
-$pyfile="./Code/Python/Challenge{0:000}.py" -f $level
+$pyfile="./static/Code/Python/Challenge{0:000}.py" -f $level
 CreateFileIfNotExists($pyfile)
 
-$gofile="./Code/Go/Challenge{0:000}.go" -f $level
+$gofile="./static/Code/Go/Challenge{0:000}.go" -f $level
 $gotemplate="./Tool/Template/Go.template"
 CreateFileFromTemplate -template $gotemplate -file $gofile -level $level

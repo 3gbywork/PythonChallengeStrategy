@@ -136,7 +136,7 @@ src/static/Data/018/compare.txt
 !src/static/Code/PowerShell/bin/bzip2.dll
 
 # tool_go.exe not ignore
-!Tool/tool_go.exe
+!src/Tool/tool_go.exe
 
 # hugo resources
 _gen
