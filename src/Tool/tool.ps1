@@ -32,7 +32,7 @@ if ($level -lt 0 -or $level -gt 39) {
 # $mdfile="./Strategy/Challenge{0:000}.md" -f $level
 # $mdtemplate="./Tool/Template/ChallengeTemplate.md"
 # CreateFileFromTemplate -template $mdtemplate -file $mdfile -level $level
-hugo new post/Challenge{0:000}.md
+hugo new $("post/Challenge{0:000}.md" -f $level)
 
 $ps1file="./static/Code/PowerShell/Challenge{0:000}.ps1" -f $level
 CreateFileIfNotExists($ps1file)
