@@ -140,3 +140,6 @@ src/static/Data/018/compare.txt
 
 # hugo resources
 _gen
+
+# ignore docs
+docs
