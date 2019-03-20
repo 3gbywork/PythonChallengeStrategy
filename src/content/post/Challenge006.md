@@ -85,9 +85,9 @@ PS src\static> .\Code\Go\Challenge.exe -l 006
 ## [下一关地址][5]
 
 [1]: http://www.pythonchallenge.com/pc/def/channel.html
-[2]: /Code/Python/Challenge006.py "点我查看源码"
-[3]: /Code/PowerShell/Challenge006.ps1 "点我查看源码"
-[4]: /Code/Go/Challenge006.go "点我查看源码"
+[2]: ../../Code/Python/Challenge006.py "点我查看源码"
+[3]: ../../Code/PowerShell/Challenge006.ps1 "点我查看源码"
+[4]: ../../Code/Go/Challenge006.go "点我查看源码"
 [5]: http://www.pythonchallenge.com/pc/def/oxygen.html
 
-[a]: /Image/006/oxygen.png
+[a]: ../../Image/006/oxygen.png

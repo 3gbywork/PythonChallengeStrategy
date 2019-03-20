@@ -56,7 +56,7 @@ PS src\static> .\Code\Go\Challenge.exe -l {{ replace .Name "Challenge" "" }}
 ## [下一关地址][5]
 
 [1]: http://www.pythonchallenge.com/pc/def/current.html
-[2]: /Code/Python/{{ .Name }}.py "点我查看源码"
-[3]: /Code/PowerShell/{{ .Name }}.ps1 "点我查看源码"
-[4]: /Code/Go/{{ .Name }}.go "点我查看源码"
+[2]: ../../Code/Python/{{ .Name }}.py "点我查看源码"
+[3]: ../../Code/PowerShell/{{ .Name }}.ps1 "点我查看源码"
+[4]: ../../Code/Go/{{ .Name }}.go "点我查看源码"
 [5]: http://www.pythonchallenge.com/pc/def/next.html

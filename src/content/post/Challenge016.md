@@ -66,7 +66,7 @@ PS src\static> .\Code\Go\Challenge.exe -l 016
 ## [下一关地址][5]
 
 [1]: http://www.pythonchallenge.com/pc/return/mozart.html
-[2]: /Code/Python/Challenge016.py "点我查看源码"
-[3]: /Code/PowerShell/Challenge016.ps1 "点我查看源码"
-[4]: /Code/Go/Challenge016.go "点我查看源码"
+[2]: ../../Code/Python/Challenge016.py "点我查看源码"
+[3]: ../../Code/PowerShell/Challenge016.ps1 "点我查看源码"
+[4]: ../../Code/Go/Challenge016.go "点我查看源码"
 [5]: http://www.pythonchallenge.com/pc/return/romance.html

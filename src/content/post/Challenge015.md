@@ -83,9 +83,9 @@ PS src\static> .\Code\Go\Challenge.exe -l 015
 ## [下一关地址][5]
 
 [1]: http://www.pythonchallenge.com/pc/return/uzi.html
-[2]: /Code/Python/Challenge015.py "点我查看源码"
-[3]: /Code/PowerShell/Challenge015.ps1 "点我查看源码"
-[4]: /Code/Go/Challenge015.go "点我查看源码"
+[2]: ../../Code/Python/Challenge015.py "点我查看源码"
+[3]: ../../Code/PowerShell/Challenge015.ps1 "点我查看源码"
+[4]: ../../Code/Go/Challenge015.go "点我查看源码"
 [5]: http://www.pythonchallenge.com/pc/return/mozart.html
 
-[a]: /Image/015/screen15.jpg "whom?"
+[a]: ../../Image/015/screen15.jpg "whom?"

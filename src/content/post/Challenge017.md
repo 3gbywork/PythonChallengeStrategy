@@ -104,9 +104,9 @@ PS src\static> .\Code\Go\Challenge.exe -l 017
 ## [下一关地址][5]
 
 [1]: http://www.pythonchallenge.com/pc/return/romance.html
-[2]: /Code/Python/Challenge017.py "点我查看源码"
-[3]: /Code/PowerShell/Challenge017.ps1 "点我查看源码"
-[4]: /Code/Go/Challenge017.go "点我查看源码"
+[2]: ../../Code/Python/Challenge017.py "点我查看源码"
+[3]: ../../Code/PowerShell/Challenge017.ps1 "点我查看源码"
+[4]: ../../Code/Go/Challenge017.go "点我查看源码"
 [5]: http://www.pythonchallenge.com/pc/return/balloons.html
 
 [a]: {{< ref "Challenge004.md" >}} "第四关攻略"

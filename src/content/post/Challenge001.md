@@ -62,9 +62,9 @@ PS src\static> .\Code\Go\Challenge.exe -l 001
 ## [下一关地址][5]
 
 [1]: http://www.pythonchallenge.com/pc/def/map.html "访问 274877906944.html 会跳转到 map.html"
-[2]: /Code/Python/Challenge001.py "点我查看源码"
-[3]: /Code/PowerShell/Challenge001.ps1 "点我查看源码"
-[4]: /Code/Go/Challenge001.go "点我查看源码"
+[2]: ../../Code/Python/Challenge001.py "点我查看源码"
+[3]: ../../Code/PowerShell/Challenge001.ps1 "点我查看源码"
+[4]: ../../Code/Go/Challenge001.go "点我查看源码"
 [5]: http://www.pythonchallenge.com/pc/def/ocr.html
 
-[a]: /Image/001/map.jpg "What about making trans?"
+[a]: ../../Image/001/map.jpg "What about making trans?"

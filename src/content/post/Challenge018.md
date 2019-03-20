@@ -105,7 +105,7 @@ PS src\static> .\Code\Go\Challenge.exe -l 018
 ## [下一关地址][5]
 
 [1]: http://www.pythonchallenge.com/pc/return/balloons.html
-[2]: /Code/Python/Challenge018.py "点我查看源码"
-[3]: /Code/PowerShell/Challenge018.ps1 "点我查看源码"
-[4]: /Code/Go/Challenge018.go "点我查看源码"
+[2]: ../../Code/Python/Challenge018.py "点我查看源码"
+[3]: ../../Code/PowerShell/Challenge018.ps1 "点我查看源码"
+[4]: ../../Code/Go/Challenge018.go "点我查看源码"
 [5]: http://www.pythonchallenge.com/pc/hex/bin.html

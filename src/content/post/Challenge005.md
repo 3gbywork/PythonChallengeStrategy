@@ -76,9 +76,9 @@ PS src\static> .\Code\Go\Challenge.exe -l 005
 ## [下一关地址][5]
 
 [1]: http://www.pythonchallenge.com/pc/def/peak.html
-[2]: /Code/Python/Challenge005.py "点我查看源码"
-[3]: /Code/PowerShell/Challenge005.ps1 "点我查看源码"
-[4]: /Code/Go/Challenge005.go "点我查看源码"
+[2]: ../../Code/Python/Challenge005.py "点我查看源码"
+[3]: ../../Code/PowerShell/Challenge005.ps1 "点我查看源码"
+[4]: ../../Code/Go/Challenge005.go "点我查看源码"
 [5]: http://www.pythonchallenge.com/pc/def/channel.html
 
-[a]: /Image/005/channel.png
+[a]: ../../Image/005/channel.png

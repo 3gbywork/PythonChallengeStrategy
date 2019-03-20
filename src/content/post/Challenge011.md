@@ -71,7 +71,7 @@ PS src\static> .\Code\Go\Challenge.exe -l 011
 ## [下一关地址][5]
 
 [1]: http://www.pythonchallenge.com/pc/return/5808.html
-[2]: /Code/Python/Challenge011.py "点我查看源码"
-[3]: /Code/PowerShell/Challenge011.ps1 "点我查看源码"
-[4]: /Code/Go/Challenge011.go "点我查看源码"
+[2]: ../../Code/Python/Challenge011.py "点我查看源码"
+[3]: ../../Code/PowerShell/Challenge011.ps1 "点我查看源码"
+[4]: ../../Code/Go/Challenge011.go "点我查看源码"
 [5]: http://www.pythonchallenge.com/pc/return/evil.html

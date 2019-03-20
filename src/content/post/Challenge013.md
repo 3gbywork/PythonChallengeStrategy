@@ -99,7 +99,7 @@ PS src\static> .\Code\Go\Challenge.exe -l 013
 ## [下一关地址][5]
 
 [1]: http://www.pythonchallenge.com/pc/return/disproportional.html
-[2]: /Code/Python/Challenge013.py "点我查看源码"
-[3]: /Code/PowerShell/Challenge013.ps1 "点我查看源码"
-[4]: /Code/Go/Challenge013.go "点我查看源码"
+[2]: ../../Code/Python/Challenge013.py "点我查看源码"
+[3]: ../../Code/PowerShell/Challenge013.ps1 "点我查看源码"
+[4]: ../../Code/Go/Challenge013.go "点我查看源码"
 [5]: http://www.pythonchallenge.com/pc/return/italy.html
