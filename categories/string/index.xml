@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>String on Python Challenge Strategy</title>
+    <link>https://3gbywork.github.io/PythonChallengeStrategy/categories/string/</link>
+    <description>Recent content in String on Python Challenge Strategy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 06 Dec 2018 23:45:58 +0800</lastBuildDate>
+    
+	<atom:link href="https://3gbywork.github.io/PythonChallengeStrategy/categories/string/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>017. eat?</title>
+      <link>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge017/</link>
+      <pubDate>Thu, 06 Dec 2018 23:45:58 +0800</pubDate>
+      
+      <guid>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge017/</guid>
+      <description>关卡地址 解决方案： 思路： 这一关图片中是曲奇饼干，左下角图片是不是有点熟悉？是第四关啦！ 查看源代码并没有什么提示。 但是！根据cookie可以联</description>
+    </item>
+    
+    <item>
+      <title>010. what are you looking at?</title>
+      <link>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge010/</link>
+      <pubDate>Tue, 13 Nov 2018 13:19:40 +0800</pubDate>
+      
+      <guid>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge010/</guid>
+      <description>关卡地址 解决方案： 思路： 图片中的牛说：“你瞅啥？”，然后你说：“瞅你咋地，不光瞅你还打你呢”。（皮一下很开心😝）。然后（点击它）会得到一个s</description>
+    </item>
+    
+    <item>
+      <title>007. smarty</title>
+      <link>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge007/</link>
+      <pubDate>Tue, 06 Nov 2018 15:14:54 +0800</pubDate>
+      
+      <guid>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge007/</guid>
+      <description>关卡地址 解决方案： 思路： 这一关源代码中没有任何提示信息，看来信息都在图片中了。 图片中间位置有一条灰度图像，灰度图取值范围与ASCII码范围一</description>
+    </item>
+    
+    <item>
+      <title>004. follow the chain</title>
+      <link>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge004/</link>
+      <pubDate>Tue, 30 Oct 2018 11:18:54 +0800</pubDate>
+      
+      <guid>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge004/</guid>
+      <description>关卡地址 解决方案： 思路： 这一关鼠标移动到图片上指针会变成小手，点击会得到如下信息： and the next nothing is 44827 同时，url后面多了参数?nothing=12</description>
+    </item>
+    
+    <item>
+      <title>003. re</title>
+      <link>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge003/</link>
+      <pubDate>Mon, 29 Oct 2018 11:40:58 +0800</pubDate>
+      
+      <guid>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge003/</guid>
+      <description>关卡地址 解决方案： 思路： 这一关同样不贴图了，直接看图片下提示： One small letter, surrounded by EXACTLY three big bodyguards on each of its sides. 和上一关一样，需要从源代码中找到“一个两边完全被三</description>
+    </item>
+    
+    <item>
+      <title>002. ocr</title>
+      <link>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge002/</link>
+      <pubDate>Sun, 28 Oct 2018 22:12:21 +0800</pubDate>
+      
+      <guid>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge002/</guid>
+      <description>关卡地址 解决方案： 思路： 这一关就不贴图了，直接看图片下提示： recognize the characters. maybe they are in the book, but MAYBE they are in the page source. 很明显，玄机在源代码中。在源代码中有这样的提示</description>
+    </item>
+    
+    <item>
+      <title>001. What about making trans?</title>
+      <link>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge001/</link>
+      <pubDate>Sat, 27 Oct 2018 20:06:51 +0800</pubDate>
+      
+      <guid>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge001/</guid>
+      <description>关卡地址 解决方案： 思路： 图中给出了字母的映射关系，通过规律来破解下面这段话： g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp. bmgle gr gl zw fylb gq glcddgagclr ylb rfyr&amp;rsquo;q ufw rfgq rcvr gq qm jmle. sqgle qrpgle.kyicrpylq() gq pcamkkclbcb.</description>
+    </item>
+    
+  </channel>
+</rss>

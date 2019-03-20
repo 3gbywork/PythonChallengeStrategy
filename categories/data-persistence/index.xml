@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Persistence on Python Challenge Strategy</title>
+    <link>https://3gbywork.github.io/PythonChallengeStrategy/categories/data-persistence/</link>
+    <description>Recent content in Data Persistence on Python Challenge Strategy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 14 Dec 2018 20:01:15 +0800</lastBuildDate>
+    
+	<atom:link href="https://3gbywork.github.io/PythonChallengeStrategy/categories/data-persistence/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>018. can you tell the difference?</title>
+      <link>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge018/</link>
+      <pubDate>Fri, 14 Dec 2018 20:01:15 +0800</pubDate>
+      
+      <guid>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge018/</guid>
+      <description>关卡地址 解决方案： 思路： 可以很明显的看出图片左右两部分的亮度不同，但还是看一下源代码的提示： it is more obvious that what you might think 替换url为bright会提示</description>
+    </item>
+    
+    <item>
+      <title>017. eat?</title>
+      <link>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge017/</link>
+      <pubDate>Thu, 06 Dec 2018 23:45:58 +0800</pubDate>
+      
+      <guid>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge017/</guid>
+      <description>关卡地址 解决方案： 思路： 这一关图片中是曲奇饼干，左下角图片是不是有点熟悉？是第四关啦！ 查看源代码并没有什么提示。 但是！根据cookie可以联</description>
+    </item>
+    
+    <item>
+      <title>008. working hard?</title>
+      <link>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge008/</link>
+      <pubDate>Fri, 09 Nov 2018 15:25:57 +0800</pubDate>
+      
+      <guid>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge008/</guid>
+      <description>关卡地址 解决方案： 思路： 这一关，图片下面有这样的提示： Where is the missing link? 鼠标在图片上“扫描”一遍发现，图片中蜜蜂区域是可点击的，访问的就是下一关的地</description>
+    </item>
+    
+    <item>
+      <title>005. peak hell</title>
+      <link>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge005/</link>
+      <pubDate>Sat, 03 Nov 2018 12:51:59 +0800</pubDate>
+      
+      <guid>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge005/</guid>
+      <description>关卡地址 解决方案： 思路： 图片下有句提示信息： pronounce it 查看源代码得到如下提示： peak hell sounds familiar ? 听着一点也不熟悉好吧😂！无奈找了其他攻略，原来说的是pyt</description>
+    </item>
+    
+  </channel>
+</rss>

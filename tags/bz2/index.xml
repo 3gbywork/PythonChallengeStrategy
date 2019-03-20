@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bz2 on Python Challenge Strategy</title>
+    <link>https://3gbywork.github.io/PythonChallengeStrategy/tags/bz2/</link>
+    <description>Recent content in Bz2 on Python Challenge Strategy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 06 Dec 2018 23:45:58 +0800</lastBuildDate>
+    
+	<atom:link href="https://3gbywork.github.io/PythonChallengeStrategy/tags/bz2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>017. eat?</title>
+      <link>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge017/</link>
+      <pubDate>Thu, 06 Dec 2018 23:45:58 +0800</pubDate>
+      
+      <guid>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge017/</guid>
+      <description>关卡地址 解决方案： 思路： 这一关图片中是曲奇饼干，左下角图片是不是有点熟悉？是第四关啦！ 查看源代码并没有什么提示。 但是！根据cookie可以联</description>
+    </item>
+    
+    <item>
+      <title>008. working hard?</title>
+      <link>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge008/</link>
+      <pubDate>Fri, 09 Nov 2018 15:25:57 +0800</pubDate>
+      
+      <guid>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge008/</guid>
+      <description>关卡地址 解决方案： 思路： 这一关，图片下面有这样的提示： Where is the missing link? 鼠标在图片上“扫描”一遍发现，图片中蜜蜂区域是可点击的，访问的就是下一关的地</description>
+    </item>
+    
+  </channel>
+</rss>

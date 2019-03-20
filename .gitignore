@@ -1,0 +1,6 @@
+# ignore PowerShell bin/lib
+Code/PowerShell/bin
+Code/PowerShell/lib
+
+# ignore Data
+Data
