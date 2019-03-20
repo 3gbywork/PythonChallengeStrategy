@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xmlrpc on Python Challenge Strategy</title>
+    <link>https://3gbywork.github.io/PythonChallengeStrategy/categories/xmlrpc/</link>
+    <description>Recent content in Xmlrpc on Python Challenge Strategy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 06 Dec 2018 23:45:58 +0800</lastBuildDate>
+    
+	<atom:link href="https://3gbywork.github.io/PythonChallengeStrategy/categories/xmlrpc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>017. eat?</title>
+      <link>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge017/</link>
+      <pubDate>Thu, 06 Dec 2018 23:45:58 +0800</pubDate>
+      
+      <guid>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge017/</guid>
+      <description>关卡地址 解决方案： 思路： 这一关图片中是曲奇饼干，左下角图片是不是有点熟悉？是第四关啦！ 查看源代码并没有什么提示。 但是！根据cookie可以联</description>
+    </item>
+    
+    <item>
+      <title>013. call him</title>
+      <link>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge013/</link>
+      <pubDate>Fri, 23 Nov 2018 16:35:45 +0800</pubDate>
+      
+      <guid>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge013/</guid>
+      <description>关卡地址 解决方案： 思路： 这一关给了一部电话，并且提示：phone that evil。电话按键只有“5”这个按键是可用的，点击后会得到如下提示： faultCode 105 faultString</description>
+    </item>
+    
+  </channel>
+</rss>

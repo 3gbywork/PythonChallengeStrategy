@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://3gbywork.github.io/PythonChallengeStrategy/sitemap.xml

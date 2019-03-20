@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Regex on Python Challenge Strategy</title>
+    <link>https://3gbywork.github.io/PythonChallengeStrategy/tags/regex/</link>
+    <description>Recent content in Regex on Python Challenge Strategy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 06 Dec 2018 23:45:58 +0800</lastBuildDate>
+    
+	<atom:link href="https://3gbywork.github.io/PythonChallengeStrategy/tags/regex/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>017. eat?</title>
+      <link>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge017/</link>
+      <pubDate>Thu, 06 Dec 2018 23:45:58 +0800</pubDate>
+      
+      <guid>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge017/</guid>
+      <description>关卡地址 解决方案： 思路： 这一关图片中是曲奇饼干，左下角图片是不是有点熟悉？是第四关啦！ 查看源代码并没有什么提示。 但是！根据cookie可以联</description>
+    </item>
+    
+    <item>
+      <title>007. smarty</title>
+      <link>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge007/</link>
+      <pubDate>Tue, 06 Nov 2018 15:14:54 +0800</pubDate>
+      
+      <guid>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge007/</guid>
+      <description>关卡地址 解决方案： 思路： 这一关源代码中没有任何提示信息，看来信息都在图片中了。 图片中间位置有一条灰度图像，灰度图取值范围与ASCII码范围一</description>
+    </item>
+    
+    <item>
+      <title>004. follow the chain</title>
+      <link>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge004/</link>
+      <pubDate>Tue, 30 Oct 2018 11:18:54 +0800</pubDate>
+      
+      <guid>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge004/</guid>
+      <description>关卡地址 解决方案： 思路： 这一关鼠标移动到图片上指针会变成小手，点击会得到如下信息： and the next nothing is 44827 同时，url后面多了参数?nothing=12</description>
+    </item>
+    
+    <item>
+      <title>003. re</title>
+      <link>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge003/</link>
+      <pubDate>Mon, 29 Oct 2018 11:40:58 +0800</pubDate>
+      
+      <guid>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge003/</guid>
+      <description>关卡地址 解决方案： 思路： 这一关同样不贴图了，直接看图片下提示： One small letter, surrounded by EXACTLY three big bodyguards on each of its sides. 和上一关一样，需要从源代码中找到“一个两边完全被三</description>
+    </item>
+    
+  </channel>
+</rss>
