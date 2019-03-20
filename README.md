@@ -21,9 +21,9 @@ xxx为关卡的三位数字形式，不足左边补0。如：001、002。
 
 `go get github.com/kolo/xmlrpc`
 
-`PS > go build -o .\Code\Go\Challenge.exe .\Code\Go`：编译`.\Code\Go`目录下的源文件，并在该目录生成`Challenge.exe`。对源文件更改后需要执行这条命令。
+`PS src\static> go build -o .\Code\Go\Challenge.exe .\Code\Go`：编译`.\Code\Go`目录下的源文件，并在该目录生成`Challenge.exe`。对源文件更改后需要执行这条命令。
 
-`PS > .\Code\Go\Challenge.exe -l 0`：通过命令行参数指定要执行关卡的代码。`-l`代表`level`，后面是关卡数字。
+`PS src\static> .\Code\Go\Challenge.exe -l 0`：通过命令行参数指定要执行关卡的代码。`-l`代表`level`，后面是关卡数字。
 
 * 关于PowerShell脚本执行策略：
 
