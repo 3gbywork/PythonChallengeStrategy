@@ -1,4 +1,4 @@
----
+﻿---
 title: "004. follow the chain"
 date: 2018-10-30T11:18:54+08:00
 lastmod: 2019-03-18T10:58:54+08:00
@@ -44,23 +44,127 @@ mathjax: false
 
 ### 代码：
 
-* [Python][2]
+<div>
+    <input id="tab-python" type="radio" name="code-tabs" class="code-tabs" checked>
+    <label class="language-label" for="tab-python">Python</label>
+    <input id="tab-powershell" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-powershell">PowerShell</label>
+    <input id="tab-golang" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-golang">Golang</label>
+    <section id="content-python" class="content-section">
+        <p><a href="../../Code/Python/Challenge004.py" title="点我下载源码">Challenge004.py</a></p>
+{{< highlight python3 >}}
+url='http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing='
+param='12345'
 
-```
-PS src\static> python .\Code\Python\Challenge004.py
-```
+import urllib.request
+import re
 
-* [PowerShell][3]
+pattern=re.compile("the next nothing is (\\d+)")
 
-```
-PS src\static> .\Code\PowerShell\Challenge004.ps1
-```
+for i in range(400):
+    # print("request %4d url: %s " %(i,url+param))
+    resp=urllib.request.urlopen(url+param).read().decode('utf-8')
+    try:
+        param=pattern.search(resp).group(1)
+    except:
+        print("param %s, response: %s" %(param,resp))
+        if resp == "Yes. Divide by two and keep going.":
+            try:
+                tmpParam=str(int(int(param)/2))
+                param=tmpParam
+                continue
+            except:
+                break
+        break
 
-* [Go][4]
+print('completed')
+{{< /highlight >}}
+        <pre><code>PS src\static> python .\Code\Python\Challenge004.py</code></pre>
+    </section>
+    <section id="content-powershell" class="content-section">
+        <p><a href="../../Code/PowerShell/Challenge004.ps1" title="点我下载源码">Challenge004.ps1</a></p>
+{{< highlight powershell >}}
+$url="http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing="
+$param="12345"
 
-```
-PS src\static> .\Code\Go\Challenge.exe -l 004
-```
+$pattern=[regex]"the next nothing is (\d+)"
+
+for ($i=0; $i -lt 400; $i++) {
+    $resp = (Invoke-WebRequest -Uri $url+$param | Select-Object -ExcludeProperty Content).Content
+    $match = $pattern.Match($resp)
+    if ($match.Success) {
+        $param = $match.Groups[1].Value
+    } else {
+        [System.Console]::WriteLine($("param: {0}, resp: {1}" -f $param,$resp))
+        if ($resp -eq "Yes. Divide by two and keep going.") {
+            $param=$param/2
+            continue
+        }
+        break
+    }
+}
+
+[System.Console]::WriteLine("completed")
+{{< /highlight >}}
+        <pre><code>PS src\static> .\Code\PowerShell\Challenge004.ps1</code></pre>
+    </section>
+    <section id="content-golang" class="content-section">
+        <p><a href="../../Code/Go/Challenge004.go" title="点我下载源码">Challenge004.go</a></p>
+{{< highlight golang >}}
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"io/ioutil"
+	"regexp"
+	"strings"
+	"strconv"
+)
+
+func (c *Challenge) Challenge004() {
+	url:="http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing="
+	param:="12345"
+
+	pattern:=regexp.MustCompile("the next nothing is (\\d+)")
+
+	for i:=0; i<400; i++ {
+		resp := httpGet(url+param)
+		tmpParam:=pattern.FindStringSubmatch(resp)
+		if len(tmpParam) != 2 {
+			fmt.Printf("param: %s, response: %s\n",param, resp)
+			if strings.Compare(resp,"Yes. Divide by two and keep going.") == 0 {
+				intParam,err := strconv.Atoi(param)
+				if err == nil {
+					param = string(intParam/2)
+					continue
+				}
+			}
+			break
+		} else {
+			param=tmpParam[1]
+		}
+	}
+
+	fmt.Println("completed")
+}
+
+func httpGet(url string) string {
+	resp, err := http.Get(url)
+	if err == nil {
+		defer resp.Body.Close()
+		body, err := ioutil.ReadAll(resp.Body)
+		if err == nil {
+			return string(body)
+		}
+	}
+	return ""
+}
+{{< /highlight >}}
+        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l 004</code></pre>
+    </section>
+</div>
 
 ---
 ## 最终结果： peak.html
@@ -68,7 +172,5 @@ PS src\static> .\Code\Go\Challenge.exe -l 004
 ## [下一关地址][5]
 
 [1]: http://www.pythonchallenge.com/pc/def/linkedlist.php
-[2]: ../../Code/Python/Challenge004.py "点我查看源码"
-[3]: ../../Code/PowerShell/Challenge004.ps1 "点我查看源码"
-[4]: ../../Code/Go/Challenge004.go "点我查看源码"
-[5]: http://www.pythonchallenge.com/pc/def/peak.html
+[2]: http://www.pythonchallenge.com/pc/def/peak.html
+

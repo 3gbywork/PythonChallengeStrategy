@@ -1,4 +1,4 @@
-﻿---
+---
 title: "003. re"
 date: 2018-10-29T11:40:58+08:00
 lastmod: 2019-03-18T10:14:58+08:00
@@ -50,64 +50,22 @@ mathjax: false
     <input id="tab-golang" type="radio" name="code-tabs" class="code-tabs">
     <label class="language-label" for="tab-golang">Golang</label>
     <section id="content-python" class="content-section">
-        <p><a href="../../Code/Python/Challenge003.py" title="点我下载源码">Challenge003.py</a></p>
+        <p><a href="../../Code/Python/{{ .Name }}.py" title="点我下载源码">{{ .Name }}.py</a></p>
 {{< highlight python3 >}}
-import helper
-msg=helper.readFile(".\\Data\\003\\msg.txt")
-
-import re
-
-# pattern=re.compile("[^A-Z][A-Z]{3}([a-z])[A-Z]{3}[^A-Z]")
-
-# matches=pattern.findall(msg)
-
-# print(''.join(matches))
-
-print(''.join(re.findall("[^A-Z][A-Z]{3}([a-z])[A-Z]{3}[^A-Z]",msg)))
 {{< /highlight >}}
-        <pre><code>PS src\static> python .\Code\Python\Challenge003.py</code></pre>
+        <pre><code>PS src\static> python .\Code\Python\{{ .Name }}.py</code></pre>
     </section>
     <section id="content-powershell" class="content-section">
-        <p><a href="../../Code/PowerShell/Challenge003.ps1" title="点我下载源码">Challenge003.ps1</a></p>
+        <p><a href="../../Code/PowerShell/{{ .Name }}.ps1" title="点我下载源码">{{ .Name }}.ps1</a></p>
 {{< highlight powershell >}}
-$msg=(Get-Content ".\\Data\\003\\msg.txt" -Raw).Replace("`r`n","")
-
-$pattern=[regex]"[^A-Z][A-Z]{3}([a-z])[A-Z]{3}[^A-Z]"
-
-$outstr=""
-$pattern.Matches($msg) | foreach {$outstr += $_.Groups[1].Value}
-
-Write-Output $outstr
 {{< /highlight >}}
-        <pre><code>PS src\static> .\Code\PowerShell\Challenge003.ps1</code></pre>
+        <pre><code>PS src\static> .\Code\PowerShell\{{ .Name }}.ps1</code></pre>
     </section>
     <section id="content-golang" class="content-section">
-        <p><a href="../../Code/Go/Challenge003.go" title="点我下载源码">Challenge003.go</a></p>
+        <p><a href="../../Code/Go/{{ .Name }}.go" title="点我下载源码">{{ .Name }}.go</a></p>
 {{< highlight golang >}}
-package main
-
-import (
-	"fmt"
-	"regexp"
-)
-
-func (c *Challenge) Challenge003() {
-	msg:=ReadFile(".\\Data\\003\\msg.txt")
-
-	pattern:=regexp.MustCompile("[^A-Z][A-Z]{3}([a-z])[A-Z]{3}[^A-Z]")
-
-	// 返回一个二维数组
-	matches:=pattern.FindAllStringSubmatch(msg,-1)
-
-	outstr:=""
-	for _,ch := range matches {
-		outstr+=ch[1]
-	}
-
-	fmt.Println(outstr)
-}
 {{< /highlight >}}
-        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l 003</code></pre>
+        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l {{ replace .Name "Challenge" "" }}</code></pre>
     </section>
 </div>
 
@@ -118,4 +76,3 @@ func (c *Challenge) Challenge003() {
 
 [1]: http://www.pythonchallenge.com/pc/def/equality.html
 [2]: http://www.pythonchallenge.com/pc/def/linkedlist.php
-

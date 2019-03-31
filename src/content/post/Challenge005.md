@@ -1,4 +1,4 @@
----
+﻿---
 title: "005. peak hell"
 date: 2018-11-03T12:51:59+08:00
 lastmod: 2019-03-18T11:26:59+08:00
@@ -52,23 +52,167 @@ mathjax: false
 
 ### 代码：
 
-* [Python][2]
+<div>
+    <input id="tab-python" type="radio" name="code-tabs" class="code-tabs" checked>
+    <label class="language-label" for="tab-python">Python</label>
+    <input id="tab-powershell" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-powershell">PowerShell</label>
+    <input id="tab-golang" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-golang">Golang</label>
+    <section id="content-python" class="content-section">
+        <p><a href="../../Code/Python/Challenge005.py" title="点我下载源码">Challenge005.py</a></p>
+{{< highlight python3 >}}
+banner="http://www.pythonchallenge.com/pc/def/banner.p"
 
-```
-PS src\static> python .\Code\Python\Challenge005.py
-```
+dir=".\\Data\\005"
+import helper
+helper.ensureDir(dir)
 
-* [PowerShell][3]
+import urllib.request
+(filename,headers)=urllib.request.urlretrieve(banner,dir+'\\banner.p')
 
-```
-PS src\static> .\Code\PowerShell\Challenge005.ps1
-```
+import pickle
+data=pickle.Unpickler(open(filename,'rb')).load()
 
-* [Go][4]
+# print(data)
 
-```
-PS src\static> .\Code\Go\Challenge.exe -l 005
-```
+for line in data:
+    for tupleitem in line:
+        print(tupleitem[0]*tupleitem[1],end='')
+    print('')
+
+# ================================
+# without pickle
+fp=open(filename,'r')
+lines=fp.readlines()
+fp.close()
+
+import re
+reln=re.compile('aa')
+renum=re.compile('^I([0-9]*)')
+rechsharp=re.compile("S'#'|g6")
+rechspace=re.compile("S' '|g2")
+
+for line in lines:
+    if reln.search(line) != None:
+        print('\n',end='')
+        continue
+    if rechsharp.search(line) != None:
+        ch='#'
+        continue
+    if rechspace.search(line) != None:
+        ch=' '
+        continue
+    if renum.search(line) != None:
+        num=renum.search(line).group(1)
+        print(ch*int(num),end='')
+        continue
+# ================================
+{{< /highlight >}}
+        <pre><code>PS src\static> python .\Code\Python\Challenge005.py</code></pre>
+    </section>
+    <section id="content-powershell" class="content-section">
+        <p><a href="../../Code/PowerShell/Challenge005.ps1" title="点我下载源码">Challenge005.ps1</a></p>
+{{< highlight powershell >}}
+$banner="http://www.pythonchallenge.com/pc/def/banner.p"
+
+$path=".\\Data\\005"
+
+. .\Code\PowerShell\helper.ps1
+New-Dir -Dir $path
+
+$filename=$path+"\\banner.p"
+Invoke-WebRequest -Uri $banner -OutFile $filename
+
+$lines=Get-Content $filename
+
+$reln=[regex]'aa'
+$renum=[regex]'^I([0-9]*)'
+$rechsharp=[regex]"S'#'|g6"
+$rechspace=[regex]"S' '|g2"
+
+foreach ($line in $lines) {
+    if ($reln.IsMatch($line)) {
+        [System.Console]::WriteLine()
+        continue
+    }
+    if ($rechsharp.IsMatch($line)) {
+        $ch='#'
+        continue
+    }
+    if ($rechspace.IsMatch($line)) {
+        $ch=' '
+        continue
+    }
+    if ($renum.IsMatch($line)) {
+        $num=[int]$renum.Match($line).Groups[1].Value
+        [System.Console]::Write($ch*$num)
+        continue
+    }
+}
+{{< /highlight >}}
+        <pre><code>PS src\static> .\Code\PowerShell\Challenge005.ps1</code></pre>
+    </section>
+    <section id="content-golang" class="content-section">
+        <p><a href="../../Code/Go/Challenge005.go" title="点我下载源码">Challenge005.go</a></p>
+{{< highlight golang >}}
+package main
+
+import (
+	"fmt"
+	"strings"
+	"regexp"
+	"strconv"
+)
+
+func (c *Challenge) Challenge005()  {
+	banner:="http://www.pythonchallenge.com/pc/def/banner.p"
+	
+	path:=".\\Data\\005"
+	EnsureDir(path)
+
+	filename:=path+"\\banner.p"
+	Download(banner,filename)
+
+	content:=ReadFile(filename)
+	lines:=strings.Split(content,"\n")
+
+	reln:=regexp.MustCompile("aa")
+	renum:=regexp.MustCompile("^I([0-9]*)")
+	rechsharp:=regexp.MustCompile("S'#'|g6")
+	rechspace:=regexp.MustCompile("S' '|g2")
+
+	ch:=" "
+
+	for index := 0; index < len(lines); index++ {
+		if reln.MatchString(lines[index]) {
+			fmt.Printf("\n")
+			continue
+		}
+		if rechsharp.MatchString(lines[index]) {
+			ch="#"
+			continue
+		}
+		if rechspace.MatchString(lines[index]) {
+			ch=" "
+			continue
+		}
+		matches:=renum.FindStringSubmatch(lines[index])
+		if matches != nil {
+			num,err:=strconv.Atoi(matches[1])
+			if err == nil {
+				for i:=0; i<num; i++ {
+					fmt.Printf(ch)
+				}
+			}
+			continue
+		}
+	}
+}
+{{< /highlight >}}
+        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l 005</code></pre>
+    </section>
+</div>
 
 ---
 ## 最终结果： channel
@@ -76,9 +220,7 @@ PS src\static> .\Code\Go\Challenge.exe -l 005
 ## [下一关地址][5]
 
 [1]: http://www.pythonchallenge.com/pc/def/peak.html
-[2]: ../../Code/Python/Challenge005.py "点我查看源码"
-[3]: ../../Code/PowerShell/Challenge005.ps1 "点我查看源码"
-[4]: ../../Code/Go/Challenge005.go "点我查看源码"
-[5]: http://www.pythonchallenge.com/pc/def/channel.html
+[2]: http://www.pythonchallenge.com/pc/def/channel.html
 
 [a]: ../../Image/005/channel.png
+

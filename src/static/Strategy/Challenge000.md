@@ -1,4 +1,4 @@
-﻿---
+---
 title: "000. warming up"
 date: 2018-10-27T20:05:51+08:00
 lastmod: 2019-03-18T09:28:51+08:00
@@ -48,35 +48,22 @@ mathjax: true
     <input id="tab-golang" type="radio" name="code-tabs" class="code-tabs">
     <label class="language-label" for="tab-golang">Golang</label>
     <section id="content-python" class="content-section">
-        <p><a href="../../Code/Python/Challenge000.py" title="点我下载源码">Challenge000.py</a></p>
+        <p><a href="../../Code/Python/{{ .Name }}.py" title="点我下载源码">{{ .Name }}.py</a></p>
 {{< highlight python3 >}}
-print(2**38)
 {{< /highlight >}}
-        <pre><code>PS src\static> python .\Code\Python\Challenge000.py</code></pre>
+        <pre><code>PS src\static> python .\Code\Python\{{ .Name }}.py</code></pre>
     </section>
     <section id="content-powershell" class="content-section">
-        <p><a href="../../Code/PowerShell/Challenge000.ps1" title="点我下载源码">Challenge000.ps1</a></p>
+        <p><a href="../../Code/PowerShell/{{ .Name }}.ps1" title="点我下载源码">{{ .Name }}.ps1</a></p>
 {{< highlight powershell >}}
-[math]::pow(2,38)
 {{< /highlight >}}
-        <pre><code>PS src\static> .\Code\PowerShell\Challenge000.ps1</code></pre>
+        <pre><code>PS src\static> .\Code\PowerShell\{{ .Name }}.ps1</code></pre>
     </section>
     <section id="content-golang" class="content-section">
-        <p><a href="../../Code/Go/Challenge000.go" title="点我下载源码">Challenge000.go</a></p>
+        <p><a href="../../Code/Go/{{ .Name }}.go" title="点我下载源码">{{ .Name }}.go</a></p>
 {{< highlight golang >}}
-package main
-
-import (
-	"fmt"
-	"math"
-)
-
-func (c *Challenge) Challenge000() {
-	// fmt.Println(int64(math.Pow(2,38)))
-	fmt.Printf("%.f\n",math.Pow(2,38))
-}
 {{< /highlight >}}
-        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l 000</code></pre>
+        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l {{ replace .Name "Challenge" "" }}</code></pre>
     </section>
 </div>
 
@@ -89,4 +76,3 @@ func (c *Challenge) Challenge000() {
 [2]: http://www.pythonchallenge.com/pc/def/274877906944.html
 
 [a]: ../../Image/000/calc.jpg "warming up"
-

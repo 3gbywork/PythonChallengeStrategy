@@ -1,4 +1,4 @@
-﻿---
+---
 title: "015. whom?"
 date: 2018-11-28T22:13:08+08:00
 lastmod: 2019-03-18T14:52:08+08:00
@@ -67,63 +67,22 @@ mathjax: false
     <input id="tab-golang" type="radio" name="code-tabs" class="code-tabs">
     <label class="language-label" for="tab-golang">Golang</label>
     <section id="content-python" class="content-section">
-        <p><a href="../../Code/Python/Challenge015.py" title="点我下载源码">Challenge015.py</a></p>
+        <p><a href="../../Code/Python/{{ .Name }}.py" title="点我下载源码">{{ .Name }}.py</a></p>
 {{< highlight python3 >}}
-import calendar
-
-leapYears=[]
-for year in range(1016, 1996+1, 20):
-    # 是闰年并且该年1月1日是星期四
-    if calendar.isleap(year) and calendar.weekday(year,1,1)==3:
-        leapYears.append(year)
-print(leapYears[-2])
 {{< /highlight >}}
-        <pre><code>PS src\static> python .\Code\Python\Challenge015.py</code></pre>
+        <pre><code>PS src\static> python .\Code\Python\{{ .Name }}.py</code></pre>
     </section>
     <section id="content-powershell" class="content-section">
-        <p><a href="../../Code/PowerShell/Challenge015.ps1" title="点我下载源码">Challenge015.ps1</a></p>
+        <p><a href="../../Code/PowerShell/{{ .Name }}.ps1" title="点我下载源码">{{ .Name }}.ps1</a></p>
 {{< highlight powershell >}}
-$LeapYears=@()
-for ($year = 1016; $year -le 1996; $year+=20) {
-    # 是闰年并且该年1月1日是星期四
-    if ([datetime]::IsLeapYear($year) -and [datetime]::new($year,1,1).DayOfWeek -eq [System.DayOfWeek]::Thursday) {
-        $LeapYears+=$year
-    }
-}
-
-$LeapYears[-2]
 {{< /highlight >}}
-        <pre><code>PS src\static> .\Code\PowerShell\Challenge015.ps1</code></pre>
+        <pre><code>PS src\static> .\Code\PowerShell\{{ .Name }}.ps1</code></pre>
     </section>
     <section id="content-golang" class="content-section">
-        <p><a href="../../Code/Go/Challenge015.go" title="点我下载源码">Challenge015.go</a></p>
+        <p><a href="../../Code/Go/{{ .Name }}.go" title="点我下载源码">{{ .Name }}.go</a></p>
 {{< highlight golang >}}
-package main
-
-import(
-	"fmt"
-	"time"
-)
-
-func (c *Challenge) Challenge015() {
-	var leapYears []int
-	for year := 1016; year <= 1996; year+=20 {
-    	// 是闰年并且该年1月1日是星期四
-		if isLeapYear(year) {
-			date := time.Date(year, time.January, 1, 0, 0, 0, 0, time.UTC)
-			if date.Weekday()==4 {
-				leapYears=append(leapYears, year)
-			}
-		}
-	}
-	fmt.Println(leapYears[len(leapYears)-2])
-}
-
-func isLeapYear(year int) bool {
-	return year%100==0 && year%400==0 || year%4==0
-}
 {{< /highlight >}}
-        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l 015</code></pre>
+        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l {{ replace .Name "Challenge" "" }}</code></pre>
     </section>
 </div>
 
@@ -136,4 +95,3 @@ func isLeapYear(year int) bool {
 [2]: http://www.pythonchallenge.com/pc/return/mozart.html
 
 [a]: ../../Image/015/screen15.jpg "whom?"
-

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "012. dealing evil"
 date: 2018-11-18T18:55:17+08:00
 lastmod: 2019-03-18T14:30:17+08:00
@@ -85,128 +85,22 @@ b'\xff\xd8\xff\xe0\x00\x10JFIF\x00\x01\x01\x01\x00\xb4\x00\xb4\x00\x00\xff\xe1'
     <input id="tab-golang" type="radio" name="code-tabs" class="code-tabs">
     <label class="language-label" for="tab-golang">Golang</label>
     <section id="content-python" class="content-section">
-        <p><a href="../../Code/Python/Challenge012.py" title="点我下载源码">Challenge012.py</a></p>
+        <p><a href="../../Code/Python/{{ .Name }}.py" title="点我下载源码">{{ .Name }}.py</a></p>
 {{< highlight python3 >}}
-import helper
-path=".\\Data\\012"
-helper.ensureDir(path)
-
-# ================================
-# 使用http认证，下载文件
-import urllib.request
-helper.installHTTPBasicAuthOpener("huge", "file")
-
-gfx="http://www.pythonchallenge.com/pc/return/evil2.gfx"
-(filename, headers)=urllib.request.urlretrieve(gfx, path+"\\evil2.gfx")
-
-evil4="http://www.pythonchallenge.com/pc/return/evil4.jpg"
-urllib.request.urlretrieve(evil4, path+"\\evil4.jpg")
-# ================================
-
-filename=path+"\\evil2.gfx"
-# ================================
-# 输出文件头
-# fp=open(filename,'rb')
-# cnt=fp.read(16*7-2)
-# fp.close()
-
-# for i in range(5):
-#     print(cnt[i::5])
-# ================================
-
-fp=open(filename,'rb')
-cnt=fp.read()
-fp.close()
-
-exts=["jpg","png","gif","png","jpg"]
-for i in range(5):
-    fp=open(path+"\\out%d.%s" % (i, exts[i]),'wb')
-    fp.write(cnt[i::5])
-    fp.close()
-
-print("please see the folder: ", path)
 {{< /highlight >}}
-        <pre><code>PS src\static> python .\Code\Python\Challenge012.py</code></pre>
+        <pre><code>PS src\static> python .\Code\Python\{{ .Name }}.py</code></pre>
     </section>
     <section id="content-powershell" class="content-section">
-        <p><a href="../../Code/PowerShell/Challenge012.ps1" title="点我下载源码">Challenge012.ps1</a></p>
+        <p><a href="../../Code/PowerShell/{{ .Name }}.ps1" title="点我下载源码">{{ .Name }}.ps1</a></p>
 {{< highlight powershell >}}
-$path=".\\Data\\012"
-
-. .\Code\PowerShell\helper.ps1
-New-Dir -Dir $path
-
-$gfx="http://www.pythonchallenge.com/pc/return/evil2.gfx"
-$filename=$path+"\\evil2.gfx"
-Get-FileWithAuth -Url $gfx -Filename $filename -Username "huge" -Password "file"
-
-$evil4="http://www.pythonchallenge.com/pc/return/evil4.jpg"
-Invoke-WebRequest -Uri $evil4 -OutFile $($path+"\\evil4.jpg") -Credential $credential
-
-$cnt=[System.IO.File]::ReadAllBytes($filename)
-$exts="jpg","png","gif","png","jpg"
-
-for ($i = 0; $i -lt 5; $i++) {
-    $outfile=$path+"\\out{0}.{1}" -f $($i, $exts[$i])
-    $fs=[System.IO.FileStream]::new($outfile, [System.IO.FileMode]::Create)
-    for ($j = $i; $j -lt $cnt.Length; $j+=5) {
-        $fs.WriteByte($cnt[$j])        
-    }
-    $fs.Flush()
-    $fs.Close()
-    $fs.Dispose()
-}
-
-"please see the folder: $path"
 {{< /highlight >}}
-        <pre><code>PS src\static> .\Code\PowerShell\Challenge012.ps1</code></pre>
+        <pre><code>PS src\static> .\Code\PowerShell\{{ .Name }}.ps1</code></pre>
     </section>
     <section id="content-golang" class="content-section">
-        <p><a href="../../Code/Go/Challenge012.go" title="点我下载源码">Challenge012.go</a></p>
+        <p><a href="../../Code/Go/{{ .Name }}.go" title="点我下载源码">{{ .Name }}.go</a></p>
 {{< highlight golang >}}
-package main
-
-import(
-	"fmt"
-	"io/ioutil"
-	"bytes"
-)
-
-func (c *Challenge) Challenge012() {
-	path:=".\\Data\\012"
-	EnsureDir(path)
-
-	gfx:="http://www.pythonchallenge.com/pc/return/evil2.gfx"
-	filename:=path+"\\evil2.gfx"
-	DownloadWithBasicAuth(gfx, filename, "huge", "file")
-
-	evil4:="http://www.pythonchallenge.com/pc/return/evil4.jpg"
-	DownloadWithBasicAuth(evil4, path+"\\evil4.jpg", "huge", "file")
-
-	cnt, err := ioutil.ReadFile(filename)
-	if err != nil {
-		fmt.Printf("read file failed![%v]\n", err)
-		return
-	}
-
-	exts :=[]string {"jpg","png","gif","png","jpg"}
-	for i := 0; i < 5; i++ {
-		outfile := fmt.Sprintf("%s\\out%d.%s", path, i, exts[i])
-		var builder bytes.Buffer
-		for j := i; j < len(cnt); j+=5 {
-			builder.WriteByte(cnt[j])
-		}
-		err := ioutil.WriteFile(outfile, builder.Bytes(), 0666)
-		if err != nil {
-			fmt.Printf("write file failed![%v]\n", err)
-			return
-		}
-	}
-
-	fmt.Println("please see the folder: ", path)
-}
 {{< /highlight >}}
-        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l 012</code></pre>
+        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l {{ replace .Name "Challenge" "" }}</code></pre>
     </section>
 </div>
 
@@ -217,4 +111,3 @@ func (c *Challenge) Challenge012() {
 
 [1]: http://www.pythonchallenge.com/pc/return/evil.html
 [2]: http://www.pythonchallenge.com/pc/return/disproportional.html
-

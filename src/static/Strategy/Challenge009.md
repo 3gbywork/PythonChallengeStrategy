@@ -1,4 +1,4 @@
-﻿---
+---
 title: "009. connect the dots"
 date: 2018-11-11T22:11:14+08:00
 lastmod: 2019-03-18T14:13:14+08:00
@@ -83,175 +83,22 @@ second:
     <input id="tab-golang" type="radio" name="code-tabs" class="code-tabs">
     <label class="language-label" for="tab-golang">Golang</label>
     <section id="content-python" class="content-section">
-        <p><a href="../../Code/Python/Challenge009.py" title="点我下载源码">Challenge009.py</a></p>
+        <p><a href="../../Code/Python/{{ .Name }}.py" title="点我下载源码">{{ .Name }}.py</a></p>
 {{< highlight python3 >}}
-import helper
-
-firststr=helper.readFile(".\\Data\\009\\first.txt")
-secondstr=helper.readFile(".\\Data\\009\\second.txt")
-
-firstlist=[int(x.strip()) for x in firststr.split(',')]
-secondlist=[int(x.strip()) for x in secondstr.split(',')]
-
-import turtle
-import tkinter
-
-tk=tkinter.Tk()
-tk.title("Challenge009")
-canvas=tkinter.Canvas(tk, width=500, height=500)
-canvas.pack(expand=1,fill="both")
-pen=turtle.RawPen(canvas)
-pen.hideturtle()
-
-def drawPoints(plist):
-    points=list(map(lambda x: (x[0]-250, 250-x[1]), zip(plist[::2], plist[1::2])))
-    pen.up()
-    pen.goto(points[0])
-    pen.down()
-    for x,y in points:
-        pen.goto(x,y)
-
-drawPoints(firstlist)
-drawPoints(secondlist)
-tk.mainloop()
 {{< /highlight >}}
-        <pre><code>PS src\static> python .\Code\Python\Challenge009.py</code></pre>
+        <pre><code>PS src\static> python .\Code\Python\{{ .Name }}.py</code></pre>
     </section>
     <section id="content-powershell" class="content-section">
-        <p><a href="../../Code/PowerShell/Challenge009.ps1" title="点我下载源码">Challenge009.ps1</a></p>
+        <p><a href="../../Code/PowerShell/{{ .Name }}.ps1" title="点我下载源码">{{ .Name }}.ps1</a></p>
 {{< highlight powershell >}}
-function GetPoints {
-    param (
-        [string[]]
-        $strs
-    )
-
-    [System.Collections.Generic.List[System.Drawing.Point]]$list=New-Object System.Collections.Generic.List[System.Drawing.Point]
-
-    for ($i=0; $i -lt $strs.Length; $i+=2) {
-        $x=[System.Convert]::ToInt32($strs[$i].Trim())
-        $y=[System.Convert]::ToInt32($strs[$i+1].Trim())
-        [System.Drawing.Point]$point=New-Object System.Drawing.Point $x,$y
-        $list.Add($point)
-    }
-
-    return $list
-}
-
-$firststr=(Get-Content ".\\Data\\009\\first.txt" -Raw).Replace("`r`n","").Split(',',[System.StringSplitOptions]::RemoveEmptyEntries)
-$secondstr=(Get-Content ".\\Data\\009\\second.txt" -Raw).Replace("`r`n","").Split(',',[System.StringSplitOptions]::RemoveEmptyEntries)
-
-[System.Collections.Generic.List[System.Drawing.Point]]$firstline=GetPoints -strs $firststr
-[System.Collections.Generic.List[System.Drawing.Point]]$secondline=GetPoints -strs $secondstr
-
-[void][System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
-$img=New-Object System.Drawing.Bitmap 500,500
-$graphics=[System.Drawing.Graphics]::FromImage($img)
-$graphics.Clear([System.Drawing.Color]::White)
-$pen=[System.Drawing.Pens]::Black
-
-$graphics.DrawLines($pen, $firstline.ToArray())
-$graphics.DrawLines($pen, $secondline.ToArray())
-
-. .\Code\PowerShell\helper.ps1
-Show-Image -Title "Challenge009" -Image $img
-
-$img.Dispose()
 {{< /highlight >}}
-        <pre><code>PS src\static> .\Code\PowerShell\Challenge009.ps1</code></pre>
+        <pre><code>PS src\static> .\Code\PowerShell\{{ .Name }}.ps1</code></pre>
     </section>
     <section id="content-golang" class="content-section">
-        <p><a href="../../Code/Go/Challenge009.go" title="点我下载源码">Challenge009.go</a></p>
+        <p><a href="../../Code/Go/{{ .Name }}.go" title="点我下载源码">{{ .Name }}.go</a></p>
 {{< highlight golang >}}
-package main
-
-import(
-	"image"
-	"image/color"
-	"image/draw"
-	"strings"
-	"strconv"
-)
-
-func (c *Challenge) Challenge009() {
-	firststr := ReadFile(".\\Data\\009\\first.txt")
-	secondstr := ReadFile(".\\Data\\009\\second.txt")
-
-	bg := image.White
-	pen := color.Black
-
-	rgba :=  image.NewRGBA(image.Rect(0, 0, 500, 500))
-	draw.Draw(rgba, rgba.Bounds(), bg, image.ZP, draw.Over)
-
-	firstline := getPoints(firststr)
-	secondline := getPoints(secondstr)
-
-	drawPoints(rgba, pen, firstline)
-	drawPoints(rgba, pen, secondline)
-
-	pngfile := ".\\Data\\009\\go.png"
-	SaveImage(pngfile, rgba, "png")
-
-	ShowImage(pngfile)
-}
-
-func getPoints(str string) []image.Point {
-	var points []image.Point
-	strlist := strings.Split(str, ",")
-	for i := 0; i < len(strlist); i+=2 {
-		x,_ := strconv.Atoi(strings.Trim(strlist[i], "\r\n "))
-		y,_ := strconv.Atoi(strings.Trim(strlist[i+1], "\r\n "))
-		points = append(points, image.Pt(x,y))
-	}
-
-	return points
-}
-
-func drawPoints(rgba *image.RGBA, color color.Color, points []image.Point) {
-	for i := 0; i < len(points)-1; i++ {
-		drawLine(points[i].X, points[i].Y, points[i+1].X, points[i+1].Y, rgba, color)
-	}
-}
-
-func drawLine(x0, y0, x1, y1 int, rgba *image.RGBA, color color.Color) {
-	dx := abs(x1 - x0)
-	dy := abs(y1 - y0)
-
-	sx, sy := 1, 1
-	if x0>=x1 {
-		sx = -1
-	}
-	if y0>=y1 {
-		sy = -1
-	}
-	err := dx-dy
-
-	for {
-		rgba.Set(x0, y0, color)
-		if x0 == x1 && y0 == y1 {
-			return
-		}
-		e2 := err * 2
-		if e2 > -dy {
-			err -= dy
-			x0 += sx
-		}
-		if e2 < dx {
-			err += dx
-			y0 += sy
-		}
-	}
-}
-
-func abs(x int) int {
-	if x>=0 {
-		return x
-	} else {
-		return -x
-	}
-}
 {{< /highlight >}}
-        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l 009</code></pre>
+        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l {{ replace .Name "Challenge" "" }}</code></pre>
     </section>
 </div>
 
@@ -262,4 +109,3 @@ func abs(x int) int {
 
 [1]: http://www.pythonchallenge.com/pc/return/good.html
 [2]: http://www.pythonchallenge.com/pc/return/bull.html
-

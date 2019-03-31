@@ -1,4 +1,4 @@
-﻿---
+---
 title: "018. can you tell the difference?"
 date: 2018-12-14T20:01:15+08:00
 lastmod: 2019-03-18T15:09:15+08:00
@@ -91,68 +91,18 @@ mathjax: false
     <section id="content-python" class="content-section">
         <p><a href="../../Code/Python/Challenge018.py" title="点我下载源码">Challenge018.py</a></p>
 {{< highlight python3 >}}
-import helper
-path=".\\Data\\018"
-helper.ensureDir(path)
-
-# ================================
-# 使用http认证，下载文件
-import urllib.request
-helper.installHTTPBasicAuthOpener("huge", "file")
-
-gif="http://www.pythonchallenge.com/pc/return/deltas.gz"
-(filename, headers)=urllib.request.urlretrieve(gif, path+"\\deltas.gz")
-# ================================
-
-import gzip
-with gzip.open(filename) as gz:
-    lines=gz.readlines()
-    
-file1=[str(line)[2:55] for line in lines]
-file2=[str(line)[58:111] for line in lines]
-
-import difflib
-d=difflib.Differ()
-rst=list(d.compare(file1, file2))
-
-# 查看比较结果
-# tmp=path+"\\compare.txt"
-# fp=open(tmp, 'w')
-# fp.write(''.join(rst))
-# fp.close()
-# from pprint import pprint
-# pprint(rst)
-
-pngs=[''.join(filter(lambda l: l[0]==c, rst)) for c in ' -+']
-
-import binascii
-for i in range(len(pngs)):
-    png=pngs[i].replace(' ','').replace('\\n','').replace('\'','').replace('+','').replace('-','')
-    # print(png)
-    open('%s\\delta%d.png' % (path,i), 'wb').write(binascii.unhexlify(png))
 {{< /highlight >}}
         <pre><code>PS src\static> python .\Code\Python\Challenge018.py</code></pre>
     </section>
     <section id="content-powershell" class="content-section">
         <p><a href="../../Code/PowerShell/Challenge018.ps1" title="点我下载源码">Challenge018.ps1</a></p>
 {{< highlight powershell >}}
-
 {{< /highlight >}}
         <pre><code>PS src\static> .\Code\PowerShell\Challenge018.ps1</code></pre>
     </section>
     <section id="content-golang" class="content-section">
         <p><a href="../../Code/Go/Challenge018.go" title="点我下载源码">Challenge018.go</a></p>
 {{< highlight golang >}}
-package main
-
-import(
-	"fmt"
-)
-
-func (c *Challenge) Challenge018() {
-	
-	fmt.Println("result: ")
-}
 {{< /highlight >}}
         <pre><code>PS src\static> .\Code\Go\Challenge.exe -l 018</code></pre>
     </section>
@@ -165,4 +115,3 @@ func (c *Challenge) Challenge018() {
 
 [1]: http://www.pythonchallenge.com/pc/return/balloons.html
 [2]: http://www.pythonchallenge.com/pc/hex/bin.html
-

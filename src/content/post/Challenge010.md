@@ -1,4 +1,4 @@
----
+﻿---
 title: "010. what are you looking at?"
 date: 2018-11-13T13:19:40+08:00
 lastmod: 2019-03-18T14:20:40+08:00
@@ -48,23 +48,117 @@ mathjax: false
 
 ### 代码：
 
-* [Python][2]
+<div>
+    <input id="tab-python" type="radio" name="code-tabs" class="code-tabs" checked>
+    <label class="language-label" for="tab-python">Python</label>
+    <input id="tab-powershell" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-powershell">PowerShell</label>
+    <input id="tab-golang" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-golang">Golang</label>
+    <section id="content-python" class="content-section">
+        <p><a href="../../Code/Python/Challenge010.py" title="点我下载源码">Challenge010.py</a></p>
+{{< highlight python3 >}}
+def getNext(instr):
+    count=0
+    curch=instr[0]
+    outstr=[]
+    for ch in instr:
+        if ch != curch:
+            outstr.append(str(count)+curch)
+            curch=ch
+            count=1
+        else:
+            count+=1
+    outstr.append(str(count)+curch)
+    return ''.join(outstr)
 
-```
-PS src\static> python .\Code\Python\Challenge010.py
-```
+a=['1']
+for i in range(31):
+    a.append(getNext(a[i]))
+print(len(a[30]))
+{{< /highlight >}}
+        <pre><code>PS src\static> python .\Code\Python\Challenge010.py</code></pre>
+    </section>
+    <section id="content-powershell" class="content-section">
+        <p><a href="../../Code/PowerShell/Challenge010.ps1" title="点我下载源码">Challenge010.ps1</a></p>
+{{< highlight powershell >}}
+function GetNext {
+    param (
+        [string]
+        $instr
+    )
+    
+    $count=0
+    $curch=$instr[0]
+    $outstr=New-Object System.Text.StringBuilder
 
-* [PowerShell][3]
+    for ($i = 0; $i -lt $instr.Length; $i++) {
+        $ch=$instr[$i]
+        if ($ch -ne $curch) {
+            # StringBuilder.Append的值会作为函数的返回值返回，所以要在前面加[void]或$null=
+            [void]$outstr.AppendFormat("{0}{1}", $count, $curch)
+            $curch=$ch
+            $count=1
+        } else {
+            $count++
+        }
+    }
+    [void]$outstr.AppendFormat("{0}{1}", $count, $curch)
 
-```
-PS src\static> .\Code\PowerShell\Challenge010.ps1
-```
+    return $outstr.ToString()
+}
 
-* [Go][4]
+$a=New-Object System.Collections.Generic.List[string]
+$a.Add("1")
+for ($i = 0; $i -lt 31; $i++) {
+    $next=GetNext($a[$i])
+    $a.Add($next)
+}
+Write-Output $a[30].Length
+{{< /highlight >}}
+        <pre><code>PS src\static> .\Code\PowerShell\Challenge010.ps1</code></pre>
+    </section>
+    <section id="content-golang" class="content-section">
+        <p><a href="../../Code/Go/Challenge010.go" title="点我下载源码">Challenge010.go</a></p>
+{{< highlight golang >}}
+package main
 
-```
-PS src\static> .\Code\Go\Challenge.exe -l 010
-```
+import(
+	"fmt"
+	"strings"
+)
+
+func (c *Challenge) Challenge010() {
+	a:=[]string {"1"}
+	for i := 0; i < 31; i++ {
+		a=append(a, getNext(a[i]))
+	}
+	fmt.Println(len(a[30]))
+}
+
+func getNext(instr string) string {
+	count:=0
+	curch:=instr[0]
+	var outstr strings.Builder
+
+	for i := 0; i < len(instr); i++ {
+		ch:=instr[i]
+		if ch != curch {
+			outstr.WriteString(fmt.Sprintf("%d%s",count,string(curch)))
+			curch=ch
+			count=1
+		} else {
+			count++
+		}
+	}
+	outstr.WriteString(fmt.Sprintf("%d%s",count,string(curch)))
+
+	return outstr.String()
+}
+{{< /highlight >}}
+        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l 010</code></pre>
+    </section>
+</div>
 
 ---
 ## 最终结果： 5808
@@ -72,7 +166,5 @@ PS src\static> .\Code\Go\Challenge.exe -l 010
 ## [下一关地址][5]
 
 [1]: http://www.pythonchallenge.com/pc/return/bull.html
-[2]: ../../Code/Python/Challenge010.py "点我查看源码"
-[3]: ../../Code/PowerShell/Challenge010.ps1 "点我查看源码"
-[4]: ../../Code/Go/Challenge010.go "点我查看源码"
-[5]: http://www.pythonchallenge.com/pc/return/5808.html
+[2]: http://www.pythonchallenge.com/pc/return/5808.html
+

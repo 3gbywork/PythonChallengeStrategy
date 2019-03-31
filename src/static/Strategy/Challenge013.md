@@ -1,4 +1,4 @@
-﻿---
+---
 title: "013. call him"
 date: 2018-11-23T16:35:45+08:00
 lastmod: 2019-03-18T14:43:45+08:00
@@ -83,87 +83,22 @@ xmlrpc服务器地址是：`http://www.pythonchallenge.com/pc/phonebook.php`
     <input id="tab-golang" type="radio" name="code-tabs" class="code-tabs">
     <label class="language-label" for="tab-golang">Golang</label>
     <section id="content-python" class="content-section">
-        <p><a href="../../Code/Python/Challenge013.py" title="点我下载源码">Challenge013.py</a></p>
+        <p><a href="../../Code/Python/{{ .Name }}.py" title="点我下载源码">{{ .Name }}.py</a></p>
 {{< highlight python3 >}}
-import xmlrpc.client
-
-serverUrl="http://www.pythonchallenge.com/pc/phonebook.php"
-serverProxy=xmlrpc.client.ServerProxy(serverUrl)
-# 枚举xmlrpc服务
-# print(serverProxy.system.listMethods())
-# print(serverProxy.system.methodSignature('phone'))
-# print(serverProxy.system.methodHelp('phone'))
-
-phoneNumber=serverProxy.phone('Bert')
-print(phoneNumber)
 {{< /highlight >}}
-        <pre><code>PS src\static> python .\Code\Python\Challenge013.py</code></pre>
+        <pre><code>PS src\static> python .\Code\Python\{{ .Name }}.py</code></pre>
     </section>
     <section id="content-powershell" class="content-section">
-        <p><a href="../../Code/PowerShell/Challenge013.ps1" title="点我下载源码">Challenge013.ps1</a></p>
+        <p><a href="../../Code/PowerShell/{{ .Name }}.ps1" title="点我下载源码">{{ .Name }}.ps1</a></p>
 {{< highlight powershell >}}
-# 选择安装模块或者使用源码
-
-# 安装XmlRpc模块（已发布）
-# Install-Module -Name PSXmlRpcClient
-
-# 将XmlRpc源码作为git子模块克隆到Modules目录下
-# 添加子模块
-# git submodule add https://github.com/3gbywork/PSXmlRpcClient.git .\Code\PowerShell\Modules\PSXmlRpcClient
-# git submodule init
-# 更新子模块
-# git submodule init
-# git submodule update
-# 删除子模块
-# git rm .\Code\PowerShell\Modules\XmlRpc
-# 加载XmlRpc模块
-# Import-Module .\Code\PowerShell\Modules\PSXmlRpcClient\PSXmlRpcClient.psm1
-
-$serverUrl="http://www.pythonchallenge.com/pc/phonebook.php"
-
-# Invoke-XmlRpcRequest -ServerUri $serverUrl -MethodName "system.listMethods"
-# Invoke-XmlRpcRequest -ServerUri $serverUrl -MethodName "system.methodSignature" -Params "phone"
-# Invoke-XmlRpcRequest -ServerUri $serverUrl -MethodName "system.methodHelp" -Params "phone"
-
-Invoke-XmlRpcRequest -ServerUri $serverUrl -MethodName "phone" -Params "Bert"
 {{< /highlight >}}
-        <pre><code>PS src\static> .\Code\PowerShell\Challenge013.ps1</code></pre>
+        <pre><code>PS src\static> .\Code\PowerShell\{{ .Name }}.ps1</code></pre>
     </section>
     <section id="content-golang" class="content-section">
-        <p><a href="../../Code/Go/Challenge013.go" title="点我下载源码">Challenge013.go</a></p>
+        <p><a href="../../Code/Go/{{ .Name }}.go" title="点我下载源码">{{ .Name }}.go</a></p>
 {{< highlight golang >}}
-package main
-
-import(
-	"fmt"
-	"github.com/kolo/xmlrpc"
-)
-
-func (c *Challenge) Challenge013() {
-	client, err := xmlrpc.NewClient("http://www.pythonchallenge.com/pc/phonebook.php", nil)
-	if err != nil {
-		fmt.Println("Can't create client: ", err)
-	}
-	defer client.Close()
-
-	// var methods []string
-	// client.Call("system.listMethods", nil, &methods)
-	// fmt.Println(methods)
-
-	// var signature [][]string
-	// client.Call("system.methodSignature", "phone", &signature)
-	// fmt.Println(signature)
-
-	// var help string
-	// client.Call("system.methodHelp", "phone", &help)
-	// fmt.Println(help)
-
-	var result string
-	client.Call("phone", "Bert", &result)
-	fmt.Println(result)
-}
 {{< /highlight >}}
-        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l 013</code></pre>
+        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l {{ replace .Name "Challenge" "" }}</code></pre>
     </section>
 </div>
 
@@ -174,4 +109,3 @@ func (c *Challenge) Challenge013() {
 
 [1]: http://www.pythonchallenge.com/pc/return/disproportional.html
 [2]: http://www.pythonchallenge.com/pc/return/italy.html
-
