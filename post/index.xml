@@ -179,7 +179,7 @@
       <pubDate>Sat, 27 Oct 2018 20:05:51 +0800</pubDate>
       
       <guid>https://3gbywork.github.io/PythonChallengeStrategy/post/challenge000/</guid>
-      <description>关卡地址 解决方案： 思路： 提示：试试更改url 从图中容易看出，需要求出 \(2^{38}\) = ? 得到的值就是下一关的地址 代码： Python PS src\static&amp;gt; python .\Code\Python\Challenge000.py PowerShell PS src\static&amp;gt; .\Code\PowerShell\Challenge000.ps1 Go PS src\static&amp;gt; .\Code\Go\Challenge.exe -l 000 最终结</description>
+      <description>关卡地址 解决方案： 思路： 提示：试试更改url 从图中容易看出，需要求出 \(2^{38}\) = ? 得到的值就是下一关的地址 代码： Python PowerShell Golang Challenge000.py print(2**38) PS src\static python .\Code\Python\Challenge000.py Challenge000.ps1 [math]::pow(2,38) PS src\static .\Code\PowerShell\Challenge000.ps1 Challenge000.go package main import</description>
     </item>
     
   </channel>

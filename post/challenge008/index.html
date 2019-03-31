@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.54.0" />
 
 
 <link rel="canonical" href="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge008/" />
@@ -56,11 +56,14 @@
 
 
 
+<link rel="stylesheet" href="/PythonChallengeStrategy/css/custom.css">
+
 
 <meta property="og:title" content="008. working hard?" />
 <meta property="og:description" content="关卡地址 解决方案： 思路： 这一关，图片下面有这样的提示： Where is the missing link? 鼠标在图片上“扫描”一遍发现，图片中蜜蜂区域是可点击的，访问的就是下一关的地" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge008/" /><meta property="article:published_time" content="2018-11-09T15:25:57&#43;08:00"/>
+<meta property="og:url" content="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge008/" />
+<meta property="article:published_time" content="2018-11-09T15:25:57&#43;08:00"/>
 <meta property="article:modified_time" content="2019-03-18T14:02:57&#43;08:00"/>
 
 <meta itemprop="name" content="008. working hard?">
@@ -69,7 +72,7 @@
 
 <meta itemprop="datePublished" content="2018-11-09T15:25:57&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-18T14:02:57&#43;08:00" />
-<meta itemprop="wordCount" content="236">
+<meta itemprop="wordCount" content="431">
 
 
 
@@ -353,32 +356,109 @@ pw: 'BZh91AY&amp;SY\x94$|\x0e\x00\x00\x00\x81\x00\x03$ \x00!\x9ah3M\x13&lt;]\xc9
 
 <h3 id="代码">代码：</h3>
 
-<ul>
-<li><a href="../../Code/Python/Challenge008.py" title="点我查看源码">Python</a></li>
-</ul>
+<div>
+    <input id="tab-python" type="radio" name="code-tabs" class="code-tabs" checked>
+    <label class="language-label" for="tab-python">Python</label>
+    <input id="tab-powershell" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-powershell">PowerShell</label>
+    <input id="tab-golang" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-golang">Golang</label>
+    <section id="content-python" class="content-section">
+        <p><a href="../../Code/Python/Challenge008.py" title="点我下载源码">Challenge008.py</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="c1"># ================================</span>
+<span class="c1"># 写bz2文件，可以使用7zip直接查看</span>
+<span class="k">def</span> <span class="nf">makeBz2</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">fp</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
+    <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<pre><code>PS src\static&gt; python .\Code\Python\Challenge008.py
-</code></pre>
+<span class="kn">import</span> <span class="nn">helper</span>
+<span class="nb">dir</span><span class="o">=</span><span class="s2">&#34;.</span><span class="se">\\</span><span class="s2">Data</span><span class="se">\\</span><span class="s2">008&#34;</span>
+<span class="n">helper</span><span class="o">.</span><span class="n">ensureDir</span><span class="p">(</span><span class="nb">dir</span><span class="p">)</span>
 
-<ul>
-<li><a href="../../Code/PowerShell/Challenge008.ps1" title="点我查看源码">PowerShell</a></li>
-</ul>
+<span class="n">un</span><span class="o">=</span><span class="sa">b</span><span class="s1">&#39;BZh91AY&amp;SYA</span><span class="se">\xaf\x82\r\x00\x00\x01\x01\x80\x02\xc0\x02\x00</span><span class="s1"> </span><span class="se">\x00</span><span class="s1">!</span><span class="se">\x9a</span><span class="s1">h3M</span><span class="se">\x07</span><span class="s1">&lt;]</span><span class="se">\xc9\x14\xe1</span><span class="s1">BA</span><span class="se">\x06\xbe\x08</span><span class="s1">4&#39;</span>
+<span class="n">pw</span><span class="o">=</span><span class="sa">b</span><span class="s1">&#39;BZh91AY&amp;SY</span><span class="se">\x94</span><span class="s1">$|</span><span class="se">\x0e\x00\x00\x00\x81\x00\x03</span><span class="s1">$ </span><span class="se">\x00</span><span class="s1">!</span><span class="se">\x9a</span><span class="s1">h3M</span><span class="se">\x13</span><span class="s1">&lt;]</span><span class="se">\xc9\x14\xe1</span><span class="s1">BBP</span><span class="se">\x91\xf0</span><span class="s1">8&#39;</span>
 
-<pre><code>PS src\static&gt; .\Code\PowerShell\Challenge008.ps1
-</code></pre>
+<span class="n">makeBz2</span><span class="p">(</span><span class="nb">dir</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">user.bz2&#39;</span><span class="p">,</span> <span class="n">un</span><span class="p">)</span>
+<span class="n">makeBz2</span><span class="p">(</span><span class="nb">dir</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">pwd.bz2&#39;</span><span class="p">,</span> <span class="n">pw</span><span class="p">)</span>
+<span class="c1"># ================================</span>
 
-<ul>
-<li><a href="../../Code/Go/Challenge008.go" title="点我查看源码">Go</a></li>
-</ul>
+<span class="kn">import</span> <span class="nn">codecs</span>
 
-<pre><code>PS src\static&gt; .\Code\Go\Challenge.exe -l 008
-</code></pre>
+<span class="n">username</span><span class="o">=</span><span class="n">codecs</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">un</span><span class="p">,</span> <span class="s1">&#39;bz2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="n">password</span><span class="o">=</span><span class="n">codecs</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">pw</span><span class="p">,</span> <span class="s1">&#39;bz2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="c1"># or</span>
+<span class="c1"># username=codecs.decode(open(dir+&#39;\\user.bz2&#39;,&#39;rb&#39;).read(), &#39;bz2&#39;).decode(&#39;utf-8&#39;)</span>
+<span class="c1"># password=codecs.decode(open(dir+&#39;\\pwd.bz2&#39;,&#39;rb&#39;).read(), &#39;bz2&#39;).decode(&#39;utf-8&#39;)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;username: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">password: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">))</span></code></pre></div>
+        <pre><code>PS src\static> python .\Code\Python\Challenge008.py</code></pre>
+    </section>
+    <section id="content-powershell" class="content-section">
+        <p><a href="../../Code/PowerShell/Challenge008.ps1" title="点我下载源码">Challenge008.ps1</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$un</span><span class="p">=</span><span class="s1">&#39;BZh91AY&amp;SYA\xaf\x82\r\x00\x00\x01\x01\x80\x02\xc0\x02\x00 \x00!\x9ah3M\x07&lt;]\xc9\x14\xe1BA\x06\xbe\x084&#39;</span>
+<span class="nv">$pw</span><span class="p">=</span><span class="s1">&#39;BZh91AY&amp;SY\x94$|\x0e\x00\x00\x00\x81\x00\x03$ \x00!\x9ah3M\x13&lt;]\xc9\x14\xe1BBP\x91\xf08&#39;</span>
+
+<span class="nv">$path</span><span class="p">=</span><span class="s2">&#34;.\\Data\\008&#34;</span>
+<span class="p">.</span> <span class="p">.\</span><span class="n">Code</span><span class="p">\</span><span class="n">PowerShell</span><span class="p">\</span><span class="n">helper</span><span class="p">.</span><span class="n">ps1</span>
+<span class="nb">New-Dir</span> <span class="n">-Dir</span> <span class="nv">$path</span>
+
+<span class="nb">Write-BinaryFile</span> <span class="n">-Filename</span> <span class="p">$(</span><span class="nv">$path</span><span class="p">+</span><span class="s2">&#34;\\user.bz2&#34;</span><span class="p">)</span> <span class="n">-Data</span> <span class="p">$(</span><span class="nb">ConvertFrom-Bz2String</span> <span class="n">-InStr</span> <span class="nv">$un</span><span class="p">)</span>
+<span class="nb">Write-BinaryFile</span> <span class="n">-Filename</span> <span class="p">$(</span><span class="nv">$path</span><span class="p">+</span><span class="s2">&#34;\\pwd.bz2&#34;</span><span class="p">)</span> <span class="n">-Data</span> <span class="p">$(</span><span class="nb">ConvertFrom-Bz2String</span> <span class="n">-InStr</span> <span class="nv">$pw</span><span class="p">)</span>
+
+<span class="c"># 使用bzip2解压并输出</span>
+<span class="nb">Write-Output</span> <span class="p">$(</span><span class="s2">&#34;username: {0}&#34;</span> <span class="o">-f</span> <span class="p">$(.\</span><span class="n">Code</span><span class="p">\</span><span class="n">PowerShell</span><span class="p">\</span><span class="n">bin</span><span class="p">\</span><span class="n">bzip2</span><span class="p">.</span><span class="n">exe</span> <span class="n">-d</span> <span class="n">-k</span> <span class="n">-c</span> <span class="p">.\</span><span class="n">Data</span><span class="p">\</span><span class="n">008</span><span class="p">\</span><span class="n">user</span><span class="p">.</span><span class="n">bz2</span><span class="p">))</span>
+<span class="nb">Write-Output</span> <span class="p">$(</span><span class="s2">&#34;password: {0}&#34;</span> <span class="o">-f</span> <span class="p">$(.\</span><span class="n">Code</span><span class="p">\</span><span class="n">PowerShell</span><span class="p">\</span><span class="n">bin</span><span class="p">\</span><span class="n">bzip2</span><span class="p">.</span><span class="n">exe</span> <span class="n">-d</span> <span class="n">-k</span> <span class="n">-c</span> <span class="p">.\</span><span class="n">Data</span><span class="p">\</span><span class="n">008</span><span class="p">\</span><span class="n">pwd</span><span class="p">.</span><span class="n">bz2</span><span class="p">))</span></code></pre></div>
+        <pre><code>PS src\static> .\Code\PowerShell\Challenge008.ps1</code></pre>
+    </section>
+    <section id="content-golang" class="content-section">
+        <p><a href="../../Code/Go/Challenge008.go" title="点我下载源码">Challenge008.go</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span><span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;os&#34;</span>
+	<span class="s">&#34;compress/bzip2&#34;</span>
+	<span class="s">&#34;io/ioutil&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Challenge</span><span class="p">)</span> <span class="nf">Challenge008</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">unfile</span><span class="o">:=</span><span class="s">&#34;.\\Data\\008\\user.bz2&#34;</span>
+	<span class="nx">pwfile</span><span class="o">:=</span><span class="s">&#34;.\\Data\\008\\pwd.bz2&#34;</span>
+
+	<span class="nx">username</span><span class="o">:=</span><span class="nf">bz2Decode</span><span class="p">(</span><span class="nx">unfile</span><span class="p">)</span>
+	<span class="nx">password</span><span class="o">:=</span><span class="nf">bz2Decode</span><span class="p">(</span><span class="nx">pwfile</span><span class="p">)</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;username: %s\npassword: %s\n&#34;</span><span class="p">,</span> <span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">bz2Decode</span><span class="p">(</span><span class="nx">filename</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">reader</span><span class="p">,</span><span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">filename</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;open file %s failed![%v]&#34;</span><span class="p">,</span> <span class="nx">filename</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+		<span class="k">return</span> <span class="s">&#34;&#34;</span>
+	<span class="p">}</span>
+	<span class="k">defer</span> <span class="nx">reader</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+
+	<span class="nx">bzrd</span> <span class="o">:=</span> <span class="nx">bzip2</span><span class="p">.</span><span class="nf">NewReader</span><span class="p">(</span><span class="nx">reader</span><span class="p">)</span>
+
+	<span class="nx">bytes</span><span class="p">,</span><span class="nx">ierr</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nf">ReadAll</span><span class="p">(</span><span class="nx">bzrd</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">ierr</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;read file %s failed![%v]&#34;</span><span class="p">,</span> <span class="nx">filename</span><span class="p">,</span> <span class="nx">ierr</span><span class="p">)</span>
+		<span class="k">return</span> <span class="s">&#34;&#34;</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="nb">string</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l 008</code></pre>
+    </section>
+</div>
 
 <hr />
 
 <h2 id="最终结果-username-huge-password-file">最终结果： username: huge, password: file</h2>
 
-<h2 id="下一关地址-5"><a href="http://www.pythonchallenge.com/pc/return/good.html">下一关地址</a></h2>
+<h2 id="下一关地址-5">[下一关地址][5]</h2>
 
     </div>
 

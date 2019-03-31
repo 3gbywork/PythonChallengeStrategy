@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.54.0" />
 
 
 <link rel="canonical" href="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge002/" />
@@ -56,11 +56,14 @@
 
 
 
+<link rel="stylesheet" href="/PythonChallengeStrategy/css/custom.css">
+
 
 <meta property="og:title" content="002. ocr" />
 <meta property="og:description" content="关卡地址 解决方案： 思路： 这一关就不贴图了，直接看图片下提示： recognize the characters. maybe they are in the book, but MAYBE they are in the page source. 很明显，玄机在源代码中。在源代码中有这样的提示" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge002/" /><meta property="article:published_time" content="2018-10-28T22:12:21&#43;08:00"/>
+<meta property="og:url" content="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge002/" />
+<meta property="article:published_time" content="2018-10-28T22:12:21&#43;08:00"/>
 <meta property="article:modified_time" content="2019-03-18T09:57:21&#43;08:00"/>
 
 <meta itemprop="name" content="002. ocr">
@@ -69,7 +72,7 @@
 
 <meta itemprop="datePublished" content="2018-10-28T22:12:21&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-18T09:57:21&#43;08:00" />
-<meta itemprop="wordCount" content="128">
+<meta itemprop="wordCount" content="389">
 
 
 
@@ -345,32 +348,125 @@
 
 <h3 id="代码">代码：</h3>
 
-<ul>
-<li><a href="../../Code/Python/Challenge002.py" title="点我查看源码">Python</a></li>
-</ul>
+<div>
+    <input id="tab-python" type="radio" name="code-tabs" class="code-tabs" checked>
+    <label class="language-label" for="tab-python">Python</label>
+    <input id="tab-powershell" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-powershell">PowerShell</label>
+    <input id="tab-golang" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-golang">Golang</label>
+    <section id="content-python" class="content-section">
+        <p><a href="../../Code/Python/Challenge002.py" title="点我下载源码">Challenge002.py</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="kn">import</span> <span class="nn">helper</span>
+<span class="n">msg</span><span class="o">=</span><span class="n">helper</span><span class="o">.</span><span class="n">readFile</span><span class="p">(</span><span class="s2">&#34;.</span><span class="se">\\</span><span class="s2">Data</span><span class="se">\\</span><span class="s2">002</span><span class="se">\\</span><span class="s2">msg.txt&#34;</span><span class="p">)</span>
 
-<pre><code>PS src\static&gt; python .\Code\Python\Challenge002.py
-</code></pre>
+<span class="n">dic</span><span class="o">=</span><span class="p">{}</span>
 
-<ul>
-<li><a href="../../Code/PowerShell/Challenge002.ps1" title="点我查看源码">PowerShell</a></li>
-</ul>
+<span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">dic</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dic</span><span class="p">[</span><span class="n">ch</span><span class="p">]</span><span class="o">=</span><span class="n">msg</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span>
 
-<pre><code>PS src\static&gt; .\Code\PowerShell\Challenge002.ps1
-</code></pre>
+<span class="c1"># print(dic)</span>
 
-<ul>
-<li><a href="../../Code/Go/Challenge002.go" title="点我查看源码">Go</a></li>
-</ul>
+<span class="n">outstr</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">dic</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="n">outstr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 
-<pre><code>PS src\static&gt; .\Code\Go\Challenge.exe -l 002
-</code></pre>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outstr</span><span class="p">))</span></code></pre></div>
+        <pre><code>PS src\static> python .\Code\Python\Challenge002.py</code></pre>
+    </section>
+    <section id="content-powershell" class="content-section">
+        <p><a href="../../Code/PowerShell/Challenge002.ps1" title="点我下载源码">Challenge002.ps1</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$msg</span><span class="p">=(</span><span class="nb">Get-Content</span> <span class="s2">&#34;.\\Data\\002\\msg.txt&#34;</span> <span class="n">-Raw</span><span class="p">).</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">`r`n</span><span class="s2">&#34;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
+
+<span class="c"># powershell 中 hashtable 遍历的顺序与添加的顺序不一致</span>
+<span class="c"># $dic=@{}</span>
+<span class="nv">$dic</span><span class="p">=</span><span class="nb">New-Object</span> <span class="s1">&#39;System.Collections.Generic.Dictionary[string,int]&#39;</span>
+<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="p">=</span> <span class="n">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">-lt</span> <span class="nv">$msg</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="nv">$i</span><span class="p">++)</span> <span class="p">{</span>
+    <span class="nv">$ch</span><span class="p">=</span><span class="nv">$msg</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$dic</span><span class="p">.</span><span class="n">ContainsKey</span><span class="p">(</span><span class="nv">$ch</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nv">$dic</span><span class="p">[</span><span class="nv">$ch</span><span class="p">]+=</span><span class="n">1</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nv">$dic</span><span class="p">[</span><span class="nv">$ch</span><span class="p">]=</span><span class="n">0</span>
+    <span class="p">}</span>  
+<span class="p">}</span>
+
+<span class="no">[string]</span><span class="nv">$outstr</span><span class="p">=</span><span class="s2">&#34;&#34;</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$key</span> <span class="k">in</span> <span class="nv">$dic</span><span class="p">.</span><span class="n">Keys</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$dic</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">-le</span> <span class="n">10</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$outstr</span><span class="p">+=</span><span class="nv">$key</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nb">Write-Output</span> <span class="nv">$outstr</span></code></pre></div>
+        <pre><code>PS src\static> .\Code\PowerShell\Challenge002.ps1</code></pre>
+    </section>
+    <section id="content-golang" class="content-section">
+        <p><a href="../../Code/Go/Challenge002.go" title="点我下载源码">Challenge002.go</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;strings&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Challenge</span><span class="p">)</span> <span class="nf">Challenge002</span><span class="p">()</span>  <span class="p">{</span>
+	<span class="nx">msg</span><span class="o">:=</span><span class="nf">ReadFile</span><span class="p">(</span><span class="s">&#34;.\\Data\\002\\msg.txt&#34;</span><span class="p">)</span>
+
+	<span class="c1">// go语言 遍历map时返回值是无序的，相同keys每次构建map时顺序都会变化，构建后多次遍历结果一致。
+</span><span class="c1"></span>	<span class="nx">dic</span><span class="o">:=</span><span class="kd">map</span> <span class="p">[</span><span class="kt">rune</span><span class="p">]</span> <span class="kt">int</span> <span class="p">{}</span>
+	<span class="nx">outstr</span><span class="o">:=</span><span class="s">&#34;&#34;</span>
+	<span class="c1">// // 记录字符顺序
+</span><span class="c1"></span>	<span class="c1">// chars:=&#34;&#34;
+</span><span class="c1"></span>
+	<span class="c1">// for _,ch := range msg {
+</span><span class="c1"></span>	<span class="c1">// 	_,exists:=dic[ch]
+</span><span class="c1"></span>	<span class="c1">// 	if (exists) {
+</span><span class="c1"></span>	<span class="c1">// 		continue
+</span><span class="c1"></span>	<span class="c1">// 	} else {
+</span><span class="c1"></span>	<span class="c1">// 		s:=string(ch)
+</span><span class="c1"></span>	<span class="c1">// 		chars+=s
+</span><span class="c1"></span>	<span class="c1">// 		dic[ch]=strings.Count(msg,s)
+</span><span class="c1"></span>	<span class="c1">// 	}
+</span><span class="c1"></span>	<span class="c1">// }
+</span><span class="c1"></span>
+	<span class="c1">// for _,ch := range chars {
+</span><span class="c1"></span>	<span class="c1">// 	value,exists:=dic[ch]
+</span><span class="c1"></span>	<span class="c1">// 	if (exists) {
+</span><span class="c1"></span>	<span class="c1">// 		if (value &lt; 10) {
+</span><span class="c1"></span>	<span class="c1">// 			outstr+=string(ch)
+</span><span class="c1"></span>	<span class="c1">// 		}
+</span><span class="c1"></span>	<span class="c1">// 	}
+</span><span class="c1"></span>	<span class="c1">// }
+</span><span class="c1"></span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span><span class="nx">ch</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">msg</span> <span class="p">{</span>
+		<span class="nx">_</span><span class="p">,</span><span class="nx">exists</span><span class="o">:=</span><span class="nx">dic</span><span class="p">[</span><span class="nx">ch</span><span class="p">]</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nx">exists</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">continue</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+			<span class="nx">s</span><span class="o">:=</span><span class="nb">string</span><span class="p">(</span><span class="nx">ch</span><span class="p">)</span>
+			<span class="nx">count</span><span class="o">:=</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Count</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span><span class="nx">s</span><span class="p">)</span>
+			<span class="nx">dic</span><span class="p">[</span><span class="nx">ch</span><span class="p">]=</span><span class="nx">count</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">count</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">outstr</span><span class="o">+=</span><span class="nx">s</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">outstr</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l 002</code></pre>
+    </section>
+</div>
 
 <hr />
 
 <h2 id="最终结果-equality">最终结果： equality</h2>
 
-<h2 id="下一关地址-5"><a href="http://www.pythonchallenge.com/pc/def/equality.html">下一关地址</a></h2>
+<h2 id="下一关地址-5">[下一关地址][5]</h2>
 
     </div>
 

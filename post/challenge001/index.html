@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.54.0" />
 
 
 <link rel="canonical" href="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge001/" />
@@ -56,11 +56,14 @@
 
 
 
+<link rel="stylesheet" href="/PythonChallengeStrategy/css/custom.css">
+
 
 <meta property="og:title" content="001. What about making trans?" />
 <meta property="og:description" content="关卡地址 解决方案： 思路： 图中给出了字母的映射关系，通过规律来破解下面这段话： g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp. bmgle gr gl zw fylb gq glcddgagclr ylb rfyr&rsquo;q ufw rfgq rcvr gq qm jmle. sqgle qrpgle.kyicrpylq() gq pcamkkclbcb." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge001/" /><meta property="article:published_time" content="2018-10-27T20:06:51&#43;08:00"/>
+<meta property="og:url" content="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge001/" />
+<meta property="article:published_time" content="2018-10-27T20:06:51&#43;08:00"/>
 <meta property="article:modified_time" content="2019-03-18T09:41:23&#43;08:00"/>
 
 <meta itemprop="name" content="001. What about making trans?">
@@ -69,7 +72,7 @@
 
 <meta itemprop="datePublished" content="2018-10-27T20:06:51&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-18T09:41:23&#43;08:00" />
-<meta itemprop="wordCount" content="104">
+<meta itemprop="wordCount" content="270">
 
 
 
@@ -339,32 +342,111 @@
 
 <h3 id="代码">代码：</h3>
 
-<ul>
-<li><a href="../../Code/Python/Challenge001.py" title="点我查看源码">Python</a></li>
-</ul>
+<div>
+    <input id="tab-python" type="radio" name="code-tabs" class="code-tabs" checked>
+    <label class="language-label" for="tab-python">Python</label>
+    <input id="tab-powershell" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-powershell">PowerShell</label>
+    <input id="tab-golang" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-golang">Golang</label>
+    <section id="content-python" class="content-section">
+        <p><a href="../../Code/Python/Challenge001.py" title="点我下载源码">Challenge001.py</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="kn">import</span> <span class="nn">helper</span>
+<span class="n">msg</span><span class="o">=</span><span class="n">helper</span><span class="o">.</span><span class="n">readFile</span><span class="p">(</span><span class="s2">&#34;.</span><span class="se">\\</span><span class="s2">Data</span><span class="se">\\</span><span class="s2">001</span><span class="se">\\</span><span class="s2">msg.txt&#34;</span><span class="p">)</span>
+<span class="n">url</span><span class="o">=</span><span class="s1">&#39;map&#39;</span>
 
-<pre><code>PS src\static&gt; python .\Code\Python\Challenge001.py
-</code></pre>
+<span class="c1"># ^^^^^^^^^^^^^^^^^^^^^^^^Solution 1^^^^^^^^^^^^^^^^^^^^^^^^</span>
+<span class="k">def</span> <span class="nf">getchar</span><span class="p">(</span><span class="n">inchar</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">inchar</span> <span class="o">&gt;=</span> <span class="s1">&#39;a&#39;</span> <span class="ow">and</span> <span class="n">inchar</span> <span class="o">&lt;=</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span>
+        <span class="n">tmp</span><span class="o">=</span><span class="nb">ord</span><span class="p">(</span><span class="n">inchar</span><span class="p">)</span><span class="o">-</span><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">2</span>
+        <span class="k">return</span> <span class="nb">chr</span><span class="p">(</span><span class="n">tmp</span><span class="o">%</span><span class="mi">26</span><span class="o">+</span><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">inchar</span>
 
-<ul>
-<li><a href="../../Code/PowerShell/Challenge001.ps1" title="点我查看源码">PowerShell</a></li>
-</ul>
+<span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="n">instr</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">getchar</span><span class="p">,</span><span class="n">instr</span><span class="p">))</span>
 
-<pre><code>PS src\static&gt; .\Code\PowerShell\Challenge001.ps1
-</code></pre>
+<span class="nb">print</span><span class="p">(</span><span class="n">translate</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">translate</span><span class="p">(</span><span class="n">url</span><span class="p">))</span>
+<span class="c1"># vvvvvvvvvvvvvvvvvvvvvvvvSolution 1vvvvvvvvvvvvvvvvvvvvvvvv</span>
 
-<ul>
-<li><a href="../../Code/Go/Challenge001.go" title="点我查看源码">Go</a></li>
-</ul>
 
-<pre><code>PS src\static&gt; .\Code\Go\Challenge.exe -l 001
-</code></pre>
+<span class="c1"># ^^^^^^^^^^^^^^^^^^^^^^^^Solution 2^^^^^^^^^^^^^^^^^^^^^^^^</span>
+<span class="kn">import</span> <span class="nn">string</span>
+
+<span class="n">table</span><span class="o">=</span><span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">,</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span><span class="o">+</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">table</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">table</span><span class="p">))</span>
+<span class="c1"># vvvvvvvvvvvvvvvvvvvvvvvvSolution 2vvvvvvvvvvvvvvvvvvvvvvvv</span></code></pre></div>
+        <pre><code>PS src\static> python .\Code\Python\Challenge001.py</code></pre>
+    </section>
+    <section id="content-powershell" class="content-section">
+        <p><a href="../../Code/PowerShell/Challenge001.ps1" title="点我下载源码">Challenge001.ps1</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$msg</span><span class="p">=</span><span class="nb">Get-Content</span> <span class="s2">&#34;.\\Data\\001\\msg.txt&#34;</span>
+<span class="nv">$url</span><span class="p">=</span><span class="s1">&#39;map&#39;</span>
+
+<span class="k">function</span> <span class="n">GetChar</span> <span class="p">(</span><span class="no">[char]</span><span class="nv">$ch</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nv">$ch</span> <span class="o">-ge</span> <span class="s1">&#39;a&#39;</span> <span class="o">-and</span> <span class="nv">$ch</span> <span class="o">-le</span> <span class="s1">&#39;z&#39;</span><span class="p">){</span>
+        <span class="c"># [int][char]&#39;a&#39;=97</span>
+        <span class="k">return</span> <span class="no">[char]</span><span class="p">(</span><span class="n">97</span><span class="p">+(</span><span class="no">[int]</span><span class="nv">$ch</span><span class="p">-</span><span class="n">97</span><span class="p">+</span><span class="n">2</span><span class="p">)</span><span class="k">%</span><span class="n">26</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nv">$ch</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="n">Translate</span> <span class="p">(</span><span class="no">[string]</span><span class="nv">$instr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="no">[char[]]</span><span class="nv">$rst</span><span class="p">=</span><span class="nb">New-Object</span> <span class="n">char</span><span class="p">[]</span> <span class="nv">$instr</span><span class="p">.</span><span class="n">Length</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="p">=</span> <span class="n">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">-lt</span> <span class="nv">$instr</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="nv">$i</span><span class="p">++)</span> <span class="p">{</span>
+        <span class="nv">$ch</span><span class="p">=</span><span class="n">GetChar</span><span class="p">(</span><span class="nv">$instr</span><span class="p">[</span><span class="nv">$i</span><span class="p">])</span>   
+        <span class="nv">$rst</span><span class="p">[</span><span class="nv">$i</span><span class="p">]=</span><span class="nv">$ch</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="nv">$rst</span> <span class="n">-join</span> <span class="s1">&#39;&#39;</span>
+<span class="p">}</span>
+
+<span class="n">Translate</span><span class="p">(</span><span class="nv">$msg</span><span class="p">)</span>
+<span class="n">Translate</span><span class="p">(</span><span class="nv">$url</span><span class="p">)</span></code></pre></div>
+        <pre><code>PS src\static> .\Code\PowerShell\Challenge001.ps1</code></pre>
+    </section>
+    <section id="content-golang" class="content-section">
+        <p><a href="../../Code/Go/Challenge001.go" title="点我下载源码">Challenge001.go</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span><span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;strings&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Challenge</span><span class="p">)</span> <span class="nf">Challenge001</span><span class="p">()</span>  <span class="p">{</span>
+	<span class="nx">msg</span><span class="o">:=</span><span class="nf">ReadFile</span><span class="p">(</span><span class="s">&#34;.\\Data\\001\\msg.txt&#34;</span><span class="p">)</span>
+	<span class="nx">url</span><span class="o">:=</span><span class="s">&#34;map&#34;</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">translate</span><span class="p">(</span><span class="nx">msg</span><span class="p">))</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">translate</span><span class="p">(</span><span class="nx">url</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">getChar</span><span class="p">(</span><span class="nx">r</span> <span class="kt">rune</span><span class="p">)</span> <span class="kt">rune</span> <span class="p">{</span>
+	<span class="c1">// switch {
+</span><span class="c1"></span>	<span class="c1">// case r &gt;= &#39;a&#39; &amp;&amp; r &lt;= &#39;z&#39;:
+</span><span class="c1"></span>	<span class="c1">// 	return &#39;a&#39; + (r-&#39;a&#39;+2)%26
+</span><span class="c1"></span>	<span class="c1">// }
+</span><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="nx">r</span> <span class="o">&gt;=</span> <span class="sc">&#39;a&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">r</span> <span class="o">&lt;=</span> <span class="sc">&#39;z&#39;</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="sc">&#39;a&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">r</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">%</span><span class="mi">26</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">r</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">translate</span><span class="p">(</span><span class="nx">instr</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Map</span><span class="p">(</span><span class="nx">getChar</span><span class="p">,</span> <span class="nx">instr</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l 001</code></pre>
+    </section>
+</div>
 
 <hr />
 
 <h2 id="最终结果-ocr">最终结果： ocr</h2>
 
-<h2 id="下一关地址-5"><a href="http://www.pythonchallenge.com/pc/def/ocr.html">下一关地址</a></h2>
+<h2 id="下一关地址-5">[下一关地址][5]</h2>
 
     </div>
 

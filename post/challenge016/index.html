@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.54.0" />
 
 
 <link rel="canonical" href="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge016/" />
@@ -56,11 +56,14 @@
 
 
 
+<link rel="stylesheet" href="/PythonChallengeStrategy/css/custom.css">
+
 
 <meta property="og:title" content="016. let me get this straight" />
 <meta property="og:description" content="关卡地址 解决方案： 思路： 图片每一行都有一条7个像素组成的像素块，两端是1个白色像素，中间是5个粉紫色像素，色值是(255,0,255)。由于" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge016/" /><meta property="article:published_time" content="2018-11-29T22:52:49&#43;08:00"/>
+<meta property="og:url" content="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge016/" />
+<meta property="article:published_time" content="2018-11-29T22:52:49&#43;08:00"/>
 <meta property="article:modified_time" content="2019-03-18T14:55:49&#43;08:00"/>
 
 <meta itemprop="name" content="016. let me get this straight">
@@ -69,7 +72,7 @@
 
 <meta itemprop="datePublished" content="2018-11-29T22:52:49&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-18T14:55:49&#43;08:00" />
-<meta itemprop="wordCount" content="169">
+<meta itemprop="wordCount" content="385">
 
 
 
@@ -344,32 +347,132 @@
 
 <h3 id="代码">代码：</h3>
 
-<ul>
-<li><a href="../../Code/Python/Challenge016.py" title="点我查看源码">Python</a></li>
-</ul>
+<div>
+    <input id="tab-python" type="radio" name="code-tabs" class="code-tabs" checked>
+    <label class="language-label" for="tab-python">Python</label>
+    <input id="tab-powershell" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-powershell">PowerShell</label>
+    <input id="tab-golang" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-golang">Golang</label>
+    <section id="content-python" class="content-section">
+        <p><a href="../../Code/Python/Challenge016.py" title="点我下载源码">Challenge016.py</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="kn">import</span> <span class="nn">helper</span>
+<span class="n">path</span><span class="o">=</span><span class="s2">&#34;.</span><span class="se">\\</span><span class="s2">Data</span><span class="se">\\</span><span class="s2">016&#34;</span>
+<span class="n">helper</span><span class="o">.</span><span class="n">ensureDir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
-<pre><code>PS src\static&gt; python .\Code\Python\Challenge016.py
-</code></pre>
+<span class="c1"># ================================</span>
+<span class="c1"># 使用http认证，下载文件</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="n">helper</span><span class="o">.</span><span class="n">installHTTPBasicAuthOpener</span><span class="p">(</span><span class="s2">&#34;huge&#34;</span><span class="p">,</span> <span class="s2">&#34;file&#34;</span><span class="p">)</span>
 
-<ul>
-<li><a href="../../Code/PowerShell/Challenge016.ps1" title="点我查看源码">PowerShell</a></li>
-</ul>
+<span class="n">gif</span><span class="o">=</span><span class="s2">&#34;http://www.pythonchallenge.com/pc/return/mozart.gif&#34;</span>
+<span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span><span class="o">=</span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">gif</span><span class="p">,</span> <span class="n">path</span><span class="o">+</span><span class="s2">&#34;</span><span class="se">\\</span><span class="s2">mozart.gif&#34;</span><span class="p">)</span>
+<span class="c1"># ================================</span>
 
-<pre><code>PS src\static&gt; .\Code\PowerShell\Challenge016.ps1
-</code></pre>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="k">import</span> <span class="n">Image</span>
+<span class="n">im</span><span class="o">=</span><span class="n">Image</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">px</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
 
-<ul>
-<li><a href="../../Code/Go/Challenge016.go" title="点我查看源码">Go</a></li>
-</ul>
+<span class="n">newIm</span><span class="o">=</span><span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<span class="n">newPx</span><span class="o">=</span><span class="n">newIm</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
 
-<pre><code>PS src\static&gt; .\Code\Go\Challenge.exe -l 016
-</code></pre>
+<span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">h</span><span class="p">)</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">size</span>
+<span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">px</span><span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">]</span> <span class="o">==</span> <span class="mi">195</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+                <span class="n">newPx</span><span class="p">[</span><span class="n">xx</span><span class="p">,</span><span class="n">y</span><span class="p">]</span><span class="o">=</span><span class="n">px</span><span class="p">[(</span><span class="n">xx</span><span class="o">+</span><span class="n">x</span><span class="p">)</span><span class="o">%</span><span class="n">w</span><span class="p">,</span><span class="n">y</span><span class="p">]</span>
+            <span class="k">continue</span>
+
+<span class="n">im</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">newIm</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">newIm</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></code></pre></div>
+        <pre><code>PS src\static> python .\Code\Python\Challenge016.py</code></pre>
+    </section>
+    <section id="content-powershell" class="content-section">
+        <p><a href="../../Code/PowerShell/Challenge016.ps1" title="点我下载源码">Challenge016.ps1</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$path</span><span class="p">=</span><span class="s2">&#34;.\\Data\\016&#34;</span>
+
+<span class="p">.</span> <span class="p">.\</span><span class="n">Code</span><span class="p">\</span><span class="n">PowerShell</span><span class="p">\</span><span class="n">helper</span><span class="p">.</span><span class="n">ps1</span>
+<span class="nb">New-Dir</span> <span class="n">-Dir</span> <span class="nv">$path</span>
+
+<span class="nv">$gif</span><span class="p">=</span><span class="s2">&#34;http://www.pythonchallenge.com/pc/return/mozart.gif&#34;</span>
+<span class="nv">$filename</span><span class="p">=</span><span class="nv">$path</span><span class="p">+</span><span class="s2">&#34;\\mozart.gif&#34;</span>
+<span class="nb">Get-FileWithAuth</span> <span class="n">-Url</span> <span class="nv">$gif</span> <span class="n">-Filename</span> <span class="nv">$filename</span> <span class="n">-Username</span> <span class="s2">&#34;huge&#34;</span> <span class="n">-Password</span> <span class="s2">&#34;file&#34;</span>
+
+<span class="no">[void][System.Reflection.Assembly]</span><span class="p">::</span><span class="n">LoadWithPartialName</span><span class="p">(</span><span class="s2">&#34;System.Drawing&#34;</span><span class="p">)</span>
+<span class="nv">$img</span><span class="p">=</span><span class="no">[System.Drawing.Image]</span><span class="p">::</span><span class="n">FromFile</span><span class="p">(</span><span class="nv">$filename</span><span class="p">)</span>
+<span class="nv">$newImg</span><span class="p">=</span><span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Drawing</span><span class="p">.</span><span class="n">Bitmap</span> <span class="nv">$img</span><span class="p">.</span><span class="n">Width</span><span class="p">,</span><span class="nv">$img</span><span class="p">.</span><span class="n">Height</span>
+<span class="nv">$color</span><span class="p">=</span><span class="no">[System.Drawing.Color]</span><span class="p">::</span><span class="n">FromArgb</span><span class="p">(</span><span class="n">255</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">255</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="nv">$y</span> <span class="p">=</span> <span class="n">0</span><span class="p">;</span> <span class="nv">$y</span> <span class="o">-lt</span> <span class="nv">$img</span><span class="p">.</span><span class="n">Height</span><span class="p">;</span> <span class="nv">$y</span><span class="p">++)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nv">$x</span> <span class="p">=</span> <span class="n">0</span><span class="p">;</span> <span class="nv">$x</span> <span class="o">-lt</span> <span class="nv">$img</span><span class="p">.</span><span class="n">Width</span><span class="p">;</span> <span class="nv">$x</span><span class="p">++)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$img</span><span class="p">.</span><span class="n">GetPixel</span><span class="p">(</span><span class="nv">$x</span><span class="p">,</span><span class="nv">$y</span><span class="p">)</span> <span class="o">-eq</span> <span class="nv">$color</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="nv">$xx</span> <span class="p">=</span> <span class="n">0</span><span class="p">;</span> <span class="nv">$xx</span> <span class="o">-lt</span> <span class="nv">$img</span><span class="p">.</span><span class="n">Width</span><span class="p">;</span> <span class="nv">$xx</span><span class="p">++)</span> <span class="p">{</span>
+                <span class="nv">$newImg</span><span class="p">.</span><span class="n">SetPixel</span><span class="p">(</span><span class="nv">$xx</span><span class="p">,</span><span class="nv">$y</span><span class="p">,</span><span class="nv">$img</span><span class="p">.</span><span class="n">GetPixel</span><span class="p">((</span><span class="nv">$xx</span><span class="p">+</span><span class="nv">$x</span><span class="p">)%</span><span class="nv">$img</span><span class="p">.</span><span class="n">Width</span><span class="p">,</span><span class="nv">$y</span><span class="p">))</span>
+            <span class="p">}</span>
+            <span class="k">continue</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$img</span><span class="p">.</span><span class="n">Dispose</span><span class="p">()</span>
+
+<span class="nb">Show-Image</span> <span class="n">-Title</span> <span class="s2">&#34;Challenge016&#34;</span> <span class="n">-Image</span> <span class="nv">$newImg</span>
+<span class="nv">$newImg</span><span class="p">.</span><span class="n">Dispose</span><span class="p">()</span></code></pre></div>
+        <pre><code>PS src\static> .\Code\PowerShell\Challenge016.ps1</code></pre>
+    </section>
+    <section id="content-golang" class="content-section">
+        <p><a href="../../Code/Go/Challenge016.go" title="点我下载源码">Challenge016.go</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span><span class="p">(</span>
+	<span class="s">&#34;image&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Challenge</span><span class="p">)</span> <span class="nf">Challenge016</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">path</span><span class="o">:=</span><span class="s">&#34;.\\Data\\016&#34;</span>
+	<span class="nf">EnsureDir</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span>
+
+	<span class="nx">gif</span><span class="o">:=</span><span class="s">&#34;http://www.pythonchallenge.com/pc/return/mozart.gif&#34;</span>
+	<span class="nx">filename</span><span class="o">:=</span><span class="nx">path</span><span class="o">+</span><span class="s">&#34;\\mozart.gif&#34;</span>
+	<span class="nf">DownloadWithBasicAuth</span><span class="p">(</span><span class="nx">gif</span><span class="p">,</span> <span class="nx">filename</span><span class="p">,</span> <span class="s">&#34;huge&#34;</span><span class="p">,</span> <span class="s">&#34;file&#34;</span><span class="p">)</span>
+
+	<span class="nx">im</span><span class="o">:=</span><span class="nf">OpenImage</span><span class="p">(</span><span class="nx">filename</span><span class="p">)</span>
+
+	<span class="nx">newImg</span><span class="o">:=</span><span class="nf">straightImage</span><span class="p">(</span><span class="nx">im</span><span class="p">)</span>
+
+	<span class="nx">giffile</span> <span class="o">:=</span> <span class="nx">path</span><span class="o">+</span><span class="s">&#34;\\mozart.go.gif&#34;</span>
+	<span class="nf">SaveImage</span><span class="p">(</span><span class="nx">giffile</span><span class="p">,</span> <span class="nx">newImg</span><span class="p">,</span> <span class="s">&#34;gif&#34;</span><span class="p">)</span>
+	
+	<span class="nf">ShowImage</span><span class="p">(</span><span class="nx">giffile</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">straightImage</span><span class="p">(</span><span class="nx">im</span> <span class="nx">image</span><span class="p">.</span><span class="nx">Image</span><span class="p">)</span> <span class="o">*</span><span class="nx">image</span><span class="p">.</span><span class="nx">RGBA</span> <span class="p">{</span>
+	<span class="nx">bounds</span><span class="o">:=</span><span class="nx">im</span><span class="p">.</span><span class="nf">Bounds</span><span class="p">()</span>
+	<span class="nx">newImg</span><span class="o">:=</span><span class="nx">image</span><span class="p">.</span><span class="nf">NewRGBA</span><span class="p">(</span><span class="nx">bounds</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">y</span> <span class="o">:=</span> <span class="nx">bounds</span><span class="p">.</span><span class="nx">Min</span><span class="p">.</span><span class="nx">Y</span><span class="p">;</span> <span class="nx">y</span> <span class="p">&lt;</span> <span class="nx">bounds</span><span class="p">.</span><span class="nx">Max</span><span class="p">.</span><span class="nx">Y</span><span class="p">;</span> <span class="nx">y</span><span class="o">++</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="nx">x</span> <span class="o">:=</span> <span class="nx">bounds</span><span class="p">.</span><span class="nx">Min</span><span class="p">.</span><span class="nx">X</span><span class="p">;</span> <span class="nx">x</span> <span class="p">&lt;</span> <span class="nx">bounds</span><span class="p">.</span><span class="nx">Max</span><span class="p">.</span><span class="nx">X</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span> <span class="p">{</span>
+			<span class="nx">r</span><span class="p">,</span><span class="nx">g</span><span class="p">,</span><span class="nx">b</span><span class="p">,</span><span class="nx">_</span><span class="o">:=</span><span class="nx">im</span><span class="p">.</span><span class="nf">At</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">).</span><span class="nf">RGBA</span><span class="p">()</span>
+			<span class="k">if</span> <span class="nx">r</span><span class="o">==</span><span class="mi">65535</span> <span class="o">&amp;&amp;</span> <span class="nx">g</span><span class="o">==</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span><span class="o">==</span><span class="mi">65535</span> <span class="p">{</span>
+				<span class="k">for</span> <span class="nx">xx</span> <span class="o">:=</span> <span class="nx">bounds</span><span class="p">.</span><span class="nx">Min</span><span class="p">.</span><span class="nx">X</span><span class="p">;</span> <span class="nx">xx</span> <span class="p">&lt;</span> <span class="nx">bounds</span><span class="p">.</span><span class="nx">Max</span><span class="p">.</span><span class="nx">X</span><span class="p">;</span> <span class="nx">xx</span><span class="o">++</span> <span class="p">{</span>
+					<span class="nx">newImg</span><span class="p">.</span><span class="nf">Set</span><span class="p">(</span><span class="nx">xx</span><span class="p">,</span><span class="nx">y</span><span class="p">,</span><span class="nx">im</span><span class="p">.</span><span class="nf">At</span><span class="p">((</span><span class="nx">xx</span><span class="o">+</span><span class="nx">x</span><span class="p">)</span><span class="o">%</span><span class="nx">bounds</span><span class="p">.</span><span class="nf">Dx</span><span class="p">(),</span><span class="nx">y</span><span class="p">))</span>
+				<span class="p">}</span>
+				<span class="k">continue</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">newImg</span>
+<span class="p">}</span></code></pre></div>
+        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l 016</code></pre>
+    </section>
+</div>
 
 <hr />
 
 <h2 id="最终结果-romance">最终结果： romance</h2>
 
-<h2 id="下一关地址-5"><a href="http://www.pythonchallenge.com/pc/return/romance.html">下一关地址</a></h2>
+<h2 id="下一关地址-5">[下一关地址][5]</h2>
 
     </div>
 

@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.54.0" />
 
 
 <link rel="canonical" href="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge004/" />
@@ -56,11 +56,14 @@
 
 
 
+<link rel="stylesheet" href="/PythonChallengeStrategy/css/custom.css">
+
 
 <meta property="og:title" content="004. follow the chain" />
 <meta property="og:description" content="关卡地址 解决方案： 思路： 这一关鼠标移动到图片上指针会变成小手，点击会得到如下信息： and the next nothing is 44827 同时，url后面多了参数?nothing=12" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge004/" /><meta property="article:published_time" content="2018-10-30T11:18:54&#43;08:00"/>
+<meta property="og:url" content="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge004/" />
+<meta property="article:published_time" content="2018-10-30T11:18:54&#43;08:00"/>
 <meta property="article:modified_time" content="2019-03-18T10:58:54&#43;08:00"/>
 
 <meta itemprop="name" content="004. follow the chain">
@@ -69,7 +72,7 @@
 
 <meta itemprop="datePublished" content="2018-10-30T11:18:54&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-18T10:58:54&#43;08:00" />
-<meta itemprop="wordCount" content="287">
+<meta itemprop="wordCount" content="511">
 
 
 
@@ -348,32 +351,127 @@
 
 <h3 id="代码">代码：</h3>
 
-<ul>
-<li><a href="../../Code/Python/Challenge004.py" title="点我查看源码">Python</a></li>
-</ul>
+<div>
+    <input id="tab-python" type="radio" name="code-tabs" class="code-tabs" checked>
+    <label class="language-label" for="tab-python">Python</label>
+    <input id="tab-powershell" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-powershell">PowerShell</label>
+    <input id="tab-golang" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-golang">Golang</label>
+    <section id="content-python" class="content-section">
+        <p><a href="../../Code/Python/Challenge004.py" title="点我下载源码">Challenge004.py</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing=&#39;</span>
+<span class="n">param</span><span class="o">=</span><span class="s1">&#39;12345&#39;</span>
 
-<pre><code>PS src\static&gt; python .\Code\Python\Challenge004.py
-</code></pre>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">re</span>
 
-<ul>
-<li><a href="../../Code/PowerShell/Challenge004.ps1" title="点我查看源码">PowerShell</a></li>
-</ul>
+<span class="n">pattern</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s2">&#34;the next nothing is (</span><span class="se">\\</span><span class="s2">d+)&#34;</span><span class="p">)</span>
 
-<pre><code>PS src\static&gt; .\Code\PowerShell\Challenge004.ps1
-</code></pre>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">400</span><span class="p">):</span>
+    <span class="c1"># print(&#34;request %4d url: %s &#34; %(i,url+param))</span>
+    <span class="n">resp</span><span class="o">=</span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="n">param</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">param</span><span class="o">=</span><span class="n">pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;param </span><span class="si">%s</span><span class="s2">, response: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span><span class="p">(</span><span class="n">param</span><span class="p">,</span><span class="n">resp</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">resp</span> <span class="o">==</span> <span class="s2">&#34;Yes. Divide by two and keep going.&#34;</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">tmpParam</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">param</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+                <span class="n">param</span><span class="o">=</span><span class="n">tmpParam</span>
+                <span class="k">continue</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">break</span>
 
-<ul>
-<li><a href="../../Code/Go/Challenge004.go" title="点我查看源码">Go</a></li>
-</ul>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;completed&#39;</span><span class="p">)</span></code></pre></div>
+        <pre><code>PS src\static> python .\Code\Python\Challenge004.py</code></pre>
+    </section>
+    <section id="content-powershell" class="content-section">
+        <p><a href="../../Code/PowerShell/Challenge004.ps1" title="点我下载源码">Challenge004.ps1</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$url</span><span class="p">=</span><span class="s2">&#34;http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing=&#34;</span>
+<span class="nv">$param</span><span class="p">=</span><span class="s2">&#34;12345&#34;</span>
 
-<pre><code>PS src\static&gt; .\Code\Go\Challenge.exe -l 004
-</code></pre>
+<span class="nv">$pattern</span><span class="p">=</span><span class="no">[regex]</span><span class="s2">&#34;the next nothing is (\d+)&#34;</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span><span class="p">=</span><span class="n">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">-lt</span> <span class="n">400</span><span class="p">;</span> <span class="nv">$i</span><span class="p">++)</span> <span class="p">{</span>
+    <span class="nv">$resp</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Invoke-WebRequest</span> <span class="n">-Uri</span> <span class="nv">$url</span><span class="p">+</span><span class="nv">$param</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-ExcludeProperty</span> <span class="n">Content</span><span class="p">).</span><span class="n">Content</span>
+    <span class="nv">$match</span> <span class="p">=</span> <span class="nv">$pattern</span><span class="p">.</span><span class="n">Match</span><span class="p">(</span><span class="nv">$resp</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$match</span><span class="p">.</span><span class="n">Success</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$param</span> <span class="p">=</span> <span class="nv">$match</span><span class="p">.</span><span class="n">Groups</span><span class="p">[</span><span class="n">1</span><span class="p">].</span><span class="n">Value</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="no">[System.Console]</span><span class="p">::</span><span class="n">WriteLine</span><span class="p">($(</span><span class="s2">&#34;param: {0}, resp: {1}&#34;</span> <span class="o">-f</span> <span class="nv">$param</span><span class="p">,</span><span class="nv">$resp</span><span class="p">))</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$resp</span> <span class="o">-eq</span> <span class="s2">&#34;Yes. Divide by two and keep going.&#34;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$param</span><span class="p">=</span><span class="nv">$param</span><span class="p">/</span><span class="n">2</span>
+            <span class="k">continue</span>
+        <span class="p">}</span>
+        <span class="k">break</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="no">[System.Console]</span><span class="p">::</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&#34;completed&#34;</span><span class="p">)</span></code></pre></div>
+        <pre><code>PS src\static> .\Code\PowerShell\Challenge004.ps1</code></pre>
+    </section>
+    <section id="content-golang" class="content-section">
+        <p><a href="../../Code/Go/Challenge004.go" title="点我下载源码">Challenge004.go</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;net/http&#34;</span>
+	<span class="s">&#34;io/ioutil&#34;</span>
+	<span class="s">&#34;regexp&#34;</span>
+	<span class="s">&#34;strings&#34;</span>
+	<span class="s">&#34;strconv&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Challenge</span><span class="p">)</span> <span class="nf">Challenge004</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">url</span><span class="o">:=</span><span class="s">&#34;http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing=&#34;</span>
+	<span class="nx">param</span><span class="o">:=</span><span class="s">&#34;12345&#34;</span>
+
+	<span class="nx">pattern</span><span class="o">:=</span><span class="nx">regexp</span><span class="p">.</span><span class="nf">MustCompile</span><span class="p">(</span><span class="s">&#34;the next nothing is (\\d+)&#34;</span><span class="p">)</span>
+
+	<span class="k">for</span> <span class="nx">i</span><span class="o">:=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="p">&lt;</span><span class="mi">400</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">resp</span> <span class="o">:=</span> <span class="nf">httpGet</span><span class="p">(</span><span class="nx">url</span><span class="o">+</span><span class="nx">param</span><span class="p">)</span>
+		<span class="nx">tmpParam</span><span class="o">:=</span><span class="nx">pattern</span><span class="p">.</span><span class="nf">FindStringSubmatch</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">tmpParam</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span> <span class="p">{</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;param: %s, response: %s\n&#34;</span><span class="p">,</span><span class="nx">param</span><span class="p">,</span> <span class="nx">resp</span><span class="p">)</span>
+			<span class="k">if</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Compare</span><span class="p">(</span><span class="nx">resp</span><span class="p">,</span><span class="s">&#34;Yes. Divide by two and keep going.&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+				<span class="nx">intParam</span><span class="p">,</span><span class="nx">err</span> <span class="o">:=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">Atoi</span><span class="p">(</span><span class="nx">param</span><span class="p">)</span>
+				<span class="k">if</span> <span class="nx">err</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+					<span class="nx">param</span> <span class="p">=</span> <span class="nb">string</span><span class="p">(</span><span class="nx">intParam</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+					<span class="k">continue</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+			<span class="k">break</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+			<span class="nx">param</span><span class="p">=</span><span class="nx">tmpParam</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;completed&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">httpGet</span><span class="p">(</span><span class="nx">url</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="k">defer</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+		<span class="nx">body</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nf">ReadAll</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nb">string</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="s">&#34;&#34;</span>
+<span class="p">}</span></code></pre></div>
+        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l 004</code></pre>
+    </section>
+</div>
 
 <hr />
 
 <h2 id="最终结果-peak-html">最终结果： peak.html</h2>
 
-<h2 id="下一关地址-5"><a href="http://www.pythonchallenge.com/pc/def/peak.html">下一关地址</a></h2>
+<h2 id="下一关地址-5">[下一关地址][5]</h2>
 
     </div>
 

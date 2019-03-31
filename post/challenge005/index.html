@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.54.0" />
 
 
 <link rel="canonical" href="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge005/" />
@@ -56,11 +56,14 @@
 
 
 
+<link rel="stylesheet" href="/PythonChallengeStrategy/css/custom.css">
+
 
 <meta property="og:title" content="005. peak hell" />
 <meta property="og:description" content="关卡地址 解决方案： 思路： 图片下有句提示信息： pronounce it 查看源代码得到如下提示： peak hell sounds familiar ? 听着一点也不熟悉好吧😂！无奈找了其他攻略，原来说的是pyt" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge005/" /><meta property="article:published_time" content="2018-11-03T12:51:59&#43;08:00"/>
+<meta property="og:url" content="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge005/" />
+<meta property="article:published_time" content="2018-11-03T12:51:59&#43;08:00"/>
 <meta property="article:modified_time" content="2019-03-18T11:26:59&#43;08:00"/>
 
 <meta itemprop="name" content="005. peak hell">
@@ -69,7 +72,7 @@
 
 <meta itemprop="datePublished" content="2018-11-03T12:51:59&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-18T11:26:59&#43;08:00" />
-<meta itemprop="wordCount" content="265">
+<meta itemprop="wordCount" content="475">
 
 
 
@@ -356,32 +359,167 @@
 
 <h3 id="代码">代码：</h3>
 
-<ul>
-<li><a href="../../Code/Python/Challenge005.py" title="点我查看源码">Python</a></li>
-</ul>
+<div>
+    <input id="tab-python" type="radio" name="code-tabs" class="code-tabs" checked>
+    <label class="language-label" for="tab-python">Python</label>
+    <input id="tab-powershell" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-powershell">PowerShell</label>
+    <input id="tab-golang" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-golang">Golang</label>
+    <section id="content-python" class="content-section">
+        <p><a href="../../Code/Python/Challenge005.py" title="点我下载源码">Challenge005.py</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="n">banner</span><span class="o">=</span><span class="s2">&#34;http://www.pythonchallenge.com/pc/def/banner.p&#34;</span>
 
-<pre><code>PS src\static&gt; python .\Code\Python\Challenge005.py
-</code></pre>
+<span class="nb">dir</span><span class="o">=</span><span class="s2">&#34;.</span><span class="se">\\</span><span class="s2">Data</span><span class="se">\\</span><span class="s2">005&#34;</span>
+<span class="kn">import</span> <span class="nn">helper</span>
+<span class="n">helper</span><span class="o">.</span><span class="n">ensureDir</span><span class="p">(</span><span class="nb">dir</span><span class="p">)</span>
 
-<ul>
-<li><a href="../../Code/PowerShell/Challenge005.ps1" title="点我查看源码">PowerShell</a></li>
-</ul>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">headers</span><span class="p">)</span><span class="o">=</span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">banner</span><span class="p">,</span><span class="nb">dir</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">banner.p&#39;</span><span class="p">)</span>
 
-<pre><code>PS src\static&gt; .\Code\PowerShell\Challenge005.ps1
-</code></pre>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="n">data</span><span class="o">=</span><span class="n">pickle</span><span class="o">.</span><span class="n">Unpickler</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
 
-<ul>
-<li><a href="../../Code/Go/Challenge005.go" title="点我查看源码">Go</a></li>
-</ul>
+<span class="c1"># print(data)</span>
 
-<pre><code>PS src\static&gt; .\Code\Go\Challenge.exe -l 005
-</code></pre>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">tupleitem</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">tupleitem</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">tupleitem</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="c1"># ================================</span>
+<span class="c1"># without pickle</span>
+<span class="n">fp</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">lines</span><span class="o">=</span><span class="n">fp</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="n">reln</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s1">&#39;aa&#39;</span><span class="p">)</span>
+<span class="n">renum</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s1">&#39;^I([0-9]*)&#39;</span><span class="p">)</span>
+<span class="n">rechsharp</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s2">&#34;S&#39;#&#39;|g6&#34;</span><span class="p">)</span>
+<span class="n">rechspace</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s2">&#34;S&#39; &#39;|g2&#34;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">reln</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">continue</span>
+    <span class="k">if</span> <span class="n">rechsharp</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ch</span><span class="o">=</span><span class="s1">&#39;#&#39;</span>
+        <span class="k">continue</span>
+    <span class="k">if</span> <span class="n">rechspace</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ch</span><span class="o">=</span><span class="s1">&#39; &#39;</span>
+        <span class="k">continue</span>
+    <span class="k">if</span> <span class="n">renum</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">num</span><span class="o">=</span><span class="n">renum</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">ch</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">),</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">continue</span>
+<span class="c1"># ================================</span></code></pre></div>
+        <pre><code>PS src\static> python .\Code\Python\Challenge005.py</code></pre>
+    </section>
+    <section id="content-powershell" class="content-section">
+        <p><a href="../../Code/PowerShell/Challenge005.ps1" title="点我下载源码">Challenge005.ps1</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$banner</span><span class="p">=</span><span class="s2">&#34;http://www.pythonchallenge.com/pc/def/banner.p&#34;</span>
+
+<span class="nv">$path</span><span class="p">=</span><span class="s2">&#34;.\\Data\\005&#34;</span>
+
+<span class="p">.</span> <span class="p">.\</span><span class="n">Code</span><span class="p">\</span><span class="n">PowerShell</span><span class="p">\</span><span class="n">helper</span><span class="p">.</span><span class="n">ps1</span>
+<span class="nb">New-Dir</span> <span class="n">-Dir</span> <span class="nv">$path</span>
+
+<span class="nv">$filename</span><span class="p">=</span><span class="nv">$path</span><span class="p">+</span><span class="s2">&#34;\\banner.p&#34;</span>
+<span class="nb">Invoke-WebRequest</span> <span class="n">-Uri</span> <span class="nv">$banner</span> <span class="n">-OutFile</span> <span class="nv">$filename</span>
+
+<span class="nv">$lines</span><span class="p">=</span><span class="nb">Get-Content</span> <span class="nv">$filename</span>
+
+<span class="nv">$reln</span><span class="p">=</span><span class="no">[regex]</span><span class="s1">&#39;aa&#39;</span>
+<span class="nv">$renum</span><span class="p">=</span><span class="no">[regex]</span><span class="s1">&#39;^I([0-9]*)&#39;</span>
+<span class="nv">$rechsharp</span><span class="p">=</span><span class="no">[regex]</span><span class="s2">&#34;S&#39;#&#39;|g6&#34;</span>
+<span class="nv">$rechspace</span><span class="p">=</span><span class="no">[regex]</span><span class="s2">&#34;S&#39; &#39;|g2&#34;</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$line</span> <span class="k">in</span> <span class="nv">$lines</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$reln</span><span class="p">.</span><span class="n">IsMatch</span><span class="p">(</span><span class="nv">$line</span><span class="p">))</span> <span class="p">{</span>
+        <span class="no">[System.Console]</span><span class="p">::</span><span class="n">WriteLine</span><span class="p">()</span>
+        <span class="k">continue</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$rechsharp</span><span class="p">.</span><span class="n">IsMatch</span><span class="p">(</span><span class="nv">$line</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nv">$ch</span><span class="p">=</span><span class="s1">&#39;#&#39;</span>
+        <span class="k">continue</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$rechspace</span><span class="p">.</span><span class="n">IsMatch</span><span class="p">(</span><span class="nv">$line</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nv">$ch</span><span class="p">=</span><span class="s1">&#39; &#39;</span>
+        <span class="k">continue</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$renum</span><span class="p">.</span><span class="n">IsMatch</span><span class="p">(</span><span class="nv">$line</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nv">$num</span><span class="p">=</span><span class="no">[int]</span><span class="nv">$renum</span><span class="p">.</span><span class="n">Match</span><span class="p">(</span><span class="nv">$line</span><span class="p">).</span><span class="n">Groups</span><span class="p">[</span><span class="n">1</span><span class="p">].</span><span class="n">Value</span>
+        <span class="no">[System.Console]</span><span class="p">::</span><span class="n">Write</span><span class="p">(</span><span class="nv">$ch</span><span class="p">*</span><span class="nv">$num</span><span class="p">)</span>
+        <span class="k">continue</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+        <pre><code>PS src\static> .\Code\PowerShell\Challenge005.ps1</code></pre>
+    </section>
+    <section id="content-golang" class="content-section">
+        <p><a href="../../Code/Go/Challenge005.go" title="点我下载源码">Challenge005.go</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;strings&#34;</span>
+	<span class="s">&#34;regexp&#34;</span>
+	<span class="s">&#34;strconv&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Challenge</span><span class="p">)</span> <span class="nf">Challenge005</span><span class="p">()</span>  <span class="p">{</span>
+	<span class="nx">banner</span><span class="o">:=</span><span class="s">&#34;http://www.pythonchallenge.com/pc/def/banner.p&#34;</span>
+	
+	<span class="nx">path</span><span class="o">:=</span><span class="s">&#34;.\\Data\\005&#34;</span>
+	<span class="nf">EnsureDir</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span>
+
+	<span class="nx">filename</span><span class="o">:=</span><span class="nx">path</span><span class="o">+</span><span class="s">&#34;\\banner.p&#34;</span>
+	<span class="nf">Download</span><span class="p">(</span><span class="nx">banner</span><span class="p">,</span><span class="nx">filename</span><span class="p">)</span>
+
+	<span class="nx">content</span><span class="o">:=</span><span class="nf">ReadFile</span><span class="p">(</span><span class="nx">filename</span><span class="p">)</span>
+	<span class="nx">lines</span><span class="o">:=</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Split</span><span class="p">(</span><span class="nx">content</span><span class="p">,</span><span class="s">&#34;\n&#34;</span><span class="p">)</span>
+
+	<span class="nx">reln</span><span class="o">:=</span><span class="nx">regexp</span><span class="p">.</span><span class="nf">MustCompile</span><span class="p">(</span><span class="s">&#34;aa&#34;</span><span class="p">)</span>
+	<span class="nx">renum</span><span class="o">:=</span><span class="nx">regexp</span><span class="p">.</span><span class="nf">MustCompile</span><span class="p">(</span><span class="s">&#34;^I([0-9]*)&#34;</span><span class="p">)</span>
+	<span class="nx">rechsharp</span><span class="o">:=</span><span class="nx">regexp</span><span class="p">.</span><span class="nf">MustCompile</span><span class="p">(</span><span class="s">&#34;S&#39;#&#39;|g6&#34;</span><span class="p">)</span>
+	<span class="nx">rechspace</span><span class="o">:=</span><span class="nx">regexp</span><span class="p">.</span><span class="nf">MustCompile</span><span class="p">(</span><span class="s">&#34;S&#39; &#39;|g2&#34;</span><span class="p">)</span>
+
+	<span class="nx">ch</span><span class="o">:=</span><span class="s">&#34; &#34;</span>
+
+	<span class="k">for</span> <span class="nx">index</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">index</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">lines</span><span class="p">);</span> <span class="nx">index</span><span class="o">++</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="nx">reln</span><span class="p">.</span><span class="nf">MatchString</span><span class="p">(</span><span class="nx">lines</span><span class="p">[</span><span class="nx">index</span><span class="p">])</span> <span class="p">{</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;\n&#34;</span><span class="p">)</span>
+			<span class="k">continue</span>
+		<span class="p">}</span>
+		<span class="k">if</span> <span class="nx">rechsharp</span><span class="p">.</span><span class="nf">MatchString</span><span class="p">(</span><span class="nx">lines</span><span class="p">[</span><span class="nx">index</span><span class="p">])</span> <span class="p">{</span>
+			<span class="nx">ch</span><span class="p">=</span><span class="s">&#34;#&#34;</span>
+			<span class="k">continue</span>
+		<span class="p">}</span>
+		<span class="k">if</span> <span class="nx">rechspace</span><span class="p">.</span><span class="nf">MatchString</span><span class="p">(</span><span class="nx">lines</span><span class="p">[</span><span class="nx">index</span><span class="p">])</span> <span class="p">{</span>
+			<span class="nx">ch</span><span class="p">=</span><span class="s">&#34; &#34;</span>
+			<span class="k">continue</span>
+		<span class="p">}</span>
+		<span class="nx">matches</span><span class="o">:=</span><span class="nx">renum</span><span class="p">.</span><span class="nf">FindStringSubmatch</span><span class="p">(</span><span class="nx">lines</span><span class="p">[</span><span class="nx">index</span><span class="p">])</span>
+		<span class="k">if</span> <span class="nx">matches</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="nx">num</span><span class="p">,</span><span class="nx">err</span><span class="o">:=</span><span class="nx">strconv</span><span class="p">.</span><span class="nf">Atoi</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+			<span class="k">if</span> <span class="nx">err</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+				<span class="k">for</span> <span class="nx">i</span><span class="o">:=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="p">&lt;</span><span class="nx">num</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+					<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="nx">ch</span><span class="p">)</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+			<span class="k">continue</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l 005</code></pre>
+    </section>
+</div>
 
 <hr />
 
 <h2 id="最终结果-channel">最终结果： channel</h2>
 
-<h2 id="下一关地址-5"><a href="http://www.pythonchallenge.com/pc/def/channel.html">下一关地址</a></h2>
+<h2 id="下一关地址-5">[下一关地址][5]</h2>
 
     </div>
 

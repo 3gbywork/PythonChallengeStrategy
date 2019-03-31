@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.54.0" />
 
 
 <link rel="canonical" href="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge006/" />
@@ -56,11 +56,14 @@
 
 
 
+<link rel="stylesheet" href="/PythonChallengeStrategy/css/custom.css">
+
 
 <meta property="og:title" content="006. now there are pairs" />
 <meta property="og:description" content="关卡地址 解决方案： 思路： 图片没有提供任何有用的信息。查看源代码得到如下信息： &lt;-- zip 额，更改url可以得到一个压缩文件。 打开压缩文件，找到rea" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge006/" /><meta property="article:published_time" content="2018-11-04T22:58:08&#43;08:00"/>
+<meta property="og:url" content="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge006/" />
+<meta property="article:published_time" content="2018-11-04T22:58:08&#43;08:00"/>
 <meta property="article:modified_time" content="2019-03-18T13:37:08&#43;08:00"/>
 
 <meta itemprop="name" content="006. now there are pairs">
@@ -69,7 +72,7 @@
 
 <meta itemprop="datePublished" content="2018-11-04T22:58:08&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-18T13:37:08&#43;08:00" />
-<meta itemprop="wordCount" content="225">
+<meta itemprop="wordCount" content="438">
 
 
 
@@ -367,32 +370,156 @@ hint2: answer is inside the zip</p>
 
 <h3 id="代码">代码：</h3>
 
-<ul>
-<li><a href="../../Code/Python/Challenge006.py" title="点我查看源码">Python</a></li>
-</ul>
+<div>
+    <input id="tab-python" type="radio" name="code-tabs" class="code-tabs" checked>
+    <label class="language-label" for="tab-python">Python</label>
+    <input id="tab-powershell" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-powershell">PowerShell</label>
+    <input id="tab-golang" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-golang">Golang</label>
+    <section id="content-python" class="content-section">
+        <p><a href="../../Code/Python/Challenge006.py" title="点我下载源码">Challenge006.py</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="kn">import</span> <span class="nn">helper</span>
+<span class="nb">dir</span><span class="o">=</span><span class="s2">&#34;.</span><span class="se">\\</span><span class="s2">Data</span><span class="se">\\</span><span class="s2">006&#34;</span>
+<span class="n">helper</span><span class="o">.</span><span class="n">ensureDir</span><span class="p">(</span><span class="nb">dir</span><span class="p">)</span>
 
-<pre><code>PS src\static&gt; python .\Code\Python\Challenge006.py
-</code></pre>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="n">channel</span><span class="o">=</span><span class="s2">&#34;http://www.pythonchallenge.com/pc/def/channel.zip&#34;</span>
+<span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span><span class="o">=</span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="nb">dir</span><span class="o">+</span><span class="s2">&#34;</span><span class="se">\\</span><span class="s2">channel.zip&#34;</span><span class="p">)</span>
 
-<ul>
-<li><a href="../../Code/PowerShell/Challenge006.ps1" title="点我查看源码">PowerShell</a></li>
-</ul>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="nb">zip</span><span class="o">=</span><span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 
-<pre><code>PS src\static&gt; .\Code\PowerShell\Challenge006.ps1
-</code></pre>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="n">pattern</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s2">&#34;Next nothing is (</span><span class="se">\\</span><span class="s2">d+)&#34;</span><span class="p">)</span>
 
-<ul>
-<li><a href="../../Code/Go/Challenge006.go" title="点我查看源码">Go</a></li>
-</ul>
+<span class="n">entryname</span><span class="o">=</span><span class="s2">&#34;90052&#34;</span>
+<span class="n">outstr</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">name</span><span class="o">=</span><span class="n">entryname</span><span class="o">+</span><span class="s2">&#34;.txt&#34;</span>
+    <span class="n">cnt</span><span class="o">=</span><span class="nb">zip</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="n">outstr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">zip</span><span class="o">.</span><span class="n">getinfo</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">comment</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">entryname</span><span class="o">=</span><span class="n">pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;last: </span><span class="si">%s</span><span class="s2">, cnt: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span><span class="p">(</span><span class="n">entryname</span><span class="p">,</span> <span class="n">cnt</span><span class="p">))</span>
+        <span class="k">break</span>
 
-<pre><code>PS src\static&gt; .\Code\Go\Challenge.exe -l 006
-</code></pre>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outstr</span><span class="p">))</span></code></pre></div>
+        <pre><code>PS src\static> python .\Code\Python\Challenge006.py</code></pre>
+    </section>
+    <section id="content-powershell" class="content-section">
+        <p><a href="../../Code/PowerShell/Challenge006.ps1" title="点我下载源码">Challenge006.ps1</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$path</span><span class="p">=</span><span class="s2">&#34;.\\Data\\006&#34;</span>
+
+<span class="p">.</span> <span class="p">.\</span><span class="n">Code</span><span class="p">\</span><span class="n">PowerShell</span><span class="p">\</span><span class="n">helper</span><span class="p">.</span><span class="n">ps1</span>
+<span class="nb">New-Dir</span> <span class="n">-Dir</span> <span class="nv">$path</span>
+
+<span class="nv">$url</span><span class="p">=</span><span class="s2">&#34;http://www.pythonchallenge.com/pc/def/channel.zip&#34;</span>
+<span class="nv">$filename</span><span class="p">=</span><span class="nv">$path</span><span class="p">+</span><span class="s2">&#34;\\channel.zip&#34;</span>
+<span class="c"># 转换为文件的绝对路径</span>
+<span class="nv">$filename</span><span class="p">=</span><span class="nv">$ExecutionContext</span><span class="p">.</span><span class="n">SessionState</span><span class="p">.</span><span class="n">Path</span><span class="p">.</span><span class="n">GetUnresolvedProviderPathFromPSPath</span><span class="p">(</span><span class="nv">$filename</span><span class="p">)</span>
+<span class="nb">Invoke-WebRequest</span> <span class="n">-Uri</span> <span class="nv">$url</span> <span class="n">-OutFile</span> <span class="nv">$filename</span>
+
+<span class="no">[void][System.Reflection.Assembly]</span><span class="p">::</span><span class="n">LoadFile</span><span class="p">(</span><span class="nv">$PSScriptRoot</span><span class="p">+</span><span class="s2">&#34;\\lib\\ICSharpCode.SharpZipLib.dll&#34;</span><span class="p">)</span>
+
+<span class="nv">$namespace</span><span class="p">=</span><span class="s2">&#34;ICSharpCode.SharpZipLib.Zip.{0}&#34;</span>
+
+<span class="nv">$zip</span><span class="p">=</span><span class="nb">New-Object</span><span class="p">(</span><span class="nv">$namespace</span> <span class="o">-f</span> <span class="s2">&#34;ZipFile&#34;</span><span class="p">)(</span><span class="nv">$filename</span><span class="p">)</span>
+
+<span class="nv">$pattern</span><span class="p">=</span><span class="no">[regex]</span><span class="s2">&#34;Next nothing is (\d+)&#34;</span>
+<span class="nv">$entryname</span><span class="p">=</span><span class="s2">&#34;90052&#34;</span>
+
+<span class="nv">$outstr</span><span class="p">=</span><span class="s2">&#34;&#34;</span>
+<span class="k">while</span> <span class="p">(</span><span class="nv">$true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$entry</span><span class="p">=</span><span class="nv">$zip</span><span class="p">.</span><span class="n">GetEntry</span><span class="p">(</span><span class="nv">$entryname</span><span class="p">+</span><span class="s2">&#34;.txt&#34;</span><span class="p">)</span>
+    <span class="nv">$stream</span><span class="p">=</span><span class="nv">$zip</span><span class="p">.</span><span class="n">GetInputStream</span><span class="p">(</span><span class="nv">$entry</span><span class="p">)</span>
+    <span class="nv">$reader</span><span class="p">=</span><span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">StreamReader</span><span class="p">(</span><span class="nv">$stream</span><span class="p">)</span>
+    <span class="nv">$cnt</span><span class="p">=</span><span class="nv">$reader</span><span class="p">.</span><span class="n">ReadToEnd</span><span class="p">()</span>
+    <span class="nv">$reader</span><span class="p">.</span><span class="n">Dispose</span><span class="p">()</span>
+    <span class="nv">$stream</span><span class="p">.</span><span class="n">Dispose</span><span class="p">()</span>
+
+    <span class="nv">$outstr</span><span class="p">+=</span><span class="nv">$entry</span><span class="p">.</span><span class="n">Comment</span>
+    <span class="nv">$match</span> <span class="p">=</span> <span class="nv">$pattern</span><span class="p">.</span><span class="n">Match</span><span class="p">(</span><span class="nv">$cnt</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$match</span><span class="p">.</span><span class="n">Success</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$entryname</span> <span class="p">=</span> <span class="nv">$match</span><span class="p">.</span><span class="n">Groups</span><span class="p">[</span><span class="n">1</span><span class="p">].</span><span class="n">Value</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="s2">&#34;last: {0}, cnt: {1}&#34;</span> <span class="o">-f</span> <span class="nv">$entryname</span><span class="p">,</span><span class="nv">$cnt</span>
+        <span class="k">break</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$zip</span><span class="p">.</span><span class="n">Close</span><span class="p">()</span>
+<span class="nb">Write-Output</span> <span class="nv">$outstr</span></code></pre></div>
+        <pre><code>PS src\static> .\Code\PowerShell\Challenge006.ps1</code></pre>
+    </section>
+    <section id="content-golang" class="content-section">
+        <p><a href="../../Code/Go/Challenge006.go" title="点我下载源码">Challenge006.go</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;archive/zip&#34;</span>
+	<span class="s">&#34;io/ioutil&#34;</span>
+	<span class="s">&#34;regexp&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Challenge</span><span class="p">)</span> <span class="nf">Challenge006</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">path</span><span class="o">:=</span><span class="s">&#34;.\\Data\\006&#34;</span>
+	<span class="nf">EnsureDir</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span>
+
+	<span class="nx">filename</span><span class="o">:=</span><span class="nx">path</span><span class="o">+</span><span class="s">&#34;\\channel.zip&#34;</span>
+	<span class="nx">channel</span><span class="o">:=</span><span class="s">&#34;http://www.pythonchallenge.com/pc/def/channel.zip&#34;</span>
+	<span class="nf">Download</span><span class="p">(</span><span class="nx">channel</span><span class="p">,</span><span class="nx">filename</span><span class="p">)</span>
+
+	<span class="nx">rc</span><span class="p">,</span><span class="nx">err</span><span class="o">:=</span><span class="nx">zip</span><span class="p">.</span><span class="nf">OpenReader</span><span class="p">(</span><span class="nx">filename</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;open zip failed![%v]\n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="k">defer</span> <span class="nx">rc</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+
+	<span class="nx">dic</span><span class="o">:=</span><span class="kd">map</span> <span class="p">[</span><span class="kt">string</span><span class="p">]</span> <span class="o">*</span><span class="nx">zip</span><span class="p">.</span><span class="nx">File</span> <span class="p">{}</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span><span class="nx">file</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">rc</span><span class="p">.</span><span class="nx">File</span> <span class="p">{</span>
+		<span class="nx">dic</span><span class="p">[</span><span class="nx">file</span><span class="p">.</span><span class="nx">Name</span><span class="p">]=</span><span class="nx">file</span>
+	<span class="p">}</span>
+
+	<span class="nx">outstr</span><span class="o">:=</span><span class="s">&#34;&#34;</span>
+	<span class="nx">pattern</span><span class="o">:=</span><span class="nx">regexp</span><span class="p">.</span><span class="nf">MustCompile</span><span class="p">(</span><span class="s">&#34;Next nothing is (\\d+)&#34;</span><span class="p">)</span>
+	<span class="nx">name</span><span class="o">:=</span><span class="s">&#34;90052&#34;</span>
+	<span class="k">for</span> <span class="kc">true</span> <span class="p">{</span>
+		<span class="nx">file</span><span class="p">,</span><span class="nx">exists</span><span class="o">:=</span><span class="nx">dic</span><span class="p">[</span><span class="nx">name</span><span class="o">+</span><span class="s">&#34;.txt&#34;</span><span class="p">]</span>
+		<span class="k">if</span> <span class="nx">exists</span> <span class="p">{</span>
+			<span class="nx">outstr</span><span class="o">+=</span><span class="nx">file</span><span class="p">.</span><span class="nx">Comment</span>
+			<span class="nx">rc</span><span class="p">,</span><span class="nx">err</span><span class="o">:=</span><span class="nx">file</span><span class="p">.</span><span class="nf">Open</span><span class="p">()</span>
+			<span class="k">if</span> <span class="nx">err</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+				<span class="k">defer</span> <span class="nx">rc</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+				<span class="nx">bytes</span><span class="p">,</span><span class="nx">err</span><span class="o">:=</span><span class="nx">ioutil</span><span class="p">.</span><span class="nf">ReadAll</span><span class="p">(</span><span class="nx">rc</span><span class="p">)</span>
+				<span class="k">if</span> <span class="nx">err</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+					<span class="nx">cnt</span><span class="o">:=</span><span class="nb">string</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span>
+					<span class="nx">matches</span><span class="o">:=</span><span class="nx">pattern</span><span class="p">.</span><span class="nf">FindStringSubmatch</span><span class="p">(</span><span class="nx">cnt</span><span class="p">)</span>
+					<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">matches</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span> <span class="p">{</span>
+						<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;last: %s, cnt: %s\n&#34;</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">cnt</span><span class="p">)</span>
+						<span class="k">break</span>
+					<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+						<span class="nx">name</span><span class="p">=</span><span class="nx">matches</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">outstr</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l 006</code></pre>
+    </section>
+</div>
 
 <hr />
 
 <h2 id="最终结果-oxygen">最终结果： oxygen</h2>
 
-<h2 id="下一关地址-5"><a href="http://www.pythonchallenge.com/pc/def/oxygen.html">下一关地址</a></h2>
+<h2 id="下一关地址-5">[下一关地址][5]</h2>
 
     </div>
 

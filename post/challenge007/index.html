@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.54.0" />
 
 
 <link rel="canonical" href="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge007/" />
@@ -56,11 +56,14 @@
 
 
 
+<link rel="stylesheet" href="/PythonChallengeStrategy/css/custom.css">
+
 
 <meta property="og:title" content="007. smarty" />
 <meta property="og:description" content="关卡地址 解决方案： 思路： 这一关源代码中没有任何提示信息，看来信息都在图片中了。 图片中间位置有一条灰度图像，灰度图取值范围与ASCII码范围一" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge007/" /><meta property="article:published_time" content="2018-11-06T15:14:54&#43;08:00"/>
+<meta property="og:url" content="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge007/" />
+<meta property="article:published_time" content="2018-11-06T15:14:54&#43;08:00"/>
 <meta property="article:modified_time" content="2019-03-18T13:53:54&#43;08:00"/>
 
 <meta itemprop="name" content="007. smarty">
@@ -69,7 +72,7 @@
 
 <meta itemprop="datePublished" content="2018-11-06T15:14:54&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-18T13:53:54&#43;08:00" />
-<meta itemprop="wordCount" content="221">
+<meta itemprop="wordCount" content="468">
 
 
 
@@ -349,32 +352,131 @@
 
 <h3 id="代码">代码：</h3>
 
-<ul>
-<li><a href="../../Code/Python/Challenge007.py" title="点我查看源码">Python</a></li>
-</ul>
+<div>
+    <input id="tab-python" type="radio" name="code-tabs" class="code-tabs" checked>
+    <label class="language-label" for="tab-python">Python</label>
+    <input id="tab-powershell" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-powershell">PowerShell</label>
+    <input id="tab-golang" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-golang">Golang</label>
+    <section id="content-python" class="content-section">
+        <p><a href="../../Code/Python/Challenge007.py" title="点我下载源码">Challenge007.py</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="kn">import</span> <span class="nn">helper</span>
+<span class="n">path</span><span class="o">=</span><span class="s2">&#34;.</span><span class="se">\\</span><span class="s2">Data</span><span class="se">\\</span><span class="s2">007&#34;</span>
+<span class="n">helper</span><span class="o">.</span><span class="n">ensureDir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
-<pre><code>PS src\static&gt; python .\Code\Python\Challenge007.py
-</code></pre>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="n">img</span><span class="o">=</span><span class="s2">&#34;http://www.pythonchallenge.com/pc/def/oxygen.png&#34;</span>
+<span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span><span class="o">=</span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">path</span><span class="o">+</span><span class="s2">&#34;</span><span class="se">\\</span><span class="s2">oxygen.png&#34;</span><span class="p">)</span>
 
-<ul>
-<li><a href="../../Code/PowerShell/Challenge007.ps1" title="点我查看源码">PowerShell</a></li>
-</ul>
+<span class="c1"># python3图像处理库Pillow（friendly PIL fork）</span>
+<span class="c1"># 文档地址：https://pillow.readthedocs.io/en/5.3.x/</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="k">import</span> <span class="n">Image</span>
+<span class="n">im</span><span class="o">=</span><span class="n">Image</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">h</span><span class="p">)</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">size</span>
+<span class="n">px</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
 
-<pre><code>PS src\static&gt; .\Code\PowerShell\Challenge007.ps1
-</code></pre>
+<span class="n">outstr</span><span class="o">=</span><span class="p">[]</span>
+<span class="c1"># 21px是灰度图右边空白的宽度</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">w</span><span class="o">-</span><span class="mi">21</span><span class="p">,</span><span class="mi">7</span><span class="p">):</span>
+    <span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">)</span><span class="o">=</span><span class="n">px</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
+    <span class="c1"># 灰度图r,g,b三个分量值相等</span>
+    <span class="n">outstr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+<span class="n">im</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<ul>
-<li><a href="../../Code/Go/Challenge007.go" title="点我查看源码">Go</a></li>
-</ul>
+<span class="n">msg</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outstr</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
-<pre><code>PS src\static&gt; .\Code\Go\Challenge.exe -l 007
-</code></pre>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="n">pattern</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[\d]+&#39;</span><span class="p">)</span>
+
+<span class="n">nextlevel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">chr</span><span class="p">,</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="n">pattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">msg</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nextlevel</span><span class="p">)</span></code></pre></div>
+        <pre><code>PS src\static> python .\Code\Python\Challenge007.py</code></pre>
+    </section>
+    <section id="content-powershell" class="content-section">
+        <p><a href="../../Code/PowerShell/Challenge007.ps1" title="点我下载源码">Challenge007.ps1</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$path</span><span class="p">=</span><span class="s2">&#34;.\\Data\\007&#34;</span>
+
+<span class="p">.</span> <span class="p">.\</span><span class="n">Code</span><span class="p">\</span><span class="n">PowerShell</span><span class="p">\</span><span class="n">helper</span><span class="p">.</span><span class="n">ps1</span>
+<span class="nb">New-Dir</span> <span class="n">-Dir</span> <span class="nv">$path</span>
+
+<span class="nv">$url</span><span class="p">=</span><span class="s2">&#34;http://www.pythonchallenge.com/pc/def/oxygen.png&#34;</span>
+<span class="nv">$filename</span><span class="p">=</span><span class="nv">$path</span><span class="p">+</span><span class="s2">&#34;\\oxygen.png&#34;</span>
+<span class="nb">Invoke-WebRequest</span> <span class="n">-Uri</span> <span class="nv">$url</span> <span class="n">-OutFile</span> <span class="nv">$filename</span>
+
+<span class="no">[void][System.Reflection.Assembly]</span><span class="p">::</span><span class="n">LoadWithPartialName</span><span class="p">(</span><span class="s2">&#34;System.Drawing&#34;</span><span class="p">)</span>
+<span class="nv">$img</span><span class="p">=</span><span class="no">[System.Drawing.Image]</span><span class="p">::</span><span class="n">FromFile</span><span class="p">(</span><span class="nv">$filename</span><span class="p">)</span>
+
+<span class="nv">$msg</span><span class="p">=</span><span class="s2">&#34;&#34;</span>
+<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span><span class="p">=</span><span class="n">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">-lt</span> <span class="nv">$img</span><span class="p">.</span><span class="n">Width</span><span class="p">-</span><span class="n">21</span><span class="p">;</span> <span class="nv">$i</span><span class="p">+=</span><span class="n">7</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$msg</span><span class="p">+=</span><span class="no">[char]</span><span class="nv">$img</span><span class="p">.</span><span class="n">GetPixel</span><span class="p">(</span><span class="nv">$i</span><span class="p">,</span><span class="nv">$img</span><span class="p">.</span><span class="n">Height</span><span class="p">/</span><span class="n">2</span><span class="p">).</span><span class="n">R</span>
+<span class="p">}</span>
+<span class="nv">$img</span><span class="p">.</span><span class="n">Dispose</span><span class="p">()</span>
+
+<span class="nb">Write-Output</span> <span class="nv">$msg</span>
+
+<span class="nv">$outstr</span><span class="p">=</span><span class="s2">&#34;&#34;</span>
+<span class="nv">$pattern</span><span class="p">=</span><span class="no">[regex]</span><span class="s2">&#34;\d+&#34;</span>
+<span class="nv">$pattern</span><span class="p">.</span><span class="n">Matches</span><span class="p">(</span><span class="nv">$msg</span><span class="p">)</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span><span class="nv">$outstr</span><span class="p">+=</span><span class="no">[char][int]</span><span class="nv">$_</span><span class="p">.</span><span class="n">Value</span><span class="p">}</span>
+
+<span class="nb">Write-Output</span> <span class="nv">$outstr</span></code></pre></div>
+        <pre><code>PS src\static> .\Code\PowerShell\Challenge007.ps1</code></pre>
+    </section>
+    <section id="content-golang" class="content-section">
+        <p><a href="../../Code/Go/Challenge007.go" title="点我下载源码">Challenge007.go</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;regexp&#34;</span>
+	<span class="s">&#34;strconv&#34;</span>
+	<span class="nx">_</span> <span class="s">&#34;image/png&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Challenge</span><span class="p">)</span> <span class="nf">Challenge007</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">path</span><span class="o">:=</span><span class="s">&#34;.\\Data\\007&#34;</span>
+	<span class="nf">EnsureDir</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span>
+
+	<span class="nx">filename</span><span class="o">:=</span><span class="nx">path</span><span class="o">+</span><span class="s">&#34;\\oxygen.png&#34;</span>
+	<span class="nx">channel</span><span class="o">:=</span><span class="s">&#34;http://www.pythonchallenge.com/pc/def/oxygen.png&#34;</span>
+	<span class="nf">Download</span><span class="p">(</span><span class="nx">channel</span><span class="p">,</span><span class="nx">filename</span><span class="p">)</span>
+
+	<span class="nx">im</span><span class="o">:=</span><span class="nf">OpenImage</span><span class="p">(</span><span class="nx">filename</span><span class="p">)</span>
+
+	<span class="nx">bounds</span> <span class="o">:=</span> <span class="nx">im</span><span class="p">.</span><span class="nf">Bounds</span><span class="p">()</span>
+
+	<span class="nx">msg</span> <span class="o">:=</span> <span class="s">&#34;&#34;</span>
+	<span class="nx">y</span><span class="o">:=</span><span class="p">(</span><span class="nx">bounds</span><span class="p">.</span><span class="nx">Max</span><span class="p">.</span><span class="nx">Y</span><span class="o">-</span><span class="nx">bounds</span><span class="p">.</span><span class="nx">Min</span><span class="p">.</span><span class="nx">Y</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+	<span class="k">for</span> <span class="nx">x</span><span class="o">:=</span><span class="nx">bounds</span><span class="p">.</span><span class="nx">Min</span><span class="p">.</span><span class="nx">X</span><span class="p">;</span> <span class="nx">x</span><span class="p">&lt;</span><span class="nx">bounds</span><span class="p">.</span><span class="nx">Max</span><span class="p">.</span><span class="nx">X</span><span class="o">-</span><span class="mi">21</span><span class="p">;</span> <span class="nx">x</span><span class="o">+=</span><span class="mi">7</span> <span class="p">{</span>
+		<span class="nx">r</span><span class="p">,</span><span class="nx">_</span><span class="p">,</span><span class="nx">_</span><span class="p">,</span><span class="nx">_</span> <span class="o">:=</span> <span class="nx">im</span><span class="p">.</span><span class="nf">At</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">).</span><span class="nf">RGBA</span><span class="p">()</span>
+		<span class="nx">msg</span><span class="o">+=</span><span class="nb">string</span><span class="p">(</span><span class="nb">byte</span><span class="p">(</span><span class="nx">r</span><span class="p">))</span>
+	<span class="p">}</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
+
+	<span class="nx">pattern</span><span class="o">:=</span><span class="nx">regexp</span><span class="p">.</span><span class="nf">MustCompile</span><span class="p">(</span><span class="s">&#34;\\d+&#34;</span><span class="p">)</span>
+	<span class="nx">matches</span><span class="o">:=</span><span class="nx">pattern</span><span class="p">.</span><span class="nf">FindAllString</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+	<span class="nx">outstr</span><span class="o">:=</span><span class="s">&#34;&#34;</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span><span class="nx">match</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">matches</span> <span class="p">{</span>
+		<span class="nx">i</span><span class="p">,</span><span class="nx">err</span><span class="o">:=</span><span class="nx">strconv</span><span class="p">.</span><span class="nf">Atoi</span><span class="p">(</span><span class="nx">match</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="nx">outstr</span><span class="o">+=</span><span class="nb">string</span><span class="p">(</span><span class="nb">byte</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">outstr</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l 007</code></pre>
+    </section>
+</div>
 
 <hr />
 
 <h2 id="最终结果-integrity">最终结果： integrity</h2>
 
-<h2 id="下一关地址-5"><a href="http://www.pythonchallenge.com/pc/def/integrity.html">下一关地址</a></h2>
+<h2 id="下一关地址-5">[下一关地址][5]</h2>
 
     </div>
 

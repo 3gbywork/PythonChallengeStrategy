@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.54.0" />
 
 
 <link rel="canonical" href="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge017/" />
@@ -56,11 +56,14 @@
 
 
 
+<link rel="stylesheet" href="/PythonChallengeStrategy/css/custom.css">
+
 
 <meta property="og:title" content="017. eat?" />
 <meta property="og:description" content="关卡地址 解决方案： 思路： 这一关图片中是曲奇饼干，左下角图片是不是有点熟悉？是第四关啦！ 查看源代码并没有什么提示。 但是！根据cookie可以联" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge017/" /><meta property="article:published_time" content="2018-12-06T23:45:58&#43;08:00"/>
+<meta property="og:url" content="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge017/" />
+<meta property="article:published_time" content="2018-12-06T23:45:58&#43;08:00"/>
 <meta property="article:modified_time" content="2019-03-18T14:58:58&#43;08:00"/>
 
 <meta itemprop="name" content="017. eat?">
@@ -69,7 +72,7 @@
 
 <meta itemprop="datePublished" content="2018-12-06T23:45:58&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-18T14:58:58&#43;08:00" />
-<meta itemprop="wordCount" content="630">
+<meta itemprop="wordCount" content="1086">
 
 
 
@@ -396,32 +399,212 @@
 
 <h3 id="代码">代码：</h3>
 
-<ul>
-<li><a href="../../Code/Python/Challenge017.py" title="点我查看源码">Python</a></li>
-</ul>
+<div>
+    <input id="tab-python" type="radio" name="code-tabs" class="code-tabs" checked>
+    <label class="language-label" for="tab-python">Python</label>
+    <input id="tab-powershell" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-powershell">PowerShell</label>
+    <input id="tab-golang" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-golang">Golang</label>
+    <section id="content-python" class="content-section">
+        <p><a href="../../Code/Python/Challenge017.py" title="点我下载源码">Challenge017.py</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://www.pythonchallenge.com/pc/def/linkedlist.php?busynothing=&#39;</span>
+<span class="n">param</span><span class="o">=</span><span class="s1">&#39;12345&#39;</span>
 
-<pre><code>PS src\static&gt; python .\Code\Python\Challenge017.py
-</code></pre>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">http.cookiejar</span>
+<span class="n">cj</span><span class="o">=</span><span class="n">http</span><span class="o">.</span><span class="n">cookiejar</span><span class="o">.</span><span class="n">CookieJar</span><span class="p">()</span>
+<span class="n">cookie_handler</span><span class="o">=</span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">HTTPCookieProcessor</span><span class="p">(</span><span class="n">cj</span><span class="p">)</span>
+<span class="n">opener</span><span class="o">=</span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">cookie_handler</span><span class="p">)</span>
+<span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
 
-<ul>
-<li><a href="../../Code/PowerShell/Challenge017.ps1" title="点我查看源码">PowerShell</a></li>
-</ul>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="n">pattern</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s2">&#34;the next busynothing is (</span><span class="se">\\</span><span class="s2">d+)&#34;</span><span class="p">)</span>
 
-<pre><code>PS src\static&gt; .\Code\PowerShell\Challenge017.ps1
-</code></pre>
+<span class="n">outstr</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">400</span><span class="p">):</span>
+    <span class="n">resp</span><span class="o">=</span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="n">param</span><span class="p">)</span>
+    <span class="n">cnt</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="c1"># print(&#34;request %4d url: %s\nresponse: %s&#34; %(i,url+param,cnt))</span>
+    <span class="n">outstr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">cj</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">param</span><span class="o">=</span><span class="n">pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;param </span><span class="si">%s</span><span class="s2">, response: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span><span class="p">(</span><span class="n">param</span><span class="p">,</span><span class="n">cnt</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">cnt</span> <span class="o">==</span> <span class="s2">&#34;Yes. Divide by two and keep going.&#34;</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">tmpParam</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">param</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+                <span class="n">param</span><span class="o">=</span><span class="n">tmpParam</span>
+                <span class="k">continue</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">break</span>
+<span class="n">cookieStr</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outstr</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cookieStr</span><span class="p">)</span>
 
-<ul>
-<li><a href="../../Code/Go/Challenge017.go" title="点我查看源码">Go</a></li>
-</ul>
+<span class="c1"># cookieStr=&#39;BZh91AY%26SY%94%3A%E2I%00%00%21%19%80P%81%11%00%AFg%9E%A0+%00hE%3DM%B5%23%D0%D4%D1%E2%8D%06%A9%FA%26S%D4%D3%21%A1%EAi7h%9B%9A%2B%BF%60%22%C5WX%E1%ADL%80%E8V%3C%C6%A8%DBH%2632%18%A8x%01%08%21%8DS%0B%C8%AF%96KO%CA2%B0%F1%BD%1Du%A0%86%05%92s%B0%92%C4Bc%F1w%24S%85%09%09C%AE%24%90&#39;</span>
 
-<pre><code>PS src\static&gt; .\Code\Go\Challenge.exe -l 017
-</code></pre>
+<span class="kn">import</span> <span class="nn">codecs</span>
+<span class="kn">import</span> <span class="nn">urllib.parse</span>
+<span class="n">info</span><span class="o">=</span><span class="n">urllib</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">unquote_to_bytes</span><span class="p">(</span><span class="n">cookieStr</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">,</span><span class="s1">&#39;%20&#39;</span><span class="p">))</span>
+<span class="n">msg</span><span class="o">=</span><span class="n">codecs</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">info</span><span class="p">,</span><span class="s1">&#39;bz2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">xmlrpc.client</span>
+<span class="n">serverUrl</span><span class="o">=</span><span class="s2">&#34;http://www.pythonchallenge.com/pc/phonebook.php&#34;</span>
+<span class="n">serverProxy</span><span class="o">=</span><span class="n">xmlrpc</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">ServerProxy</span><span class="p">(</span><span class="n">serverUrl</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">serverProxy</span><span class="o">.</span><span class="n">phone</span><span class="p">(</span><span class="s1">&#39;Leopold&#39;</span><span class="p">))</span>
+
+<span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://www.pythonchallenge.com/pc/stuff/violin.php&#39;</span>
+<span class="n">cookie</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">cj</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">cookie</span><span class="o">.</span><span class="n">value</span><span class="o">=</span><span class="s2">&#34;the flowers are on their way&#34;</span>
+<span class="n">cj</span><span class="o">.</span><span class="n">set_cookie</span><span class="p">(</span><span class="n">cookie</span><span class="p">)</span>
+
+<span class="n">resp</span><span class="o">=</span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span></code></pre></div>
+        <pre><code>PS src\static> python .\Code\Python\Challenge017.py</code></pre>
+    </section>
+    <section id="content-powershell" class="content-section">
+        <p><a href="../../Code/PowerShell/Challenge017.ps1" title="点我下载源码">Challenge017.ps1</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$url</span><span class="p">=</span><span class="s1">&#39;http://www.pythonchallenge.com/pc/def/linkedlist.php?busynothing=&#39;</span>
+<span class="nv">$param</span><span class="p">=</span><span class="s2">&#34;12345&#34;</span>
+
+<span class="nv">$pattern</span><span class="p">=</span><span class="no">[regex]</span><span class="s2">&#34;the next busynothing is (\d+)&#34;</span>
+
+<span class="no">[string]</span><span class="nv">$cookieStr</span><span class="p">=</span><span class="s2">&#34;&#34;</span>
+<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span><span class="p">=</span><span class="n">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">-lt</span> <span class="n">400</span><span class="p">;</span> <span class="nv">$i</span><span class="p">++)</span> <span class="p">{</span>
+    <span class="nv">$resp</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Invoke-WebRequest</span> <span class="n">-Uri</span> <span class="nv">$url</span><span class="p">+</span><span class="nv">$param</span> <span class="n">-SessionVariable</span> <span class="n">session</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-ExcludeProperty</span> <span class="n">Content</span><span class="p">).</span><span class="n">Content</span>
+    <span class="nv">$cookieStr</span><span class="p">+=</span><span class="nv">$session</span><span class="p">.</span><span class="n">Cookies</span><span class="p">.</span><span class="n">GetCookies</span><span class="p">(</span><span class="nv">$url</span><span class="p">)[</span><span class="n">0</span><span class="p">].</span><span class="n">Value</span>
+    <span class="nv">$match</span> <span class="p">=</span> <span class="nv">$pattern</span><span class="p">.</span><span class="n">Match</span><span class="p">(</span><span class="nv">$resp</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$match</span><span class="p">.</span><span class="n">Success</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$param</span> <span class="p">=</span> <span class="nv">$match</span><span class="p">.</span><span class="n">Groups</span><span class="p">[</span><span class="n">1</span><span class="p">].</span><span class="n">Value</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="no">[System.Console]</span><span class="p">::</span><span class="n">WriteLine</span><span class="p">($(</span><span class="s2">&#34;param: {0}, resp: {1}&#34;</span> <span class="o">-f</span> <span class="nv">$param</span><span class="p">,</span><span class="nv">$resp</span><span class="p">))</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$resp</span> <span class="o">-eq</span> <span class="s2">&#34;Yes. Divide by two and keep going.&#34;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$param</span><span class="p">=</span><span class="nv">$param</span><span class="p">/</span><span class="n">2</span>
+            <span class="k">continue</span>
+        <span class="p">}</span>
+        <span class="k">break</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nv">$cookieStr</span>
+
+<span class="c"># $cookieStr=&#34;BZh91AY%26SY%94%3A%E2I%00%00%21%19%80P%81%11%00%AFg%9E%A0+%00hE%3DM%B5%23%D0%D4%D1%E2%8D%06%A9%FA%26S%D4%D3%21%A1%EAi7h%9B%9A%2B%BF%60%22%C5WX%E1%ADL%80%E8V%3C%C6%A8%DBH%2632%18%A8x%01%08%21%8DS%0B%C8%AF%96KO%CA2%B0%F1%BD%1Du%A0%86%05%92s%B0%92%C4Bc%F1w%24S%85%09%09C%AE%24%90&#34;</span>
+<span class="c"># [System.Web.HttpUtility]::UrlDecodeToBytes 可以将&#39;+&#39;转换为&#39; &#39;，故注释掉</span>
+<span class="c"># $cookieStr=$cookieStr.Replace(&#39;+&#39;,&#39;%20&#39;)</span>
+
+<span class="nv">$path</span><span class="p">=</span><span class="s2">&#34;.\\Data\\017&#34;</span>
+<span class="p">.</span> <span class="p">.\</span><span class="n">Code</span><span class="p">\</span><span class="n">PowerShell</span><span class="p">\</span><span class="n">helper</span><span class="p">.</span><span class="n">ps1</span>
+<span class="nb">New-Dir</span> <span class="n">-Dir</span> <span class="nv">$path</span>
+
+<span class="nv">$cookieFile</span><span class="p">=</span><span class="nv">$path</span><span class="p">+</span><span class="s2">&#34;\\cookie.bz2&#34;</span>
+<span class="no">[void][System.Reflection.Assembly]</span><span class="p">::</span><span class="n">LoadWithPartialName</span><span class="p">(</span><span class="s2">&#34;System.Web&#34;</span><span class="p">)</span>
+<span class="nb">Write-BinaryFile</span> <span class="n">-Filename</span> <span class="nv">$cookieFile</span> <span class="n">-Data</span> <span class="p">$(</span><span class="no">[System.Web.HttpUtility]</span><span class="p">::</span><span class="n">UrlDecodeToBytes</span><span class="p">(</span><span class="nv">$cookieStr</span><span class="p">))</span>
+
+<span class="nb">Write-Output</span> <span class="p">$(.\</span><span class="n">Code</span><span class="p">\</span><span class="n">PowerShell</span><span class="p">\</span><span class="n">bin</span><span class="p">\</span><span class="n">bzip2</span><span class="p">.</span><span class="n">exe</span> <span class="n">-d</span> <span class="n">-k</span> <span class="n">-c</span> <span class="nv">$cookieFile</span><span class="p">)</span>
+
+<span class="nv">$serverUrl</span><span class="p">=</span><span class="s2">&#34;http://www.pythonchallenge.com/pc/phonebook.php&#34;</span>
+<span class="nb">Invoke-XmlRpcRequest</span> <span class="n">-ServerUri</span> <span class="nv">$serverUrl</span> <span class="n">-MethodName</span> <span class="s2">&#34;phone&#34;</span> <span class="n">-Params</span> <span class="s2">&#34;Leopold&#34;</span>
+
+<span class="nv">$url</span><span class="p">=</span><span class="s1">&#39;http://www.pythonchallenge.com/pc/stuff/violin.php&#39;</span>
+<span class="nv">$cookie</span><span class="p">=</span><span class="no">[System.Net.Cookie]</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="s2">&#34;info&#34;</span><span class="p">,</span><span class="s2">&#34;the flowers are on their way&#34;</span><span class="p">)</span>
+<span class="nv">$webSession</span><span class="p">=</span><span class="no">[Microsoft.PowerShell.Commands.WebRequestSession]</span><span class="p">::</span><span class="n">new</span><span class="p">()</span>
+<span class="nv">$webSession</span><span class="p">.</span><span class="n">Cookies</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="nv">$url</span><span class="p">,</span><span class="nv">$cookie</span><span class="p">)</span>
+<span class="p">$(</span><span class="nb">Invoke-WebRequest</span> <span class="n">-Uri</span> <span class="nv">$url</span> <span class="n">-WebSession</span> <span class="nv">$webSession</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-ExcludeProperty</span> <span class="n">Content</span><span class="p">).</span><span class="n">Content</span></code></pre></div>
+        <pre><code>PS src\static> .\Code\PowerShell\Challenge017.ps1</code></pre>
+    </section>
+    <section id="content-golang" class="content-section">
+        <p><a href="../../Code/Go/Challenge017.go" title="点我下载源码">Challenge017.go</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span><span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;regexp&#34;</span>
+	<span class="s">&#34;net/http&#34;</span>
+	<span class="s">&#34;io/ioutil&#34;</span>
+	<span class="s">&#34;strings&#34;</span>
+	<span class="s">&#34;strconv&#34;</span>
+	<span class="s">&#34;github.com/kolo/xmlrpc&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Challenge</span><span class="p">)</span> <span class="nf">Challenge017</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">url</span> <span class="o">:=</span> <span class="s">&#34;http://www.pythonchallenge.com/pc/def/linkedlist.php?busynothing=&#34;</span>
+	<span class="nx">param</span> <span class="o">:=</span> <span class="s">&#34;12345&#34;</span>
+
+	<span class="nx">pattern</span> <span class="o">:=</span> <span class="nx">regexp</span><span class="p">.</span><span class="nf">MustCompile</span><span class="p">(</span><span class="s">&#34;the next busynothing is (\\d+)&#34;</span><span class="p">)</span>
+
+	<span class="kd">var</span> <span class="nx">cookie</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Cookie</span>
+	<span class="nx">outstr</span> <span class="o">:=</span> <span class="s">&#34;&#34;</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">400</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="nx">url</span><span class="o">+</span><span class="nx">param</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;request %s%s err[%v]\n&#34;</span><span class="p">,</span><span class="nx">url</span><span class="p">,</span> <span class="nx">param</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+			<span class="k">break</span>
+		<span class="p">}</span>
+		<span class="k">defer</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+		<span class="nx">body</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nf">ReadAll</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;request %s%s err[%v]\n&#34;</span><span class="p">,</span><span class="nx">url</span><span class="p">,</span> <span class="nx">param</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+			<span class="k">break</span>
+		<span class="p">}</span>
+		<span class="nx">content</span> <span class="o">:=</span> <span class="nb">string</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span>
+		<span class="nx">temParam</span><span class="o">:=</span><span class="nx">pattern</span><span class="p">.</span><span class="nf">FindStringSubmatch</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">temParam</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span> <span class="p">{</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;param: %s, response: %s\n&#34;</span><span class="p">,</span><span class="nx">param</span><span class="p">,</span> <span class="nx">content</span><span class="p">)</span>
+			<span class="k">if</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Compare</span><span class="p">(</span><span class="nx">content</span><span class="p">,</span> <span class="s">&#34;Yes. Divide by two and keep going.&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+				<span class="nx">intParam</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">Atoi</span><span class="p">(</span><span class="nx">param</span><span class="p">)</span>
+				<span class="k">if</span> <span class="nx">err</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+					<span class="nx">param</span> <span class="p">=</span> <span class="nb">string</span><span class="p">(</span><span class="nx">intParam</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+					<span class="k">continue</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+			<span class="k">break</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+			<span class="nx">param</span><span class="p">=</span><span class="nx">temParam</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+		<span class="p">}</span>
+		<span class="nx">cookie</span> <span class="p">=</span> <span class="nx">resp</span><span class="p">.</span><span class="nf">Cookies</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+		<span class="nx">outstr</span> <span class="o">+=</span> <span class="nx">cookie</span><span class="p">.</span><span class="nx">Value</span>
+	<span class="p">}</span>
+
+	<span class="nx">cookieFile</span> <span class="o">:=</span> <span class="s">&#34;.\\Data\\017\\cookie.bz2&#34;</span>
+	<span class="nx">msg</span> <span class="o">:=</span> <span class="nf">bz2Decode</span><span class="p">(</span><span class="nx">cookieFile</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
+
+	<span class="nx">client</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">xmlrpc</span><span class="p">.</span><span class="nf">NewClient</span><span class="p">(</span><span class="s">&#34;http://www.pythonchallenge.com/pc/phonebook.php&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Can&#39;t create client: &#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="k">defer</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+	<span class="kd">var</span> <span class="nx">result</span> <span class="kt">string</span>
+	<span class="nx">client</span><span class="p">.</span><span class="nf">Call</span><span class="p">(</span><span class="s">&#34;phone&#34;</span><span class="p">,</span> <span class="s">&#34;Leopold&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">result</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+
+	<span class="nx">url</span> <span class="p">=</span> <span class="s">&#34;http://www.pythonchallenge.com/pc/stuff/violin.php&#34;</span>
+	<span class="nx">httpClient</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">http</span><span class="p">.</span><span class="nx">Client</span> <span class="p">{}</span>
+	<span class="nx">req</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">NewRequest</span><span class="p">(</span><span class="s">&#34;POST&#34;</span><span class="p">,</span> <span class="nx">url</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+	<span class="nx">req</span><span class="p">.</span><span class="nx">Header</span><span class="p">.</span><span class="nf">Set</span><span class="p">(</span><span class="s">&#34;Cookie&#34;</span><span class="p">,</span> <span class="s">&#34;info=the flowers are on their way&#34;</span><span class="p">)</span>
+	<span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">httpClient</span><span class="p">.</span><span class="nf">Do</span><span class="p">(</span><span class="nx">req</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;do post err![%v]&#34;</span><span class="p">,</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="k">defer</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+	<span class="nx">data</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nf">ReadAll</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;post %s err![%v]&#34;</span><span class="p">,</span> <span class="nx">url</span><span class="p">,</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l 017</code></pre>
+    </section>
+</div>
 
 <hr />
 
 <h2 id="最终结果-balloons">最终结果： balloons</h2>
 
-<h2 id="下一关地址-5"><a href="http://www.pythonchallenge.com/pc/return/balloons.html">下一关地址</a></h2>
+<h2 id="下一关地址-5">[下一关地址][5]</h2>
 
     </div>
 

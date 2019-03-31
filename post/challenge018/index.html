@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.54.0" />
 
 
 <link rel="canonical" href="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge018/" />
@@ -56,11 +56,14 @@
 
 
 
+<link rel="stylesheet" href="/PythonChallengeStrategy/css/custom.css">
+
 
 <meta property="og:title" content="018. can you tell the difference?" />
 <meta property="og:description" content="关卡地址 解决方案： 思路： 可以很明显的看出图片左右两部分的亮度不同，但还是看一下源代码的提示： it is more obvious that what you might think 替换url为bright会提示" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge018/" /><meta property="article:published_time" content="2018-12-14T20:01:15&#43;08:00"/>
+<meta property="og:url" content="https://3gbywork.github.io/PythonChallengeStrategy/post/challenge018/" />
+<meta property="article:published_time" content="2018-12-14T20:01:15&#43;08:00"/>
 <meta property="article:modified_time" content="2019-03-18T15:09:15&#43;08:00"/>
 
 <meta itemprop="name" content="018. can you tell the difference?">
@@ -69,7 +72,7 @@
 
 <meta itemprop="datePublished" content="2018-12-14T20:01:15&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-18T15:09:15&#43;08:00" />
-<meta itemprop="wordCount" content="536">
+<meta itemprop="wordCount" content="655">
 
 
 
@@ -390,32 +393,82 @@
 
 <h3 id="代码">代码：</h3>
 
-<ul>
-<li><a href="../../Code/Python/Challenge018.py" title="点我查看源码">Python</a></li>
-</ul>
+<div>
+    <input id="tab-python" type="radio" name="code-tabs" class="code-tabs" checked>
+    <label class="language-label" for="tab-python">Python</label>
+    <input id="tab-powershell" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-powershell">PowerShell</label>
+    <input id="tab-golang" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-golang">Golang</label>
+    <section id="content-python" class="content-section">
+        <p><a href="../../Code/Python/Challenge018.py" title="点我下载源码">Challenge018.py</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="kn">import</span> <span class="nn">helper</span>
+<span class="n">path</span><span class="o">=</span><span class="s2">&#34;.</span><span class="se">\\</span><span class="s2">Data</span><span class="se">\\</span><span class="s2">018&#34;</span>
+<span class="n">helper</span><span class="o">.</span><span class="n">ensureDir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
-<pre><code>PS src\static&gt; python .\Code\Python\Challenge018.py
-</code></pre>
+<span class="c1"># ================================</span>
+<span class="c1"># 使用http认证，下载文件</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="n">helper</span><span class="o">.</span><span class="n">installHTTPBasicAuthOpener</span><span class="p">(</span><span class="s2">&#34;huge&#34;</span><span class="p">,</span> <span class="s2">&#34;file&#34;</span><span class="p">)</span>
 
-<ul>
-<li><a href="../../Code/PowerShell/Challenge018.ps1" title="点我查看源码">PowerShell</a></li>
-</ul>
+<span class="n">gif</span><span class="o">=</span><span class="s2">&#34;http://www.pythonchallenge.com/pc/return/deltas.gz&#34;</span>
+<span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span><span class="o">=</span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">gif</span><span class="p">,</span> <span class="n">path</span><span class="o">+</span><span class="s2">&#34;</span><span class="se">\\</span><span class="s2">deltas.gz&#34;</span><span class="p">)</span>
+<span class="c1"># ================================</span>
 
-<pre><code>PS src\static&gt; .\Code\PowerShell\Challenge018.ps1
-</code></pre>
+<span class="kn">import</span> <span class="nn">gzip</span>
+<span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">gz</span><span class="p">:</span>
+    <span class="n">lines</span><span class="o">=</span><span class="n">gz</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    
+<span class="n">file1</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">line</span><span class="p">)[</span><span class="mi">2</span><span class="p">:</span><span class="mi">55</span><span class="p">]</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span>
+<span class="n">file2</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">line</span><span class="p">)[</span><span class="mi">58</span><span class="p">:</span><span class="mi">111</span><span class="p">]</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span>
 
-<ul>
-<li><a href="../../Code/Go/Challenge018.go" title="点我查看源码">Go</a></li>
-</ul>
+<span class="kn">import</span> <span class="nn">difflib</span>
+<span class="n">d</span><span class="o">=</span><span class="n">difflib</span><span class="o">.</span><span class="n">Differ</span><span class="p">()</span>
+<span class="n">rst</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="n">file1</span><span class="p">,</span> <span class="n">file2</span><span class="p">))</span>
 
-<pre><code>PS src\static&gt; .\Code\Go\Challenge.exe -l 018
-</code></pre>
+<span class="c1"># 查看比较结果</span>
+<span class="c1"># tmp=path+&#34;\\compare.txt&#34;</span>
+<span class="c1"># fp=open(tmp, &#39;w&#39;)</span>
+<span class="c1"># fp.write(&#39;&#39;.join(rst))</span>
+<span class="c1"># fp.close()</span>
+<span class="c1"># from pprint import pprint</span>
+<span class="c1"># pprint(rst)</span>
+
+<span class="n">pngs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">l</span><span class="p">:</span> <span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="n">c</span><span class="p">,</span> <span class="n">rst</span><span class="p">))</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="s1">&#39; -+&#39;</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">binascii</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pngs</span><span class="p">)):</span>
+    <span class="n">png</span><span class="o">=</span><span class="n">pngs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">n&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="c1"># print(png)</span>
+    <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="se">\\</span><span class="s1">delta</span><span class="si">%d</span><span class="s1">.png&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">i</span><span class="p">),</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">binascii</span><span class="o">.</span><span class="n">unhexlify</span><span class="p">(</span><span class="n">png</span><span class="p">))</span></code></pre></div>
+        <pre><code>PS src\static> python .\Code\Python\Challenge018.py</code></pre>
+    </section>
+    <section id="content-powershell" class="content-section">
+        <p><a href="../../Code/PowerShell/Challenge018.ps1" title="点我下载源码">Challenge018.ps1</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"></code></pre></div>
+        <pre><code>PS src\static> .\Code\PowerShell\Challenge018.ps1</code></pre>
+    </section>
+    <section id="content-golang" class="content-section">
+        <p><a href="../../Code/Go/Challenge018.go" title="点我下载源码">Challenge018.go</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span><span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Challenge</span><span class="p">)</span> <span class="nf">Challenge018</span><span class="p">()</span> <span class="p">{</span>
+	
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;result: &#34;</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l 018</code></pre>
+    </section>
+</div>
 
 <hr />
 
 <h2 id="最终结果-hex-bin-html">最终结果： ../hex/bin.html</h2>
 
-<h2 id="下一关地址-5"><a href="http://www.pythonchallenge.com/pc/hex/bin.html">下一关地址</a></h2>
+<h2 id="下一关地址-5">[下一关地址][5]</h2>
 
     </div>
 
