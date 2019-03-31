@@ -143,3 +143,6 @@ _gen
 
 # ignore docs
 docs
+
+# prebuild output
+src/content/post/
