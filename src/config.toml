@@ -6,6 +6,7 @@ publishDir = "../docs"
 
 baseURL = "http://localhost:1313/"
 title = "Python Challenge Strategy"
+pygmentsUseClasses = true # Syntax Highlighting           # 语法高亮
 enableRobotsTXT = true
 enableEmoji = true
 theme = "jane"
@@ -81,7 +82,7 @@ defaultContentLanguage = "en"           # Default language to use
 
   # Link custom CSS and JS assets
   #   (relative to /static/css and /static/js respectively)
-  customCSS = []            # if ['custom.css'], load '/static/css/custom.css' file
+  customCSS = ['custom.css']            # if ['custom.css'], load '/static/css/custom.css' file
   customJS = []             # if ['custom.js'], load '/static/js/custom.js' file
 
   [params.social]                                         # 社交链接

@@ -1,0 +1,62 @@
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
+@import url("http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css");
+
+.code-tabs {
+    display: none;
+}
+
+.code-tabs:checked + .language-label {
+    color: #555;
+    border: 1px solid #ddd;
+    border-top: 2px solid orange;
+    border-bottom: 1px solid #fff;    
+}
+
+.content-section {
+    display: none;
+    /* padding: 20px 0 0; */
+    border-top: 1px solid #ddd;
+}
+
+.language-label {
+    display: inline-block;
+    margin: 0 0 -1px;
+    padding: 15px 25px;
+    font-weight: 600;
+    text-align: center;
+    color: #bbb;
+    border: 1px solid transparent;
+}
+
+.language-label:before {
+    font-family: fontawesome;
+    font-weight: normal;
+    margin-right: 10px;
+}
+
+.language-label:hover {
+    color: #888;
+    cursor: pointer;
+}
+
+#tab-python:checked ~ #content-python,
+#tab-powershell:checked ~ #content-powershell,
+#tab-golang:checked ~ #content-golang {
+    display: block;
+}
+
+@media screen and (max-width: 650px) {
+    .language-label {
+        font-size: 0;
+    }
+
+    .language-label:before {
+        margin: 0;
+        font-size: 18px;
+    }
+}
+@media screen and (max-width: 400px) {
+    .language-label {
+        padding: 15px;
+    }
+}

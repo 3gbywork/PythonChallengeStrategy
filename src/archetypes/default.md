@@ -32,31 +32,37 @@ mathjax: false
 
 ### 代码：
 
-* [Python][2]
-
-```
-PS src\static> python .\Code\Python\{{ .Name }}.py
-```
-
-* [PowerShell][3]
-
-```
-PS src\static> .\Code\PowerShell\{{ .Name }}.ps1
-```
-
-* [Go][4]
-
-```
-PS src\static> .\Code\Go\Challenge.exe -l {{ replace .Name "Challenge" "" }}
-```
+<div>
+    <input id="tab-python" type="radio" name="code-tabs" class="code-tabs" checked>
+    <label class="language-label" for="tab-python">Python</label>
+    <input id="tab-powershell" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-powershell">PowerShell</label>
+    <input id="tab-golang" type="radio" name="code-tabs" class="code-tabs">
+    <label class="language-label" for="tab-golang">Golang</label>
+    <section id="content-python" class="content-section">
+        <p><a href="../../Code/Python/{{ .Name }}.py" title="点我下载源码">{{ .Name }}.py</a></p>
+{{< highlight python3 >}}
+{{< /highlight >}}
+        <pre><code>PS src\static> python .\Code\Python\{{ .Name }}.py</code></pre>
+    </section>
+    <section id="content-powershell" class="content-section">
+        <p><a href="../../Code/PowerShell/{{ .Name }}.ps1" title="点我下载源码">{{ .Name }}.ps1</a></p>
+{{< highlight powershell >}}
+{{< /highlight >}}
+        <pre><code>PS src\static> .\Code\PowerShell\{{ .Name }}.ps1</code></pre>
+    </section>
+    <section id="content-golang" class="content-section">
+        <p><a href="../../Code/Go/{{ .Name }}.go" title="点我下载源码">{{ .Name }}.go</a></p>
+{{< highlight golang >}}
+{{< /highlight >}}
+        <pre><code>PS src\static> .\Code\Go\Challenge.exe -l {{ replace .Name "Challenge" "" }}</code></pre>
+    </section>
+</div>
 
 ---
 ## 最终结果： result
 
-## [下一关地址][5]
+## [下一关地址][2]
 
 [1]: http://www.pythonchallenge.com/pc/def/current.html
-[2]: ../../Code/Python/{{ .Name }}.py "点我查看源码"
-[3]: ../../Code/PowerShell/{{ .Name }}.ps1 "点我查看源码"
-[4]: ../../Code/Go/{{ .Name }}.go "点我查看源码"
-[5]: http://www.pythonchallenge.com/pc/def/next.html
+[2]: http://www.pythonchallenge.com/pc/def/next.html
