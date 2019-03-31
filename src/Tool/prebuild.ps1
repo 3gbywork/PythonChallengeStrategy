@@ -1,3 +1,9 @@
+# create content/post folder
+$folder = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(".\content\post")
+if ($(Test-Path $folder) -eq $false) {
+    New-Item $folder -ItemType Directory
+}
+
 $mds = Get-ChildItem -Path $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(".\static\Strategy") -Filter *.md
 $mds | ForEach-Object {
     $level = $([string]$_.BaseName).Substring(9,3)
