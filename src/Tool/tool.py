@@ -1,6 +1,7 @@
 import os
 import sys
 import codecs
+import subprocess
 
 def main(args):
     if len(args) != 2:
@@ -12,17 +13,19 @@ def main(args):
         print("关卡数应是小于40的自然数")
         sys.exit(2)
     
-    mdfile="./Strategy/Challenge%03d.md" % (level)
-    mdtemplate="./Tool/Template/ChallengeTemplate.md"
-    createFileFromTemplate(mdtemplate, mdfile, level)
+    # mdfile="./Strategy/Challenge%03d.md" % (level)
+    # mdtemplate="./Tool/Template/ChallengeTemplate.md"
+    # createFileFromTemplate(mdtemplate, mdfile, level)
+    mdfile="static/Strategy/Challenge%03d.md" % (level)
+    subprocess.run(["hugo", "new", mdfile])
 
-    ps1file="./Code/PowerShell/Challenge%03d.ps1" % (level)
+    ps1file="./static/Code/PowerShell/Challenge%03d.ps1" % (level)
     createFileIfNotExists(ps1file)
 
-    pyfile="./Code/Python/Challenge%03d.py" % (level)
+    pyfile="./static/Code/Python/Challenge%03d.py" % (level)
     createFileIfNotExists(pyfile)
 
-    gofile="./Code/Go/Challenge%03d.go" % (level)
+    gofile="./static/Code/Go/Challenge%03d.go" % (level)
     gotemplate="./Tool/Template/Go.template"
     createFileFromTemplate(gotemplate, gofile, level)
 

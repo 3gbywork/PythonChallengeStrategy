@@ -6,6 +6,8 @@ import (
 	"strconv"
 	"io/ioutil"
 	"strings"
+	"os/exec"
+	"bytes"
 )
 
 func main() {
@@ -20,17 +22,19 @@ func main() {
 		return
 	}
 
-	mdfile:=fmt.Sprintf("./Strategy/Challenge%03d.md", level)
-    mdtemplate:="./Tool/Template/ChallengeTemplate.md"
-    createFileFromTemplate(mdtemplate, mdfile, level)
+	// mdfile:=fmt.Sprintf("./Strategy/Challenge%03d.md", level)
+    // mdtemplate:="./Tool/Template/ChallengeTemplate.md"
+	// createFileFromTemplate(mdtemplate, mdfile, level)
+	mdfile:=fmt.Sprintf("static/Strategy/Challenge%03d.md", level)
+	runCommand("hugo", "new", mdfile)
 
-    ps1file:=fmt.Sprintf("./Code/PowerShell/Challenge%03d.ps1", level)
+    ps1file:=fmt.Sprintf("./static/Code/PowerShell/Challenge%03d.ps1", level)
     createFileIfNotExists(ps1file)
 
-    pyfile:=fmt.Sprintf("./Code/Python/Challenge%03d.py", level)
+    pyfile:=fmt.Sprintf("./static/Code/Python/Challenge%03d.py", level)
     createFileIfNotExists(pyfile)
 
-    gofile:=fmt.Sprintf("./Code/Go/Challenge%03d.go", level)
+    gofile:=fmt.Sprintf("./static/Code/Go/Challenge%03d.go", level)
     gotemplate:="./Tool/Template/Go.template"
 	createFileFromTemplate(gotemplate, gofile, level)
 }
@@ -104,4 +108,15 @@ func readFile(filename string) string {
 	}
 
 	return string(content)
+}
+
+func runCommand(name string, args ...string) {
+	cmd := exec.Command(name, args...)
+	var out bytes.Buffer
+	cmd.Stdout = &out
+	err := cmd.Run()
+	if err != nil {
+		fmt.Printf("执行命令 %s, 参数 %s 失败！[%v]\n", name, args, err)
+	}
+	fmt.Printf("%s", out.String())
 }
