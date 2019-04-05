@@ -37,3 +37,5 @@ for i in range(len(pngs)):
     png=pngs[i].replace(' ','').replace('\\n','').replace('\'','').replace('+','').replace('-','')
     # print(png)
     open('%s\\delta%d.png' % (path,i), 'wb').write(binascii.unhexlify(png))
+
+print("please see the folder: ", path)
