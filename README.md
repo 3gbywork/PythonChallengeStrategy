@@ -36,7 +36,7 @@ xxx为关卡的三位数字形式，不足左边补0。如：001、002。
 将当前关卡地址的pc替换为pcc，就会得到上一关的攻略地址。或者访问[Wiki主页][2]
 
 ---
-# 如果引用图片侵权，请联系我<liaiping1992@163.com>
+# 如果引用图片侵权，请联系我<amos18284@outlook.com>
 
 [0]: https://3gbywork.github.io/PythonChallengeStrategy/
 [1]: https://play.golang.org/
